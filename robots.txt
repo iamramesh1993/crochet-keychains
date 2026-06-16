@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iamramesh1993.github.io/crochet-keychains/sitemap.xml

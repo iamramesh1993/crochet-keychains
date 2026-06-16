@@ -1,0 +1,18 @@
+{
+  "name": "Crochet Keychain PK",
+  "short_name": "Crochet PK",
+  "description": "Handmade crochet keychains and charms, made to order in Pakistan.",
+  "start_url": "/crochet-keychains/",
+  "scope": "/crochet-keychains/",
+  "display": "standalone",
+  "background_color": "#fbf7f2",
+  "theme_color": "#c4795b",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
