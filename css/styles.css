@@ -1163,17 +1163,33 @@ body.lightbox-open {
 
   .hero {
     grid-template-columns: 1fr;
-    padding: 2rem 1.25rem 3rem;
-    gap: 2rem;
+    padding: 1.5rem 1.25rem 2.5rem;
+    gap: 1.5rem;
   }
 
-  /* Reflow the decorative floating cards into a neat, contained row */
+  .hero h1 {
+    font-size: 1.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero .eyebrow {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Show the product photos right under the intro so it reads as a shop, not an essay */
+  .hero-content { order: 1; }
   .hero-visual {
+    order: 2;
     position: relative;
     height: auto;
     display: flex;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
 
   .hero-card {
@@ -1181,13 +1197,9 @@ body.lightbox-open {
     width: auto;
     flex: 1 1 0;
     min-width: 0;
-    max-width: 150px;
+    max-width: 130px;
     animation: none;
-    padding: 0.6rem;
-  }
-
-  .hero-card-3 {
-    display: none;
+    padding: 0.5rem;
   }
 
   .hero-card-img {
