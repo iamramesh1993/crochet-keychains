@@ -593,6 +593,10 @@ h3 {
   margin-bottom: 1.25rem;
 }
 
+.order-modal-preview[hidden] {
+  display: none;
+}
+
 .order-modal-preview img {
   width: 56px;
   height: 56px;
@@ -694,6 +698,10 @@ h3 {
 
 .order-form-back:hover {
   color: var(--ink);
+}
+
+.order-form label[hidden] {
+  display: none;
 }
 
 .order-form label {

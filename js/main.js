@@ -146,6 +146,14 @@ function startOrder(item) {
   orderForm.qty.value = '1';
   orderForm.ref.value = item ? refCode(item) : '';
 
+  // The "Design ref" field and the photo preview only make sense for a specific
+  // product. For a generic "Book your order" (no item) hide both.
+  const refField = document.getElementById('order-ref-field');
+  if (refField) refField.hidden = !item;
+
+  const title = document.getElementById('order-modal-title');
+  if (title) title.textContent = item ? 'Order this keychain' : 'Place your order';
+
   const preview = document.getElementById('order-modal-preview');
   const previewImg = document.getElementById('order-modal-img');
   const previewRef = document.getElementById('order-modal-ref');
@@ -155,6 +163,8 @@ function startOrder(item) {
     previewRef.textContent = `${item.title} · ${formatPrice(item)} · Ref ${refCode(item)} · ${socialProofText(item)}`;
     preview.hidden = false;
   } else if (preview) {
+    previewImg.removeAttribute('src');
+    previewRef.textContent = '';
     preview.hidden = true;
   }
 
