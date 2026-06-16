@@ -133,6 +133,22 @@ h3 {
   font-size: 1rem;
 }
 
+.btn-instagram {
+  gap: 0.55rem;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(220, 39, 67, 0.35);
+}
+
+.btn-instagram:hover {
+  filter: brightness(1.05);
+}
+
+.btn-instagram svg {
+  width: 20px;
+  height: 20px;
+}
+
 /* --- Header --- */
 .site-header {
   position: sticky;
@@ -678,6 +694,14 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
+  background: #25d366;
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+}
+
+.order-form-submit:hover {
+  background: #1da851;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
 }
 
 .order-form-submit svg {
