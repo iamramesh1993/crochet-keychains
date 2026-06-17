@@ -32,11 +32,20 @@ python3 -m http.server 8000
 2. Repo **Settings → Pages → Source: `main` branch / root**.
 3. Site goes live at `https://iamramesh1993.github.io/crochet-keychains/`.
 
-## Using a custom domain later
-1. Rename `CNAME.example` to `CNAME` and put **only** your bare domain inside (e.g. `crochetkeychain.pk`).
-2. Point your domain's DNS at GitHub Pages.
-3. Update the site URL in these files: `index.html` (canonical, Open Graph, JSON-LD),
-   `js/main.js` (`SITE_URL`), `sitemap.xml`, `robots.txt`, and `site.webmanifest`.
+## Custom domain — www.crochetkeychains.com
+Site URLs (canonical, Open Graph, JSON-LD, `js/main.js` `SITE_URL`, `sitemap.xml`,
+`robots.txt`, `site.webmanifest`) already point to `https://www.crochetkeychains.com`.
+
+To finish going live on the domain:
+1. In Namecheap (Domain → Advanced DNS) add:
+   - **CNAME** record: Host `www` → Value `iamramesh1993.github.io.`
+   - Four **A** records: Host `@` → `185.199.108.153`, `185.199.109.153`,
+     `185.199.110.153`, `185.199.111.153` (apex redirect to www)
+2. Once DNS resolves, rename `CNAME.example` → `CNAME` (it already contains
+   `www.crochetkeychains.com`), commit, and push. GitHub Pages will serve the domain
+   and issue HTTPS automatically.
+
+Until step 2, the site stays live at `https://iamramesh1993.github.io/crochet-keychains/`.
 
 ## Editing the shop
 - **Add/remove a product:** edit `images/manifest.json` (and drop the photo in `images/`).

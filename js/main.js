@@ -46,10 +46,21 @@ if (navToggle && navLinks) {
   });
 }
 
+// Featured products shown in the hero (by exact title).
+const HERO_FEATURED = ['Blue Car Keychain', 'Ice Cream Charm Set', 'Blue Elephant Charm'];
+
 function buildHeroCards(items) {
   if (!heroVisual || items.length === 0) return;
 
-  const picks = [items[0], items[Math.floor(items.length / 3)], items[Math.floor(items.length / 2)]];
+  let picks = HERO_FEATURED
+    .map((title) => items.find((x) => x.title === title))
+    .filter(Boolean);
+  // Fallback: if any featured product is missing, pad with other items.
+  for (const item of items) {
+    if (picks.length >= 3) break;
+    if (!picks.includes(item)) picks.push(item);
+  }
+  picks = picks.slice(0, 3);
   const positions = ['hero-card-1', 'hero-card-2', 'hero-card-3'];
 
   heroVisual.innerHTML = picks.map((item, i) => `
@@ -63,9 +74,8 @@ function buildHeroCards(items) {
 // Shop's WhatsApp number (digits only, with country code, no + or spaces): +92 314 4918419
 const WHATSAPP_NUMBER = '923144918419';
 
-// Public site URL — used for structured data (SEO). When your custom domain is
-// live, change this here AND the matching tags in index.html, sitemap.xml, robots.txt.
-const SITE_URL = 'https://iamramesh1993.github.io/crochet-keychains';
+// Public site URL — used for structured data (SEO).
+const SITE_URL = 'https://www.crochetkeychains.com';
 
 const ORDER_DM_URL = 'https://ig.me/m/crochet_keychain.pk';
 const orderModal = document.getElementById('order-modal');
