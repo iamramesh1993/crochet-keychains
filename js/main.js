@@ -246,27 +246,29 @@ if (orderForm) {
     const qty = (data.get('qty') || '1').toString().trim();
     const notes = (data.get('notes') || '').toString().trim();
 
-    // Written in the buyer's voice — this is the message the customer sends to us.
+    // Written in the buyer's voice. Plain-text labels only (no emoji): the
+    // Instagram in-app browser mangles emoji when handing the wa.me link to
+    // WhatsApp, so we keep this message universally clean.
     const lines = [];
     if (orderModalItem) {
-      lines.push(`Hi! 👋 I'd like to order this from your website:`);
+      lines.push(`Hi! I'd like to order this from your website:`);
       lines.push('');
-      lines.push(`🧶 ${orderModalItem.title} (Ref ${ref})`);
-      lines.push(`💰 ${formatPrice(orderModalItem)}  ·  Qty: ${qty}`);
-      lines.push(`📷 ${new URL(orderModalItem.src, window.location.href).href}`);
+      lines.push(`Design: ${orderModalItem.title} (Ref ${ref})`);
+      lines.push(`Price: ${formatPrice(orderModalItem)}  ·  Qty: ${qty}`);
+      lines.push(`Photo: ${new URL(orderModalItem.src, window.location.href).href}`);
     } else {
-      lines.push(`Hi! 👋 I'd like to order from your website.`);
+      lines.push(`Hi! I'd like to order from your website.`);
       lines.push('');
-      lines.push(ref ? `🧶 Design: ${ref}  ·  Qty: ${qty}` : `🧶 Custom design  ·  Qty: ${qty}`);
+      lines.push(ref ? `Design: ${ref}  ·  Qty: ${qty}` : `Design: custom (see notes)  ·  Qty: ${qty}`);
     }
-    if (notes) lines.push(`📝 ${notes}`);
+    if (notes) lines.push(`Notes: ${notes}`);
     lines.push('');
     lines.push(`My delivery details (cash on delivery):`);
-    lines.push(`👤 ${name}`);
-    lines.push(`📞 ${phone}`);
-    lines.push(`📍 ${address}`);
+    lines.push(`Name: ${name}`);
+    lines.push(`Phone: ${phone}`);
+    lines.push(`Address: ${address}`);
     lines.push('');
-    lines.push(`Could you please confirm the total and delivery time? Thank you! 🙏`);
+    lines.push(`Could you please confirm the total and delivery time? Thank you!`);
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
     window.open(url, '_blank', 'noopener');
