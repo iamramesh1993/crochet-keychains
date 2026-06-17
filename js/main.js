@@ -8,8 +8,58 @@ const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxCaption = document.getElementById('lightbox-caption');
 
-let galleryItems = [];
+let galleryItems = [];   // full catalog
+let viewItems = [];      // current filtered + sorted view (what the grid/lightbox show)
 let lightboxIndex = 0;
+
+// ---- Catalog browsing: categories, sort, favourites, "new" tags ----
+const CATEGORY_DEFS = [
+  { id: 'festive', label: 'Festive', kw: ['christmas', 'santa', 'snowman', 'new year', 'bell', 'mitten', 'sock'] },
+  { id: 'cars', label: 'Cars', kw: ['car'] },
+  { id: 'characters', label: 'Characters', kw: ['superman', 'minion', 'mickey', 'pikachu', 'pooh'] },
+  { id: 'food', label: 'Food', kw: ['ice cream', 'strawberry', 'macaron', 'biscuit', 'mug', 'burger', 'fries', 'pizza', 'watermelon', 'lemon', 'orange', 'nutella', 'cheeseburger', 'coffee', 'fruit', 'acorn'] },
+  { id: 'flowers', label: 'Flowers', kw: ['rose', 'flower', 'daisy', 'tulip', 'marigold', 'bouquet', 'floral'] },
+  { id: 'animals', label: 'Animals', kw: ['bunny', 'cat', 'bear', 'panda', 'penguin', 'elephant', 'frog', 'owl', 'dog', 'shiba', 'sheep', 'turtle', 'ladybug', 'bee', 'hen', 'chick', 'bird', 'mouse', 'octopus', 'puppy'] },
+  { id: 'more', label: 'More', kw: null }, // catch-all
+];
+// Precompile a whole-word matcher per category (with optional trailing "s"),
+// so "car" matches "car/cars" but not "maCARon" or "CARrot".
+CATEGORY_DEFS.forEach((c) => {
+  if (c.kw) c.re = new RegExp('\\b(' + c.kw.join('|') + ')s?\\b', 'i');
+});
+
+// Designs flagged as recent arrivals (by ref number) — easy to edit.
+const NEW_REFS = new Set(['102', '110', '114', '066', '109', '068', '108']);
+const FAVES_KEY = 'ck_favorites';
+
+let favorites = new Set();
+try { favorites = new Set(JSON.parse(localStorage.getItem(FAVES_KEY) || '[]')); } catch (e) {}
+
+let activeCategory = 'all';
+let activeSort = 'featured';
+let renderedCount = 0;
+const BATCH_SIZE = 24;
+
+function categoryOf(item) {
+  const t = item.title || '';
+  for (const c of CATEGORY_DEFS) {
+    if (!c.re) return c.id; // 'more' catch-all
+    if (c.re.test(t)) return c.id;
+  }
+  return 'more';
+}
+
+function isNewItem(item) {
+  const m = (item.src || '').match(/(\d+)/);
+  return m ? NEW_REFS.has(m[1]) : false;
+}
+
+function badgeFor(item) {
+  if (isNewItem(item)) return { text: 'New', cls: 'badge-new' };
+  if (item.sold >= 9) return { text: 'Bestseller', cls: 'badge-best' };
+  if (categoryOf(item) === 'festive') return { text: 'Festive', cls: 'badge-festive' };
+  return null;
+}
 
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
@@ -292,11 +342,17 @@ document.getElementById('order-section-btn')?.addEventListener('click', () => st
 function buildGalleryCard(item, index) {
   const card = document.createElement('article');
   card.className = 'product-card gallery-card';
+  const badge = badgeFor(item);
+  const faved = favorites.has(item.src);
   card.innerHTML = `
     <button class="gallery-trigger" type="button" data-index="${index}" aria-label="View ${item.title}">
       <div class="product-image">
         <img src="${item.src}" alt="${item.alt}" loading="lazy">
+        ${badge ? `<span class="product-badge ${badge.cls}">${badge.text}</span>` : ''}
       </div>
+    </button>
+    <button type="button" class="fav-btn ${faved ? 'is-fav' : ''}" data-src="${item.src}" aria-label="Save ${item.title}" aria-pressed="${faved}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.7-4.35-9.33-7.5C.9 11.27 1.1 8.28 3.1 6.6a4.6 4.6 0 0 1 6.02.36L12 9.6l2.88-2.64a4.6 4.6 0 0 1 6.02-.36c2 1.68 2.2 4.67.43 6.9C18.7 16.65 12 21 12 21z"/></svg>
     </button>
     <div class="product-info product-info-compact">
       <span class="product-name">${item.title}</span>
@@ -307,15 +363,14 @@ function buildGalleryCard(item, index) {
       </div>
     </div>
   `;
-  card.querySelector('.order-btn').addEventListener('click', () => startOrder(item));
   return card;
 }
 
 function openLightbox(index) {
-  if (!lightbox || galleryItems.length === 0) return;
+  if (!lightbox || viewItems.length === 0) return;
   const wasClosed = lightbox.hidden;
   lightboxIndex = index;
-  const item = galleryItems[lightboxIndex];
+  const item = viewItems[lightboxIndex];
   lightboxImg.src = item.src;
   lightboxImg.alt = item.alt;
   lightboxCaption.textContent = `${item.title} · ${formatPrice(item)} · ${socialProofText(item)}`;
@@ -357,8 +412,8 @@ window.addEventListener('popstate', () => {
 });
 
 function showNext(delta) {
-  if (galleryItems.length === 0) return;
-  lightboxIndex = (lightboxIndex + delta + galleryItems.length) % galleryItems.length;
+  if (viewItems.length === 0) return;
+  lightboxIndex = (lightboxIndex + delta + viewItems.length) % viewItems.length;
   openLightbox(lightboxIndex);
 }
 
@@ -404,6 +459,96 @@ function injectProductSchema(items) {
   document.head.appendChild(tag);
 }
 
+// ---- Browsing pipeline: filter (category / saved) + sort + lazy batches ----
+function computeView() {
+  let items = galleryItems.filter((it) => {
+    if (activeCategory === 'all') return true;
+    if (activeCategory === 'fav') return favorites.has(it.src);
+    return categoryOf(it) === activeCategory;
+  });
+  const by = activeSort;
+  if (by === 'popular') items = items.slice().sort((a, b) => (b.sold || 0) - (a.sold || 0) || (b.rating || 0) - (a.rating || 0));
+  else if (by === 'price-asc') items = items.slice().sort((a, b) => (a.price || 0) - (b.price || 0));
+  else if (by === 'price-desc') items = items.slice().sort((a, b) => (b.price || 0) - (a.price || 0));
+  // 'featured' keeps catalog order
+  return items;
+}
+
+function updateGalleryCount() {
+  if (!galleryCount) return;
+  if (activeCategory === 'all') {
+    galleryCount.textContent = `${galleryItems.length} handmade designs · Rs 700–1500`;
+  } else if (activeCategory === 'fav') {
+    galleryCount.textContent = viewItems.length
+      ? `${viewItems.length} saved design${viewItems.length === 1 ? '' : 's'}`
+      : 'No saved designs yet';
+  } else {
+    galleryCount.textContent = `${viewItems.length} of ${galleryItems.length} designs`;
+  }
+}
+
+function renderNextBatch() {
+  if (renderedCount >= viewItems.length) return;
+  const frag = document.createDocumentFragment();
+  const end = Math.min(renderedCount + BATCH_SIZE, viewItems.length);
+  for (let i = renderedCount; i < end; i++) {
+    frag.appendChild(buildGalleryCard(viewItems[i], i));
+  }
+  galleryGrid.appendChild(frag);
+  renderedCount = end;
+}
+
+function resetView() {
+  viewItems = computeView();
+  renderedCount = 0;
+  galleryGrid.innerHTML = '';
+  if (viewItems.length === 0) {
+    galleryGrid.innerHTML = '<p class="gallery-empty">No saved designs yet — tap the ♥ on any design to keep it here.</p>';
+  } else {
+    renderNextBatch();
+  }
+  updateGalleryCount();
+}
+
+function buildFilterChips() {
+  const chipsEl = document.getElementById('filter-chips');
+  if (!chipsEl) return;
+  // Which categories actually have products
+  const present = new Set(galleryItems.map(categoryOf));
+  const chips = [{ id: 'all', label: 'All' }];
+  CATEGORY_DEFS.forEach((c) => { if (present.has(c.id)) chips.push({ id: c.id, label: c.label }); });
+  chips.push({ id: 'fav', label: '♥ Saved' });
+
+  chipsEl.innerHTML = chips.map((c) =>
+    `<button type="button" class="chip ${c.id === activeCategory ? 'active' : ''}" data-cat="${c.id}" role="tab" aria-selected="${c.id === activeCategory}">${c.label}</button>`
+  ).join('');
+
+  chipsEl.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    activeCategory = chip.dataset.cat;
+    chipsEl.querySelectorAll('.chip').forEach((b) => {
+      const on = b.dataset.cat === activeCategory;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on);
+    });
+    resetView();
+    document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+function toggleFavorite(src, btn) {
+  if (favorites.has(src)) favorites.delete(src);
+  else favorites.add(src);
+  try { localStorage.setItem(FAVES_KEY, JSON.stringify([...favorites])); } catch (e) {}
+  if (btn) {
+    const on = favorites.has(src);
+    btn.classList.toggle('is-fav', on);
+    btn.setAttribute('aria-pressed', on);
+  }
+  if (activeCategory === 'fav') resetView();
+}
+
 async function loadGallery() {
   if (!galleryGrid) return;
 
@@ -412,27 +557,44 @@ async function loadGallery() {
     if (!response.ok) throw new Error('Could not load gallery');
     galleryItems = await response.json();
 
-    galleryGrid.innerHTML = '';
-    galleryItems.forEach((item, index) => {
-      galleryGrid.appendChild(buildGalleryCard(item, index));
-    });
-
-    if (galleryCount) {
-      galleryCount.textContent = `${galleryItems.length} handmade designs · Rs 700–1500`;
-    }
+    buildFilterChips();
+    resetView();
 
     buildHeroCards(galleryItems);
     injectProductSchema(galleryItems);
 
-    galleryGrid.querySelectorAll('.gallery-trigger').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        openLightbox(Number(btn.dataset.index));
-      });
+    // Event delegation: works across lazily-added batches.
+    galleryGrid.addEventListener('click', (e) => {
+      const fav = e.target.closest('.fav-btn');
+      if (fav) { toggleFavorite(fav.dataset.src, fav); return; }
+      const order = e.target.closest('.order-btn');
+      if (order) { startOrder(viewItems[Number(order.dataset.index)]); return; }
+      const trigger = e.target.closest('.gallery-trigger');
+      if (trigger) { openLightbox(Number(trigger.dataset.index)); }
     });
+
+    // Sort control
+    const sortSel = document.getElementById('sort-select');
+    sortSel?.addEventListener('change', () => { activeSort = sortSel.value; resetView(); });
+
+    // Infinite scroll: load more as the sentinel approaches the viewport.
+    const sentinel = document.getElementById('gallery-sentinel');
+    if (sentinel && 'IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) renderNextBatch();
+      }, { rootMargin: '800px' }).observe(sentinel);
+    }
   } catch (err) {
     galleryGrid.innerHTML = '<p class="gallery-error">Could not load photos. Make sure the local server is running.</p>';
     console.error(err);
   }
+}
+
+// Back-to-top floating button
+const backToTop = document.getElementById('back-to-top');
+if (backToTop) {
+  window.addEventListener('scroll', () => { backToTop.hidden = window.scrollY < 600; }, { passive: true });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
 let toastTimer;
@@ -455,7 +617,7 @@ if (lightbox) {
   lightbox.querySelector('.lightbox-prev')?.addEventListener('click', () => showNext(-1));
   lightbox.querySelector('.lightbox-next')?.addEventListener('click', () => showNext(1));
   lightbox.querySelector('.lightbox-order')?.addEventListener('click', () => {
-    if (galleryItems[lightboxIndex]) startOrder(galleryItems[lightboxIndex]);
+    if (viewItems[lightboxIndex]) startOrder(viewItems[lightboxIndex]);
   });
 
   lightbox.addEventListener('click', (e) => {
