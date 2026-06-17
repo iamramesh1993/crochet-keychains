@@ -108,15 +108,23 @@ function showOrderForm() {
 }
 
 async function orderViaInstagram() {
+  let message;
+  let toast;
   if (orderModalItem) {
     const ref = refCode(orderModalItem);
-    const message = `Hi! I'd like to order this crochet keychain 🧶\n${orderModalItem.title} — ${formatPrice(orderModalItem)} (Ref ${ref})`;
-    try {
-      await navigator.clipboard.writeText(message);
-      showToast(`Reference ${ref} copied — paste it in the DM 💬`);
-    } catch (err) {
-      showToast(`Mention design ref ${ref} in your DM 💬`);
-    }
+    message = `Hi! I'd like to order this crochet keychain 🧶\n${orderModalItem.title} — ${formatPrice(orderModalItem)} (Ref ${ref})`;
+    toast = `Order details copied — paste them in the DM 💬`;
+  } else {
+    // Generic order: Instagram can't pre-fill text, so copy a starter the buyer
+    // pastes and completes with the design they want.
+    message = `Hi! 👋 I'd like to order a crochet keychain from your website 🧶\nThe design I'd like: `;
+    toast = `Message copied — paste it and tell us the design 💬`;
+  }
+  try {
+    await navigator.clipboard.writeText(message);
+    showToast(toast);
+  } catch (err) {
+    showToast(`Tell us which design you'd like in your DM 💬`);
   }
   window.open(ORDER_DM_URL, '_blank', 'noopener');
   closeOrderModal();
@@ -162,12 +170,24 @@ function startOrder(item) {
 
   orderForm.reset();
   orderForm.qty.value = '1';
-  orderForm.ref.value = item ? refCode(item) : '';
 
-  // The "Design ref" field and the photo preview only make sense for a specific
-  // product. For a generic "Book your order" (no item) hide both.
+  // Design field: locked to the chosen product when launched from a card/lightbox;
+  // editable when launched from the generic "Book your order" so the buyer can
+  // name the design they want (or describe a custom idea).
   const refField = document.getElementById('order-ref-field');
-  if (refField) refField.hidden = !item;
+  const refLabel = refField ? refField.querySelector('.ref-label') : null;
+  if (item) {
+    orderForm.ref.value = refCode(item);
+    orderForm.ref.readOnly = true;
+    orderForm.ref.placeholder = '';
+    if (refLabel) refLabel.textContent = 'Design ref';
+  } else {
+    orderForm.ref.value = '';
+    orderForm.ref.readOnly = false;
+    orderForm.ref.placeholder = 'Design name or ref — or a custom idea';
+    if (refLabel) refLabel.textContent = 'Which design?';
+  }
+  if (refField) refField.hidden = false;
 
   const title = document.getElementById('order-modal-title');
   if (title) title.textContent = item ? 'Order this keychain' : 'Place your order';
@@ -224,9 +244,9 @@ if (orderForm) {
       lines.push(`💰 ${formatPrice(orderModalItem)}  ·  Qty: ${qty}`);
       lines.push(`📷 ${new URL(orderModalItem.src, window.location.href).href}`);
     } else {
-      lines.push(`Hi! 👋 I'd like to order a custom crochet piece from your website.`);
+      lines.push(`Hi! 👋 I'd like to order from your website.`);
       lines.push('');
-      lines.push(`🧶 Custom design  ·  Qty: ${qty}`);
+      lines.push(ref ? `🧶 Design: ${ref}  ·  Qty: ${qty}` : `🧶 Custom design  ·  Qty: ${qty}`);
     }
     if (notes) lines.push(`📝 ${notes}`);
     lines.push('');

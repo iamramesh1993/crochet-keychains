@@ -147,6 +147,7 @@ h3 {
 .btn-instagram svg {
   width: 20px;
   height: 20px;
+  flex-shrink: 0;
 }
 
 /* --- Header --- */
@@ -1294,6 +1295,12 @@ body.lightbox-open {
 
   .order-modal-card {
     padding: 1.5rem 1.25rem;
+  }
+
+  /* Roomier order card on phones so the action buttons get more width
+     (keeps "Message on Instagram" on one line) and the steps feel less cramped. */
+  .order-card {
+    padding: 2rem 1.25rem;
   }
 }
 
