@@ -63,6 +63,11 @@ Recommended fix: route the domain through **Cloudflare (free)** and add these as
 headers (SSL/TLS → Edge Certificates → enable HSTS; Rules → Transform Rules → Modify Response
 Header for `X-Content-Type-Options` and `X-Frame-Options`). Cloudflare also adds caching/CDN.
 
+## Product roadmap
+See [`ROADMAP.md`](ROADMAP.md) — North Star metric, the weekly data-review cadence
+(Search Console + Cloudflare analytics + order tally), trend-watching, and a phased,
+data-triggered plan (measure → convert → acquire → scale → retain).
+
 ## Editing the shop
 - **Add/remove a product:** edit `images/manifest.json` (and drop the photo in `images/`).
 - **Change the WhatsApp number:** `WHATSAPP_NUMBER` in `js/main.js`.
