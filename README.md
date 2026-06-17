@@ -47,6 +47,22 @@ To finish going live on the domain:
 
 Until step 2, the site stays live at `https://iamramesh1993.github.io/crochet-keychains/`.
 
+## Security headers
+Done in-repo (works on a static host):
+- **HTTPS** enforced (GitHub Pages "Enforce HTTPS"); http + apex 301-redirect to `https://www`.
+- **Content-Security-Policy** via a `<meta>` tag in `index.html` (restricts scripts/styles/
+  images/fonts/connections to self + Google Fonts).
+
+Cannot be set on GitHub Pages — it does **not** allow custom HTTP response headers
+(no `.htaccess`, no `nginx.conf`, no `_headers`). These need a proxy in front:
+- **HSTS** (`Strict-Transport-Security`)
+- **X-Content-Type-Options: nosniff**
+- **X-Frame-Options / CSP `frame-ancestors`** (clickjacking — `frame-ancestors` is ignored in a meta tag)
+
+Recommended fix: route the domain through **Cloudflare (free)** and add these as response
+headers (SSL/TLS → Edge Certificates → enable HSTS; Rules → Transform Rules → Modify Response
+Header for `X-Content-Type-Options` and `X-Frame-Options`). Cloudflare also adds caching/CDN.
+
 ## Editing the shop
 - **Add/remove a product:** edit `images/manifest.json` (and drop the photo in `images/`).
 - **Change the WhatsApp number:** `WHATSAPP_NUMBER` in `js/main.js`.
