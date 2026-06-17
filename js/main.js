@@ -207,23 +207,27 @@ if (orderForm) {
     const qty = (data.get('qty') || '1').toString().trim();
     const notes = (data.get('notes') || '').toString().trim();
 
-    const lines = [
-      '🧶 New order from the website',
-      `Name: ${name}`,
-      `Phone: ${phone}`,
-      `Address: ${address}`,
-    ];
+    // Written in the buyer's voice — this is the message the customer sends to us.
+    const lines = [];
     if (orderModalItem) {
-      lines.push(`Design: ${orderModalItem.title} (Ref ${ref})`);
-      lines.push(`Price: ${formatPrice(orderModalItem)}`);
+      lines.push(`Hi! 👋 I'd like to order this from your website:`);
+      lines.push('');
+      lines.push(`🧶 ${orderModalItem.title} (Ref ${ref})`);
+      lines.push(`💰 ${formatPrice(orderModalItem)}  ·  Qty: ${qty}`);
+      lines.push(`📷 ${new URL(orderModalItem.src, window.location.href).href}`);
     } else {
-      lines.push('Design: (custom — see notes)');
+      lines.push(`Hi! 👋 I'd like to order a custom crochet piece from your website.`);
+      lines.push('');
+      lines.push(`🧶 Custom design  ·  Qty: ${qty}`);
     }
-    lines.push(`Quantity: ${qty}`);
-    if (notes) lines.push(`Notes: ${notes}`);
-    if (orderModalItem) {
-      lines.push(`Photo: ${new URL(orderModalItem.src, window.location.href).href}`);
-    }
+    if (notes) lines.push(`📝 ${notes}`);
+    lines.push('');
+    lines.push(`My delivery details (cash on delivery):`);
+    lines.push(`👤 ${name}`);
+    lines.push(`📞 ${phone}`);
+    lines.push(`📍 ${address}`);
+    lines.push('');
+    lines.push(`Could you please confirm the total and delivery time? Thank you! 🙏`);
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
     window.open(url, '_blank', 'noopener');
