@@ -15,6 +15,14 @@ if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
 
+// Header gains a soft shadow once the page is scrolled (depth without a blur).
+const siteHeader = document.querySelector('.site-header');
+if (siteHeader) {
+  const onScroll = () => siteHeader.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
 function closeNav() {
   if (!navLinks || !navToggle) return;
   navLinks.classList.remove('open');
@@ -77,7 +85,7 @@ const WHATSAPP_NUMBER = '923144918419';
 // Public site URL — used for structured data (SEO).
 const SITE_URL = 'https://www.crochetkeychains.com';
 
-const ORDER_DM_URL = 'https://ig.me/m/crochet_keychain.pk';
+const ORDER_DM_URL = 'https://ig.me/m/crochet_keychains.pk';
 const orderModal = document.getElementById('order-modal');
 const orderForm = document.getElementById('order-form');
 const orderChannels = document.querySelector('.order-channels');
@@ -309,7 +317,7 @@ function injectProductSchema(items) {
         image: `${base}/${it.src}`,
         description: it.alt,
         category: 'Crochet Keychain',
-        brand: { '@type': 'Brand', name: 'Crochet Keychain PK' },
+        brand: { '@type': 'Brand', name: 'Crochet Keychains' },
         offers: {
           '@type': 'Offer',
           priceCurrency: 'PKR',
@@ -340,7 +348,7 @@ async function loadGallery() {
   if (!galleryGrid) return;
 
   try {
-    const response = await fetch('images/manifest.json?v=6');
+    const response = await fetch('images/manifest.json?v=7');
     if (!response.ok) throw new Error('Could not load gallery');
     galleryItems = await response.json();
 
@@ -393,6 +401,22 @@ if (lightbox) {
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
   });
+
+  // Swipe left/right to move between products (mobile/touch).
+  let touchStartX = 0;
+  let touchStartY = 0;
+  lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive: true });
+  lightbox.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // Horizontal swipe only: enough distance, and more horizontal than vertical.
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      showNext(dx < 0 ? 1 : -1);
+    }
+  }, { passive: true });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && orderModal && !orderModal.hidden) {

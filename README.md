@@ -1,6 +1,6 @@
-# Crochet Keychain PK
+# Crochet Keychains
 
-A simple, fast, single-page website for **Crochet Keychain PK** — a small handmade crochet
+A simple, fast, single-page website for **Crochet Keychains** — a small handmade crochet
 keychain studio in Pakistan. Customers browse the gallery, see prices and ratings, and order
 on **WhatsApp** or **Instagram** (no account or checkout needed).
 
