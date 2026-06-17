@@ -127,7 +127,7 @@ async function orderViaInstagram() {
     showToast(`Tell us which design you'd like in your DM 💬`);
   }
   window.open(ORDER_DM_URL, '_blank', 'noopener');
-  closeOrderModal();
+  dismissOverlay();
 }
 
 function refCode(item) {
@@ -208,17 +208,28 @@ function startOrder(item) {
 
   document.getElementById('order-form-error').hidden = true;
   showOrderChannels();
+  const wasClosed = orderModal.hidden;
   orderModal.hidden = false;
-  document.body.classList.add('lightbox-open');
+  updateScrollLock();
+  if (wasClosed) pushOverlayState();
 }
 
 function closeOrderModal() {
   if (!orderModal) return;
   orderModal.hidden = true;
-  document.body.classList.remove('lightbox-open');
+  updateScrollLock();
 }
 
 if (orderForm) {
+  // Quantity − / + steppers (number-input spinners don't show on mobile).
+  orderForm.querySelectorAll('.qty-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const input = orderForm.qty;
+      const current = parseInt(input.value, 10) || 1;
+      input.value = Math.max(1, current + Number(btn.dataset.step));
+    });
+  });
+
   orderForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = new FormData(orderForm);
@@ -259,15 +270,15 @@ if (orderForm) {
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
     window.open(url, '_blank', 'noopener');
-    closeOrderModal();
+    dismissOverlay();
     showToast('Opening WhatsApp with your order details… 💬');
   });
 }
 
 if (orderModal) {
-  orderModal.querySelector('.order-modal-close')?.addEventListener('click', closeOrderModal);
+  orderModal.querySelector('.order-modal-close')?.addEventListener('click', dismissOverlay);
   orderModal.addEventListener('click', (e) => {
-    if (e.target === orderModal) closeOrderModal();
+    if (e.target === orderModal) dismissOverlay();
   });
   document.getElementById('choose-wa')?.addEventListener('click', showOrderForm);
   document.getElementById('choose-ig')?.addEventListener('click', orderViaInstagram);
@@ -300,21 +311,48 @@ function buildGalleryCard(item, index) {
 
 function openLightbox(index) {
   if (!lightbox || galleryItems.length === 0) return;
+  const wasClosed = lightbox.hidden;
   lightboxIndex = index;
   const item = galleryItems[lightboxIndex];
   lightboxImg.src = item.src;
   lightboxImg.alt = item.alt;
   lightboxCaption.textContent = `${item.title} · ${formatPrice(item)} · ${socialProofText(item)}`;
   lightbox.hidden = false;
-  document.body.classList.add('lightbox-open');
+  updateScrollLock();
+  if (wasClosed) pushOverlayState();
 }
 
 function closeLightbox() {
   if (!lightbox) return;
   lightbox.hidden = true;
-  document.body.classList.remove('lightbox-open');
   lightboxImg.src = '';
+  updateScrollLock();
 }
+
+// ---- Overlay history: the phone's Back button closes the lightbox / order modal
+// (returning to the product list) instead of leaving the site. Every close routes
+// through history.back(); popstate performs the actual close. ----
+function overlayOpen() {
+  return (lightbox && !lightbox.hidden) || (orderModal && !orderModal.hidden);
+}
+function updateScrollLock() {
+  document.body.classList.toggle('lightbox-open', overlayOpen());
+}
+function pushOverlayState() {
+  history.pushState({ overlay: true }, '');
+}
+function dismissOverlay() {
+  if (history.state && history.state.overlay) {
+    history.back();
+  } else {
+    closeOrderModal();
+    closeLightbox();
+  }
+}
+window.addEventListener('popstate', () => {
+  if (orderModal && !orderModal.hidden) closeOrderModal();
+  else if (lightbox && !lightbox.hidden) closeLightbox();
+});
 
 function showNext(delta) {
   if (galleryItems.length === 0) return;
@@ -411,7 +449,7 @@ function showToast(message) {
 }
 
 if (lightbox) {
-  lightbox.querySelector('.lightbox-close')?.addEventListener('click', closeLightbox);
+  lightbox.querySelector('.lightbox-close')?.addEventListener('click', dismissOverlay);
   lightbox.querySelector('.lightbox-prev')?.addEventListener('click', () => showNext(-1));
   lightbox.querySelector('.lightbox-next')?.addEventListener('click', () => showNext(1));
   lightbox.querySelector('.lightbox-order')?.addEventListener('click', () => {
@@ -419,7 +457,7 @@ if (lightbox) {
   });
 
   lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
+    if (e.target === lightbox) dismissOverlay();
   });
 
   // Swipe left/right to move between products (mobile/touch).
@@ -440,11 +478,11 @@ if (lightbox) {
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && orderModal && !orderModal.hidden) {
-      closeOrderModal();
+      dismissOverlay();
       return;
     }
     if (lightbox.hidden) return;
-    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'Escape') dismissOverlay();
     if (e.key === 'ArrowRight') showNext(1);
     if (e.key === 'ArrowLeft') showNext(-1);
   });

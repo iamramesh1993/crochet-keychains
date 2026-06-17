@@ -793,6 +793,50 @@ h3 {
   color: var(--ink-muted);
 }
 
+/* Quantity stepper — custom − / + buttons (number spinners are hidden on mobile) */
+.qty-stepper {
+  display: flex;
+  align-items: stretch;
+  gap: 0.4rem;
+}
+
+.qty-stepper input {
+  text-align: center;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.qty-stepper input::-webkit-outer-spin-button,
+.qty-stepper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.qty-btn {
+  flex: 0 0 auto;
+  width: 2.6rem;
+  border: 1px solid var(--cream-dark);
+  background: var(--white);
+  color: var(--terracotta);
+  border-radius: var(--radius-sm);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.qty-btn:hover {
+  background: var(--cream);
+  border-color: var(--terracotta);
+}
+
+.qty-btn:active {
+  background: var(--cream-dark);
+}
+
 .order-form-row {
   display: flex;
   gap: 0.85rem;
