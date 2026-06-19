@@ -188,7 +188,13 @@ function refCode(item) {
 
 function formatPrice(item) {
   if (!item || !item.price) return 'DM for price';
-  return `Rs ${Number(item.price).toLocaleString('en-US')}`;
+  return `PKR ${Number(item.price).toLocaleString('en-US')}`;
+}
+
+// HTML version for card display — currency label de-emphasised, amount prominent.
+function formatPriceHtml(item) {
+  if (!item || !item.price) return 'DM for price';
+  return `<span class="price-cur">PKR</span>${Number(item.price).toLocaleString('en-US')}`;
 }
 
 // Social proof: star rating + reviews + sold, or a "new arrival" tag.
@@ -358,7 +364,7 @@ function buildGalleryCard(item, index) {
       <span class="product-name">${item.title}</span>
       ${socialProofHtml(item)}
       <div class="product-footer">
-        <span class="price">${formatPrice(item)}</span>
+        <span class="price">${formatPriceHtml(item)}</span>
         <button type="button" class="product-link order-btn" data-index="${index}">Order →</button>
       </div>
     </div>
@@ -477,7 +483,7 @@ function computeView() {
 function updateGalleryCount() {
   if (!galleryCount) return;
   if (activeCategory === 'all') {
-    galleryCount.textContent = `${galleryItems.length} handmade designs · Rs 700–1500`;
+    galleryCount.textContent = `${galleryItems.length} handmade designs · PKR 700–1500`;
   } else if (activeCategory === 'fav') {
     galleryCount.textContent = viewItems.length
       ? `${viewItems.length} saved design${viewItems.length === 1 ? '' : 's'}`

@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Crochet Keychain PK yarn ball">
-  <rect width="64" height="64" rx="14" fill="#fbf7f2"/>
+  <rect width="64" height="64" rx="14" fill="#ffffff"/>
   <g transform="translate(32 33)">
-    <circle r="19" fill="#c4795b"/>
-    <g fill="none" stroke="#a8614a" stroke-width="2.2" stroke-linecap="round" opacity="0.85">
+    <circle r="19" fill="#e23e63"/>
+    <g fill="none" stroke="#c42f52" stroke-width="2.2" stroke-linecap="round" opacity="0.9">
       <path d="M-17 -4 C -6 -14, 6 -14, 17 -4"/>
       <path d="M-18 4 C -6 -8, 6 -8, 18 4"/>
       <path d="M-15 11 C -5 0, 7 0, 16 11"/>
@@ -10,6 +10,6 @@
       <path d="M2 -18 C -4 -6, -2 6, 4 17"/>
       <path d="M11 -15 C 4 -5, 2 6, 9 15"/>
     </g>
-    <path d="M16 -10 q 10 -3 12 6" fill="none" stroke="#8ba888" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M16 -10 q 10 -3 12 6" fill="none" stroke="#2bb3e3" stroke-width="2.4" stroke-linecap="round"/>
   </g>
 </svg>
