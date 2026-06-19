@@ -6,7 +6,9 @@ const galleryCount = document.getElementById('gallery-count');
 const heroVisual = document.getElementById('hero-visual');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
-const lightboxCaption = document.getElementById('lightbox-caption');
+const lightboxTitle = document.getElementById('lightbox-title');
+const lightboxMeta = document.getElementById('lightbox-meta');
+const lightboxPrice = document.getElementById('lightbox-price');
 
 let galleryItems = [];   // full catalog
 let viewItems = [];      // current filtered + sorted view (what the grid/lightbox show)
@@ -391,6 +393,26 @@ if (orderModal) {
 
 document.getElementById('order-section-btn')?.addEventListener('click', () => startOrder(null));
 
+// Share a design — native share sheet on mobile, copy-link fallback on desktop.
+// The link deep-links back to this exact product via ?design=<ref>.
+async function shareItem(item) {
+  if (!item) return;
+  const ref = ((item.src || '').match(/(\d+)/) || [])[1] || '';
+  const url = `${location.origin}${location.pathname}?design=${ref}`;
+  const text = `${item.title} — ${formatPrice(item)} · handmade crochet keychain 🧶`;
+  if (navigator.share) {
+    try { await navigator.share({ title: 'Crochet Keychains', text, url }); }
+    catch (e) { /* user dismissed the share sheet */ }
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(url);
+    showToast('Link copied — share it anywhere 🔗');
+  } catch (e) {
+    showToast('Share this link: ' + url);
+  }
+}
+
 function buildGalleryCard(item, index) {
   const card = document.createElement('article');
   card.className = 'product-card gallery-card';
@@ -425,7 +447,15 @@ function openLightbox(index) {
   const item = viewItems[lightboxIndex];
   lightboxImg.src = item.src;
   lightboxImg.alt = item.alt;
-  lightboxCaption.textContent = `${item.title} · ${formatPrice(item)} · ${socialProofText(item)}`;
+  if (lightboxTitle) lightboxTitle.textContent = item.title;
+  if (lightboxMeta) {
+    const parts = [];
+    if (item.rating) parts.push(`<span class="meta-star">★</span> ${item.rating} (${item.reviews} review${item.reviews > 1 ? 's' : ''})`);
+    parts.push('Handmade');
+    if (item.sold) parts.push(`<span class="meta-sold">${Number(item.sold).toLocaleString('en-US')} sold</span>`);
+    lightboxMeta.innerHTML = parts.join(' · ');
+  }
+  if (lightboxPrice) lightboxPrice.innerHTML = formatPriceHtml(item);
   lightbox.hidden = false;
   updateScrollLock();
   if (wasClosed) pushOverlayState();
@@ -643,6 +673,15 @@ async function loadGallery() {
         if (entries[0].isIntersecting) renderNextBatch();
       }, { rootMargin: '800px' }).observe(sentinel);
     }
+
+    // Deep link: ?design=<ref> opens that product (used by the Share button) so a
+    // shared link lands on the exact design even though this is a single page.
+    const designRef = new URLSearchParams(location.search).get('design');
+    if (designRef) {
+      const n = designRef.replace(/\D/g, '').padStart(3, '0');
+      const idx = viewItems.findIndex((it) => ((it.src || '').match(/(\d+)/) || [])[1] === n);
+      if (idx >= 0) openLightbox(idx);
+    }
   } catch (err) {
     galleryGrid.innerHTML = '<p class="gallery-error">Could not load photos. Make sure the local server is running.</p>';
     console.error(err);
@@ -677,6 +716,9 @@ if (lightbox) {
   lightbox.querySelector('.lightbox-next')?.addEventListener('click', () => showNext(1));
   lightbox.querySelector('.lightbox-order')?.addEventListener('click', () => {
     if (viewItems[lightboxIndex]) startOrder(viewItems[lightboxIndex]);
+  });
+  lightbox.querySelector('.lightbox-share')?.addEventListener('click', () => {
+    if (viewItems[lightboxIndex]) shareItem(viewItems[lightboxIndex]);
   });
 
   lightbox.addEventListener('click', (e) => {

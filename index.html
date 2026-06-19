@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=21">
+  <link rel="stylesheet" href="css/styles.css?v=25">
 
   <!-- Structured data: business (local/geo) -->
   <script type="application/ld+json">
@@ -309,14 +309,41 @@
     <button class="lightbox-prev" aria-label="Previous photo">&#8249;</button>
     <button class="lightbox-next" aria-label="Next photo">&#8250;</button>
     <figure class="lightbox-content">
-      <img id="lightbox-img" src="" alt="Handmade crochet keychain — enlarged view" width="1000" height="1000">
-      <figcaption id="lightbox-caption"></figcaption>
-      <button type="button" class="btn btn-primary lightbox-order">Order this design →</button>
+      <div class="lightbox-imgwrap">
+        <img id="lightbox-img" src="" alt="Handmade crochet keychain — enlarged view" width="1000" height="1000">
+      </div>
+      <figcaption class="lightbox-info">
+        <h3 class="lightbox-title" id="lightbox-title"></h3>
+        <p class="lightbox-meta" id="lightbox-meta"></p>
+        <p class="lightbox-price" id="lightbox-price"></p>
+        <ul class="lightbox-features">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5 9c4-3 10-3 14 0M4 13.5c4-3 12-3 16 1M8.5 21c-1-5-1-11 3-17M14 21c2-5 2-12-1-17"/></svg>
+            <span>Premium yarn</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.4 0 1.8-1 1.5-1.9-.3-.9.3-1.6 1.2-1.6H17a4 4 0 0 0 4-4A8.5 8.5 0 0 0 12 3z"/><circle cx="7.5" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="7.5" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
+            <span>Custom colours</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/></svg>
+            <span>Nationwide delivery</span>
+          </li>
+        </ul>
+        <div class="lightbox-actions">
+          <button type="button" class="btn btn-primary lightbox-order">Order this design →</button>
+          <button type="button" class="lightbox-share" aria-label="Share this design">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+            Share
+          </button>
+        </div>
+        <p class="lightbox-trust">Made to order · Cash on delivery</p>
+      </figcaption>
     </figure>
   </div>
 
   <button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top" hidden>↑</button>
 
-  <script src="js/main.js?v=20"></script>
+  <script src="js/main.js?v=22"></script>
 </body>
 </html>
