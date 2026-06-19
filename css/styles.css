@@ -34,6 +34,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* Offset in-page anchor jumps so the target clears the sticky header. */
+  scroll-padding-top: 80px;
 }
 
 body {

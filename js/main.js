@@ -80,6 +80,24 @@ function closeNav() {
   navToggle.setAttribute('aria-expanded', 'false');
 }
 
+// In-page anchor links (nav Gallery/About/Order, hero buttons): render the whole
+// gallery first so lazy batches can't shift the target mid-scroll (which left jumps
+// stuck inside the gallery), then smooth-scroll. The sticky-header offset is handled
+// by scroll-padding-top in CSS.
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute('href').slice(1);
+  if (!id) return;
+  const target = document.getElementById(id);
+  if (!target) return;
+  e.preventDefault();
+  closeNav();
+  if (typeof flushAllGalleryItems === 'function') flushAllGalleryItems();
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  history.replaceState(null, '', '#' + id);
+});
+
 if (navToggle && navLinks) {
   navToggle.addEventListener('click', () => {
     const isOpen = navLinks.classList.toggle('open');
@@ -195,6 +213,27 @@ function formatPrice(item) {
 function formatPriceHtml(item) {
   if (!item || !item.price) return 'DM for price';
   return `<span class="price-cur">PKR</span>${Number(item.price).toLocaleString('en-US')}`;
+}
+
+// Match a free-text design query (from the generic "Book your order" field) to a
+// catalogue item — by ref number (#015 / 015 / post-015) or product name — so the
+// order message can include that design's photo + price. Conservative: only returns
+// a confident match (exact/contained title or ref), else null (genuine custom idea).
+function findItemByQuery(query) {
+  const q = (query || '').trim().toLowerCase();
+  if (q.length < 2) return null;
+  const refLike = q.match(/(?:#|ref|post[- ]?)\s*(\d{1,3})/) || q.match(/^#?\s*(\d{1,3})\s*$/);
+  if (refLike) {
+    const n = refLike[1].padStart(3, '0');
+    const byRef = galleryItems.find((it) => ((it.src || '').match(/(\d+)/) || [])[1] === n);
+    if (byRef) return byRef;
+  }
+  const exact = galleryItems.find((it) => it.title.toLowerCase() === q);
+  if (exact) return exact;
+  return galleryItems.find((it) => {
+    const t = it.title.toLowerCase();
+    return q.includes(t) || t.includes(q);
+  }) || null;
 }
 
 // Social proof: star rating + reviews + sold, or a "new arrival" tag.
@@ -315,7 +354,14 @@ if (orderForm) {
     } else {
       lines.push(`Hi! I'd like to order from your website.`);
       lines.push('');
-      lines.push(ref ? `Design: ${ref}  ·  Qty: ${qty}` : `Design: custom (see notes)  ·  Qty: ${qty}`);
+      const matched = findItemByQuery(ref);
+      if (matched) {
+        lines.push(`Design: ${matched.title} (Ref ${refCode(matched)})`);
+        lines.push(`Price: ${formatPrice(matched)}  ·  Qty: ${qty}`);
+        lines.push(`Photo: ${new URL(matched.src, window.location.href).href}`);
+      } else {
+        lines.push(ref ? `Design: ${ref}  ·  Qty: ${qty}` : `Design: custom (see notes)  ·  Qty: ${qty}`);
+      }
     }
     if (notes) lines.push(`Notes: ${notes}`);
     lines.push('');
@@ -502,6 +548,13 @@ function renderNextBatch() {
   }
   galleryGrid.appendChild(frag);
   renderedCount = end;
+}
+
+// Render every remaining card now. Used before an in-page anchor jump so the
+// page height is final — otherwise lazy batches load mid-scroll and push the
+// target (e.g. #about / #order) down, leaving the jump stuck in the gallery.
+function flushAllGalleryItems() {
+  while (renderedCount < viewItems.length) renderNextBatch();
 }
 
 function resetView() {
