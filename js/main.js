@@ -447,8 +447,9 @@ function buildGalleryCard(item, index) {
   card.className = 'product-card gallery-card';
   const badge = badgeFor(item);
   const faved = favorites.has(item.src);
+  const ref = (item.src.match(/(\d+)/) || [])[1] || '';
   card.innerHTML = `
-    <button class="gallery-trigger" type="button" data-index="${index}" aria-label="View ${item.title}">
+    <a class="gallery-trigger" href="/p/${ref}/" data-index="${index}" aria-label="View ${item.title}">
       <div class="product-image">
         <picture>
           <source type="image/webp" srcset="${item.src.replace(/\.jpg$/, '.webp')}">
@@ -456,12 +457,12 @@ function buildGalleryCard(item, index) {
         </picture>
         ${badge ? `<span class="product-badge ${badge.cls}">${badge.text}</span>` : ''}
       </div>
-    </button>
+    </a>
     <button type="button" class="fav-btn ${faved ? 'is-fav' : ''}" data-src="${item.src}" aria-label="Save ${item.title}" aria-pressed="${faved}">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.7-4.35-9.33-7.5C.9 11.27 1.1 8.28 3.1 6.6a4.6 4.6 0 0 1 6.02.36L12 9.6l2.88-2.64a4.6 4.6 0 0 1 6.02-.36c2 1.68 2.2 4.67.43 6.9C18.7 16.65 12 21 12 21z"/></svg>
     </button>
     <div class="product-info product-info-compact">
-      <span class="product-name">${item.title}</span>
+      <a class="product-name" href="/p/${ref}/" data-index="${index}">${item.title}</a>
       ${socialProofHtml(item)}
       <div class="product-footer">
         <span class="price">${formatPriceHtml(item)}</span>
@@ -761,8 +762,10 @@ async function loadGallery() {
       if (fav) { toggleFavorite(fav.dataset.src, fav); return; }
       const order = e.target.closest('.order-btn');
       if (order) { startOrder(viewItems[Number(order.dataset.index)]); return; }
-      const trigger = e.target.closest('.gallery-trigger');
-      if (trigger) { openLightbox(Number(trigger.dataset.index)); }
+      // Cards link to /p/<ref>/ (crawlable for SEO) but JS opens the in-page
+      // lightbox instead; crawlers/no-JS still follow the real link.
+      const trigger = e.target.closest('.gallery-trigger, .product-name');
+      if (trigger) { e.preventDefault(); openLightbox(Number(trigger.dataset.index)); }
     });
 
     // Header heart toggles the saved filter on/off
