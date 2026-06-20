@@ -590,13 +590,17 @@ function computeView() {
 function updateGalleryCount() {
   if (!galleryCount) return;
   if (activeCategory === 'all') {
-    galleryCount.textContent = `${galleryItems.length} designs · PKR 700–1500`;
+    // Default view stays clean — no count line.
+    galleryCount.textContent = '';
+    galleryCount.hidden = true;
   } else if (activeCategory === 'fav') {
     galleryCount.textContent = viewItems.length
       ? `${viewItems.length} saved design${viewItems.length === 1 ? '' : 's'}`
       : 'No saved designs yet';
+    galleryCount.hidden = false;
   } else {
     galleryCount.textContent = `${viewItems.length} of ${galleryItems.length} designs`;
+    galleryCount.hidden = false;
   }
 }
 
