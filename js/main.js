@@ -424,7 +424,9 @@ document.querySelector('.logo')?.addEventListener('click', (e) => {
 async function shareItem(item) {
   if (!item) return;
   const ref = ((item.src || '').match(/(\d+)/) || [])[1] || '';
-  const url = `${location.origin}${location.pathname}?design=${ref}`;
+  // Clean per-product URL whose static page carries this product's own OG image,
+  // so the link-preview thumbnail matches the design (see scripts/build-share-pages.js).
+  const url = `${location.origin}/p/${ref}/`;
   const text = `${item.title} — ${formatPrice(item)} · handmade crochet keychain 🧶`;
   if (navigator.share) {
     try { await navigator.share({ title: 'Crochet Keychains', text, url }); }

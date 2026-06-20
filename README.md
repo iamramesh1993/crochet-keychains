@@ -69,6 +69,21 @@ See [`ROADMAP.md`](ROADMAP.md) — North Star metric, the weekly data-review cad
 data-triggered plan (measure → convert → acquire → scale → retain).
 
 ## Editing the shop
-- **Add/remove a product:** edit `images/manifest.json` (and drop the photo in `images/`).
+- **Add/remove a product:** edit `images/manifest.json` (and drop the photo in `images/`),
+  then run `node scripts/build-share-pages.js` (see below) and commit the changes.
 - **Change the WhatsApp number:** `WHATSAPP_NUMBER` in `js/main.js`.
 - **Bump styles/scripts cache:** increase the `?v=` number on the CSS/JS links in `index.html`.
+
+## Per-product share pages (link-preview thumbnails)
+Link-preview crawlers (WhatsApp/Instagram/Facebook/X) read Open Graph tags from
+**static HTML** and don't run JS, so a single page can only ever show one preview
+image. To make a shared product link show **that product's** photo, we pre-generate
+a tiny page per design at `/p/<ref>/` carrying its own `og:image`/title; real
+visitors are instantly forwarded to the product card. The **Share** button outputs
+these clean URLs (e.g. `https://www.crochetkeychains.com/p/037/`).
+
+Regenerate after any catalog change:
+```
+node scripts/build-share-pages.js   # rebuilds /p/<ref>/ pages, /p/redirect.js, sitemap.xml
+```
+The legacy `?design=<ref>` deep-link still works for older shared links.
