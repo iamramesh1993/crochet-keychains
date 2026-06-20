@@ -67,7 +67,28 @@ for (const item of manifest) {
     '@context': 'https://schema.org', '@type': 'Product',
     name: item.title, image: img, description: longDesc, url: pageUrl,
     brand: { '@type': 'Brand', name: 'Crochet Keychains' },
-    offers: { '@type': 'Offer', price: item.price || undefined, priceCurrency: 'PKR', availability: 'https://schema.org/InStock', url: pageUrl },
+    offers: {
+      '@type': 'Offer',
+      price: item.price || undefined,
+      priceCurrency: 'PKR',
+      availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition',
+      priceValidUntil: `${YEAR + 1}-12-31`,
+      url: pageUrl,
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: { '@type': 'MonetaryAmount', value: 150, currency: 'PKR' },
+        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'PK' },
+      },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'PK',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 7,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn',
+      },
+    },
   };
   if (item.rating && item.reviews) {
     product.aggregateRating = { '@type': 'AggregateRating', ratingValue: item.rating, reviewCount: item.reviews, bestRating: 5, worstRating: 1 };
@@ -135,7 +156,7 @@ ${priceHtml}
 <a class="btn btn-large btn-whatsapp" href="${waLink}" target="_blank" rel="noopener">${WA_ICON}<span>Order on WhatsApp</span></a>
 <a class="btn btn-large btn-instagram" href="${IG_DM}" target="_blank" rel="noopener">${IG_ICON}<span>Message on Instagram</span></a>
 </div>
-<p class="pdp-trust">Cash on delivery across Pakistan · Custom colours welcome · Made to order</p>
+<p class="pdp-trust">PKR 150 flat-rate delivery · Cash on delivery across Pakistan · Custom colours welcome · Damaged items replaced</p>
 <a class="pdp-browse" href="/#gallery">&#8592; Browse all designs</a>
 </div>
 </div>

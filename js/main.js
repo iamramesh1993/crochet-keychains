@@ -369,6 +369,7 @@ if (orderForm) {
         lines.push(`*Qty:* ${qty}`);
       }
     }
+    lines.push(`*Delivery:* PKR 150 (flat rate)`);
     if (notes) lines.push(`*Notes:* ${notes}`);
     lines.push('');
     lines.push(`*Name:* ${name}`);
