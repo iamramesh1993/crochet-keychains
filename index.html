@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=32">
+  <link rel="stylesheet" href="css/styles.css?v=35">
 
   <!-- Structured data: business (local/geo) -->
   <script type="application/ld+json">
@@ -60,6 +60,7 @@
     "description": "Handmade crochet keychains and charms, made to order in Pakistan. Customizable designs with cash on delivery nationwide.",
     "url": "https://www.crochetkeychains.com/",
     "telephone": "+923144918419",
+    "email": "info@crochetkeychains.com",
     "priceRange": "PKR 700–1500",
     "currenciesAccepted": "PKR",
     "paymentAccepted": "Cash on Delivery",
@@ -136,6 +137,7 @@
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#order">Order</a></li>
+        <li><a href="#" id="nav-contact">Contact</a></li>
         <li><a href="https://www.instagram.com/crochet_keychains.pk/" class="nav-cta" target="_blank" rel="noopener">@crochet_keychains.pk</a></li>
       </ul>
     </nav>
@@ -235,6 +237,8 @@
       </div>
       <div class="footer-links">
         <a href="https://www.instagram.com/crochet_keychains.pk/" target="_blank" rel="noopener">@crochet_keychains.pk</a>
+        <a href="https://wa.me/923144918419" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:info@crochetkeychains.com">info@crochetkeychains.com</a>
       </div>
       <p class="copyright">&copy; <span id="year"></span> Crochet Keychains. All rights reserved.</p>
     </div>
@@ -299,6 +303,58 @@
     </div>
   </div>
 
+  <div class="order-modal" id="contact-modal" hidden>
+    <div class="order-modal-card contact-card" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+      <button class="order-modal-close" type="button" aria-label="Close" id="contact-close">&times;</button>
+
+      <span class="contact-emblem" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><g transform="translate(32 33)"><circle r="19" fill="#e23e63"/><g fill="none" stroke="#c42f52" stroke-width="2.2" stroke-linecap="round" opacity="0.9"><path d="M-17 -4 C -6 -14, 6 -14, 17 -4"/><path d="M-18 4 C -6 -8, 6 -8, 18 4"/><path d="M-15 11 C -5 0, 7 0, 16 11"/><path d="M-9 -17 C -2 -6, 4 6, 11 16"/><path d="M2 -18 C -4 -6, -2 6, 4 17"/><path d="M11 -15 C 4 -5, 2 6, 9 15"/></g><path d="M16 -10 q 10 -3 12 6" fill="none" stroke="#2bb3e3" stroke-width="2.4" stroke-linecap="round"/></g></svg>
+      </span>
+
+      <h2 id="contact-modal-title" class="contact-title">Contact us</h2>
+      <div class="contact-divider" aria-hidden="true">
+        <span></span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.49 4.04 3 5.5l7 7Z"/></svg>
+        <span></span>
+      </div>
+      <p class="contact-sub">We're happy to help with custom orders, colours and delivery details.</p>
+
+      <div class="contact-channels">
+        <a class="contact-row" href="https://wa.me/923144918419" target="_blank" rel="noopener">
+          <span class="contact-ic contact-ic-wa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg></span>
+          <span class="contact-text"><strong>WhatsApp</strong><small>Fastest response (5–30 mins)</small></span>
+          <span class="contact-chev" aria-hidden="true">&#8250;</span>
+        </a>
+        <a class="contact-row" href="https://ig.me/m/crochet_keychains.pk" target="_blank" rel="noopener">
+          <span class="contact-ic contact-ic-ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg></span>
+          <span class="contact-text"><strong>Instagram</strong><small>View latest creations</small></span>
+          <span class="contact-chev" aria-hidden="true">&#8250;</span>
+        </a>
+        <a class="contact-row" href="mailto:info@crochetkeychains.com">
+          <span class="contact-ic contact-ic-email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span class="contact-text"><strong>Email</strong><small>info@crochetkeychains.com</small></span>
+          <span class="contact-chev" aria-hidden="true">&#8250;</span>
+        </a>
+      </div>
+
+      <div class="contact-trust" aria-hidden="true">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M5 9c4-3 10-3 14 0M4 13.5c4-3 12-3 16 1M8.5 21c-1-5-1-11 3-17M14 21c2-5 2-12-1-17"/></svg>
+          <b>Handmade</b>in Pakistan
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 1 0 0 18c1.4 0 1.8-1 1.5-1.9-.3-.9.3-1.6 1.2-1.6H17a4 4 0 0 0 4-4A8.5 8.5 0 0 0 12 3z"/><circle cx="7.5" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="7.5" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
+          <b>Custom colours</b>available
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/></svg>
+          <b>Nationwide</b>delivery
+        </span>
+      </div>
+      <p class="contact-thanks" aria-hidden="true">thank you</p>
+    </div>
+  </div>
+
   <div class="lightbox" id="lightbox" hidden>
     <button class="lightbox-close" aria-label="Close">&times;</button>
     <figure class="lightbox-content">
@@ -328,6 +384,6 @@
 
   <button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top" hidden>↑</button>
 
-  <script src="js/main.js?v=29"></script>
+  <script src="js/main.js?v=30"></script>
 </body>
 </html>

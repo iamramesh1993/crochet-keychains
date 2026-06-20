@@ -163,6 +163,7 @@ const SITE_URL = 'https://www.crochetkeychains.com';
 
 const ORDER_DM_URL = 'https://ig.me/m/crochet_keychains.pk';
 const orderModal = document.getElementById('order-modal');
+const contactModal = document.getElementById('contact-modal');
 const orderForm = document.getElementById('order-form');
 const orderChannels = document.querySelector('.order-channels');
 const orderChannelsLabel = document.querySelector('.order-channels-label');
@@ -349,36 +350,32 @@ if (orderForm) {
     const qty = (data.get('qty') || '1').toString().trim();
     const notes = (data.get('notes') || '').toString().trim();
 
-    // Written in the buyer's voice. Plain-text labels only (no emoji): the
-    // Instagram in-app browser mangles emoji when handing the wa.me link to
-    // WhatsApp, so we keep this message universally clean.
-    const lines = [];
+    // Buyer-voice WhatsApp message. Labels are bold via *asterisks* (WhatsApp's
+    // markup). Emoji-free on purpose: the Instagram in-app browser mangles emoji
+    // when it hands the wa.me link to WhatsApp, so we keep it plain text + bold.
+    const lines = [`Hi! I'd like to order from your website:`, ''];
     if (orderModalItem) {
-      lines.push(`Hi! I'd like to order this from your website:`);
-      lines.push('');
-      lines.push(`Design: ${orderModalItem.title} (Ref ${ref})`);
-      lines.push(`Price: ${formatPrice(orderModalItem)}  ·  Qty: ${qty}`);
-      lines.push(`Photo: ${new URL(orderModalItem.src, window.location.href).href}`);
+      lines.push(`*Design:* ${orderModalItem.title} (Ref ${ref})`);
+      lines.push(`*Price:* ${formatPrice(orderModalItem)} × ${qty}`);
+      lines.push(`*Photo:* ${new URL(orderModalItem.src, window.location.href).href}`);
     } else {
-      lines.push(`Hi! I'd like to order from your website.`);
-      lines.push('');
       const matched = findItemByQuery(ref);
       if (matched) {
-        lines.push(`Design: ${matched.title} (Ref ${refCode(matched)})`);
-        lines.push(`Price: ${formatPrice(matched)}  ·  Qty: ${qty}`);
-        lines.push(`Photo: ${new URL(matched.src, window.location.href).href}`);
+        lines.push(`*Design:* ${matched.title} (Ref ${refCode(matched)})`);
+        lines.push(`*Price:* ${formatPrice(matched)} × ${qty}`);
+        lines.push(`*Photo:* ${new URL(matched.src, window.location.href).href}`);
       } else {
-        lines.push(ref ? `Design: ${ref}  ·  Qty: ${qty}` : `Design: custom (see notes)  ·  Qty: ${qty}`);
+        lines.push(`*Design:* ${ref || 'custom (see notes)'}`);
+        lines.push(`*Qty:* ${qty}`);
       }
     }
-    if (notes) lines.push(`Notes: ${notes}`);
+    if (notes) lines.push(`*Notes:* ${notes}`);
     lines.push('');
-    lines.push(`My delivery details (cash on delivery):`);
-    lines.push(`Name: ${name}`);
-    lines.push(`Phone: ${phone}`);
-    lines.push(`Address: ${address}`);
+    lines.push(`*Name:* ${name}`);
+    lines.push(`*Phone:* ${phone}`);
+    lines.push(`*Address:* ${address}`);
     lines.push('');
-    lines.push(`Could you please confirm the total and delivery time? Thank you!`);
+    lines.push(`Cash on delivery — please confirm the total & delivery time. Thank you!`);
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
     window.open(url, '_blank', 'noopener');
@@ -395,6 +392,18 @@ if (orderModal) {
   document.getElementById('choose-wa')?.addEventListener('click', showOrderForm);
   document.getElementById('choose-ig')?.addEventListener('click', orderViaInstagram);
   document.getElementById('order-form-back')?.addEventListener('click', showOrderChannels);
+}
+
+// Header "Contact" → contact modal (WhatsApp / Instagram / Email)
+document.getElementById('nav-contact')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  openContactModal();
+});
+if (contactModal) {
+  document.getElementById('contact-close')?.addEventListener('click', dismissOverlay);
+  contactModal.addEventListener('click', (e) => {
+    if (e.target === contactModal) dismissOverlay();
+  });
 }
 
 document.getElementById('order-section-btn')?.addEventListener('click', () => startOrder(null));
@@ -490,7 +499,22 @@ function closeLightbox() {
 // (returning to the product list) instead of leaving the site. Every close routes
 // through history.back(); popstate performs the actual close. ----
 function overlayOpen() {
-  return (lightbox && !lightbox.hidden) || (orderModal && !orderModal.hidden);
+  return (lightbox && !lightbox.hidden) ||
+    (orderModal && !orderModal.hidden) ||
+    (contactModal && !contactModal.hidden);
+}
+
+function openContactModal() {
+  if (!contactModal) return;
+  const wasClosed = contactModal.hidden;
+  contactModal.hidden = false;
+  updateScrollLock();
+  if (wasClosed) pushOverlayState();
+}
+function closeContactModal() {
+  if (!contactModal) return;
+  contactModal.hidden = true;
+  updateScrollLock();
 }
 let lockedScrollY = 0;
 function updateScrollLock() {
@@ -516,11 +540,13 @@ function dismissOverlay() {
     history.back();
   } else {
     closeOrderModal();
+    closeContactModal();
     closeLightbox();
   }
 }
 window.addEventListener('popstate', () => {
-  if (orderModal && !orderModal.hidden) closeOrderModal();
+  if (contactModal && !contactModal.hidden) closeContactModal();
+  else if (orderModal && !orderModal.hidden) closeOrderModal();
   else if (lightbox && !lightbox.hidden) closeLightbox();
 });
 
