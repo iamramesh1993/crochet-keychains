@@ -149,7 +149,7 @@ function buildHeroCards(items) {
 
   heroVisual.innerHTML = picks.map((item, i) => `
     <div class="hero-card ${positions[i]}">
-      <img class="hero-card-img" src="${item.src}" alt="${item.alt}" loading="eager">
+      <img class="hero-card-img" src="${item.src}" alt="${item.alt}" loading="eager" decoding="async" fetchpriority="${i === 0 ? 'high' : 'auto'}">
       <span>${item.title}</span>
     </div>
   `).join('');
@@ -427,9 +427,10 @@ async function shareItem(item) {
   // Clean per-product URL whose static page carries this product's own OG image,
   // so the link-preview thumbnail matches the design (see scripts/build-share-pages.js).
   const url = `${location.origin}/p/${ref}/`;
-  const text = `${item.title} — ${formatPrice(item)} · handmade crochet keychain 🧶`;
   if (navigator.share) {
-    try { await navigator.share({ title: 'Crochet Keychains', text, url }); }
+    // No `text`: the rich link preview already shows name + price + photo, and
+    // omitting it keeps the OS "Copy" action a clean URL (better for ads/sharing).
+    try { await navigator.share({ title: `${item.title} — ${formatPrice(item)}`, url }); }
     catch (e) { /* user dismissed the share sheet */ }
     return;
   }
@@ -449,7 +450,7 @@ function buildGalleryCard(item, index) {
   card.innerHTML = `
     <button class="gallery-trigger" type="button" data-index="${index}" aria-label="View ${item.title}">
       <div class="product-image">
-        <img src="${item.src}" alt="${item.alt}" loading="lazy">
+        <img src="${item.src}" alt="${item.alt}" decoding="async" ${index < 6 ? 'fetchpriority="high"' : 'loading="lazy"'}>
         ${badge ? `<span class="product-badge ${badge.cls}">${badge.text}</span>` : ''}
       </div>
     </button>

@@ -78,6 +78,7 @@ for (const item of manifest) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'self'; img-src 'self' data:">
 <title>${esc(title)} | Crochet Keychains</title>
 <meta name="description" content="${esc(desc)}">
