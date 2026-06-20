@@ -1,3 +1,8 @@
+// Land at the top on reload (incl. the logo "home" refresh) instead of the
+// browser restoring the previous scroll position. We restore scroll ourselves
+// when closing overlays, so manual restoration is safe here.
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 const yearEl = document.getElementById('year');
@@ -9,6 +14,7 @@ const lightboxImg = document.getElementById('lightbox-img');
 const lightboxTitle = document.getElementById('lightbox-title');
 const lightboxMeta = document.getElementById('lightbox-meta');
 const lightboxPrice = document.getElementById('lightbox-price');
+const lightboxCounter = document.getElementById('lightbox-counter');
 
 let galleryItems = [];   // full catalog
 let viewItems = [];      // current filtered + sorted view (what the grid/lightbox show)
@@ -274,17 +280,17 @@ function startOrder(item) {
   const refField = document.getElementById('order-ref-field');
   const refLabel = refField ? refField.querySelector('.ref-label') : null;
   if (item) {
+    // Product is already named by the preview card. Keep its ref for the WhatsApp
+    // message (helps fulfilment) but hide the field — no need to ask the buyer.
     orderForm.ref.value = refCode(item);
-    orderForm.ref.readOnly = true;
-    orderForm.ref.placeholder = '';
-    if (refLabel) refLabel.textContent = 'Design ref';
+    if (refField) refField.hidden = true;
   } else {
     orderForm.ref.value = '';
     orderForm.ref.readOnly = false;
     orderForm.ref.placeholder = 'Design name or ref — or a custom idea';
     if (refLabel) refLabel.textContent = 'Which design?';
+    if (refField) refField.hidden = false;
   }
-  if (refField) refField.hidden = false;
 
   const title = document.getElementById('order-modal-title');
   if (title) title.textContent = item ? 'Order this keychain' : 'Place your order';
@@ -295,7 +301,7 @@ function startOrder(item) {
   if (preview && item) {
     previewImg.src = item.src;
     previewImg.alt = item.alt;
-    previewRef.textContent = `${item.title} · ${formatPrice(item)} · Ref ${refCode(item)} · ${socialProofText(item)}`;
+    previewRef.textContent = `${item.title} · ${formatPrice(item)}`;
     preview.hidden = false;
   } else if (preview) {
     previewImg.removeAttribute('src');
@@ -393,6 +399,17 @@ if (orderModal) {
 
 document.getElementById('order-section-btn')?.addEventListener('click', () => startOrder(null));
 
+// Logo = home. Refresh to a clean homepage: drops any ?design / #hash and resets
+// the filter, sort and scroll position back to defaults.
+document.querySelector('.logo')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (window.location.search || window.location.hash) {
+    window.location.href = window.location.pathname;
+  } else {
+    window.location.reload();
+  }
+});
+
 // Share a design — native share sheet on mobile, copy-link fallback on desktop.
 // The link deep-links back to this exact product via ?design=<ref>.
 async function shareItem(item) {
@@ -456,6 +473,7 @@ function openLightbox(index) {
     lightboxMeta.innerHTML = parts.join(' · ');
   }
   if (lightboxPrice) lightboxPrice.innerHTML = formatPriceHtml(item);
+  if (lightboxCounter) lightboxCounter.textContent = `${lightboxIndex + 1} / ${viewItems.length}`;
   lightbox.hidden = false;
   updateScrollLock();
   if (wasClosed) pushOverlayState();
@@ -474,8 +492,21 @@ function closeLightbox() {
 function overlayOpen() {
   return (lightbox && !lightbox.hidden) || (orderModal && !orderModal.hidden);
 }
+let lockedScrollY = 0;
 function updateScrollLock() {
-  document.body.classList.toggle('lightbox-open', overlayOpen());
+  const open = overlayOpen();
+  const locked = document.body.classList.contains('lightbox-open');
+  if (open && !locked) {
+    // Pin the body at the current scroll position so the page can't move behind
+    // the overlay (iOS ignores overflow:hidden; position:fixed is what works).
+    lockedScrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.top = `-${lockedScrollY}px`;
+    document.body.classList.add('lightbox-open');
+  } else if (!open && locked) {
+    document.body.classList.remove('lightbox-open');
+    document.body.style.top = '';
+    window.scrollTo(0, lockedScrollY);
+  }
 }
 function pushOverlayState() {
   history.pushState({ overlay: true }, '');
@@ -559,7 +590,7 @@ function computeView() {
 function updateGalleryCount() {
   if (!galleryCount) return;
   if (activeCategory === 'all') {
-    galleryCount.textContent = `${galleryItems.length} handmade designs · PKR 700–1500`;
+    galleryCount.textContent = `${galleryItems.length} designs · PKR 700–1500`;
   } else if (activeCategory === 'fav') {
     galleryCount.textContent = viewItems.length
       ? `${viewItems.length} saved design${viewItems.length === 1 ? '' : 's'}`
@@ -615,14 +646,7 @@ function buildFilterChips() {
   chipsEl.addEventListener('click', (e) => {
     const chip = e.target.closest('.chip');
     if (!chip) return;
-    activeCategory = chip.dataset.cat;
-    chipsEl.querySelectorAll('.chip').forEach((b) => {
-      const on = b.dataset.cat === activeCategory;
-      b.classList.toggle('active', on);
-      b.setAttribute('aria-selected', on);
-    });
-    resetView();
-    document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActiveCategory(chip.dataset.cat);
   });
 }
 
@@ -635,7 +659,46 @@ function toggleFavorite(src, btn) {
     btn.classList.toggle('is-fav', on);
     btn.setAttribute('aria-pressed', on);
   }
+  updateSavedCount();
   if (activeCategory === 'fav') resetView();
+}
+
+// Keep the header "saved" badge in sync with the number of hearted designs.
+function updateSavedCount() {
+  const count = document.getElementById('nav-saved-count');
+  if (!count) return;
+  const n = favorites.size;
+  count.textContent = n;
+  count.hidden = n === 0;
+}
+
+// Single entry point for switching filters. Used by both the chips and the
+// header heart so the active state can never drift between them.
+function setActiveCategory(cat) {
+  activeCategory = cat;
+  const chipsEl = document.getElementById('filter-chips');
+  let activeChip = null;
+  if (chipsEl) {
+    chipsEl.querySelectorAll('.chip').forEach((b) => {
+      const on = b.dataset.cat === cat;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on);
+      if (on) activeChip = b;
+    });
+    // Keep the selected chip visible in the horizontally-scrolling strip,
+    // otherwise (e.g. "♥ Saved" at the far right) it looks like nothing is active.
+    if (activeChip) {
+      const target = activeChip.offsetLeft - (chipsEl.clientWidth - activeChip.clientWidth) / 2;
+      chipsEl.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+    }
+  }
+  resetView();
+  document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Header heart → jump to the saved view.
+function showSavedView() {
+  setActiveCategory('fav');
 }
 
 async function loadGallery() {
@@ -648,6 +711,7 @@ async function loadGallery() {
 
     buildFilterChips();
     resetView();
+    updateSavedCount();
 
     buildHeroCards(galleryItems);
     injectProductSchema(galleryItems);
@@ -660,6 +724,12 @@ async function loadGallery() {
       if (order) { startOrder(viewItems[Number(order.dataset.index)]); return; }
       const trigger = e.target.closest('.gallery-trigger');
       if (trigger) { openLightbox(Number(trigger.dataset.index)); }
+    });
+
+    // Header "saved" shortcut
+    document.getElementById('nav-saved')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSavedView();
     });
 
     // Sort control

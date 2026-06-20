@@ -252,6 +252,43 @@ h3 {
   color: var(--white) !important;
 }
 
+/* Persistent "saved" shortcut in the header — always visible so shoppers can
+   jump back to the designs they hearted. Count badge appears once they save one. */
+.nav-saved {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 1.5rem;
+  color: var(--terracotta);
+  text-decoration: none;
+  transition: transform 0.12s;
+}
+.nav-saved:hover { transform: scale(1.08); }
+.nav-saved svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+/* Count rides on the heart's top-right corner like a notification badge */
+.nav-saved-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--terracotta);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 14px;
+  text-align: center;
+  border: 2px solid var(--white);
+  box-sizing: border-box;
+}
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -630,6 +667,7 @@ h3 {
   justify-content: center;
   padding: 2rem 1rem;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .order-modal[hidden] {
@@ -801,7 +839,8 @@ h3 {
   display: none;
 }
 
-.order-form label {
+.order-form label,
+.order-form .order-field {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
@@ -1338,7 +1377,14 @@ cite {
   display: none;
 }
 
+/* Overlay-open scroll lock. position:fixed (not just overflow:hidden) is the only
+   thing that actually stops the page scrolling behind the card on iOS Safari.
+   js/main.js pins body.top to the saved scroll offset and restores it on close. */
 body.lightbox-open {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -1347,6 +1393,7 @@ body.lightbox-open {
   width: min(92vw, 400px);
   max-height: 92vh;
   overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--white);
   border-radius: var(--radius);
   display: flex;
@@ -1354,6 +1401,7 @@ body.lightbox-open {
 }
 
 .lightbox-imgwrap {
+  position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
   background: var(--cream-dark);
@@ -1436,44 +1484,72 @@ body.lightbox-open {
   margin: 0.6rem 0 0;
 }
 
-.lightbox-close,
-.lightbox-prev,
-.lightbox-next {
+.lightbox-close {
   position: absolute;
-  background: rgba(255, 255, 255, 0.15);
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.18);
   border: none;
   color: var(--white);
   cursor: pointer;
   border-radius: 50%;
   width: 44px;
   height: 44px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 1;
   transition: background 0.2s;
 }
 
-.lightbox-close:hover,
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+/* Prev/next live in a slim bar BELOW the photo — never overlapping the product */
+.lightbox-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem 0;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding-bottom: 3px;
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--cream-dark);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.6rem;
+  line-height: 1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition: background 0.2s, border-color 0.2s, transform 0.12s;
+}
+
 .lightbox-prev:hover,
 .lightbox-next:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--cream);
+  border-color: var(--terracotta);
 }
 
-.lightbox-close {
-  top: 1.5rem;
-  right: 1.5rem;
-  font-size: 2rem;
+.lightbox-prev:active,
+.lightbox-next:active {
+  transform: scale(0.92);
 }
 
-.lightbox-prev {
-  left: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.lightbox-next {
-  right: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
+.lightbox-counter {
+  min-width: 4.5rem;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-soft, #6b6680);
+  letter-spacing: 0.02em;
 }
 
 /* --- Mobile nav --- */
