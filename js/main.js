@@ -780,8 +780,13 @@ async function loadGallery() {
     // shared link lands on the exact design even though this is a single page.
     const designRef = new URLSearchParams(location.search).get('design');
     if (designRef) {
-      const n = designRef.replace(/\D/g, '').padStart(3, '0');
-      const idx = viewItems.findIndex((it) => ((it.src || '').match(/(\d+)/) || [])[1] === n);
+      // Normalise to a leading-zero-insensitive number so 96 / 096 / %23096 all match.
+      const want = (designRef.match(/\d+/) || [''])[0].replace(/^0+/, '') || '0';
+      const numOf = (it) => {
+        const m = (it.src || '').match(/(\d+)/);
+        return m ? m[1].replace(/^0+/, '') : null;
+      };
+      const idx = viewItems.findIndex((it) => numOf(it) === want);
       if (idx >= 0) openLightbox(idx);
     }
   } catch (err) {
