@@ -1861,3 +1861,62 @@ body.lightbox-open {
   .hero .eyebrow,
   .hero-text { display: none; }
 }
+
+/* ===== Standalone product landing page (/p/<ref>/) ===== */
+.pdp-page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+.pdp-breadcrumb {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  margin: 0 0 1.25rem;
+}
+.pdp-breadcrumb a { color: var(--ink-muted); text-decoration: none; }
+.pdp-breadcrumb a:hover { color: var(--terracotta); }
+.pdp-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.pdp-media {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--cream-dark);
+  aspect-ratio: 1;
+}
+.pdp-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pdp-body h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1.12;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+}
+.pdp-meta { font-size: 0.9rem; color: var(--ink-muted); margin: 0 0 0.75rem; }
+.pdp-meta .star { color: var(--sun); }
+.pdp-meta .sold { color: var(--sage); font-weight: 600; }
+.pdp-price {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--terracotta);
+  margin: 0 0 1rem;
+}
+.pdp-price .cur { font-size: 0.9rem; font-weight: 600; color: var(--ink-muted); margin-right: 0.25rem; }
+.pdp-desc { color: var(--ink-muted); line-height: 1.6; margin: 0 0 1.5rem; }
+.pdp-cta { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+.pdp-cta .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
+.pdp-cta .btn svg { width: 20px; height: 20px; }
+.btn-whatsapp { background: #25d366; color: var(--white); }
+.btn-whatsapp:hover { filter: brightness(0.96); color: var(--white); }
+.pdp-trust { font-size: 0.8rem; color: var(--ink-muted); text-align: center; margin: 0 0 1.5rem; }
+.pdp-browse { display: inline-block; color: var(--terracotta); font-weight: 600; text-decoration: none; }
+.pdp-browse:hover { text-decoration: underline; }
+@media (max-width: 720px) {
+  .pdp-layout { grid-template-columns: 1fr; gap: 1.25rem; }
+  .pdp-body h1 { font-size: 1.55rem; }
+  .pdp-price { font-size: 1.6rem; }
+}
