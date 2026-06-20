@@ -149,7 +149,7 @@ function buildHeroCards(items) {
 
   heroVisual.innerHTML = picks.map((item, i) => `
     <div class="hero-card ${positions[i]}">
-      <img class="hero-card-img" src="${item.src}" alt="${item.alt}" loading="eager" decoding="async" fetchpriority="${i === 0 ? 'high' : 'auto'}">
+      <picture><source type="image/webp" srcset="${item.src.replace(/\.jpg$/, '.webp')}"><img class="hero-card-img" src="${item.src}" alt="${item.alt}" loading="eager" decoding="async" fetchpriority="${i === 0 ? 'high' : 'auto'}"></picture>
       <span>${item.title}</span>
     </div>
   `).join('');
@@ -450,7 +450,10 @@ function buildGalleryCard(item, index) {
   card.innerHTML = `
     <button class="gallery-trigger" type="button" data-index="${index}" aria-label="View ${item.title}">
       <div class="product-image">
-        <img src="${item.src}" alt="${item.alt}" decoding="async" ${index < 6 ? 'fetchpriority="high"' : 'loading="lazy"'}>
+        <picture>
+          <source type="image/webp" srcset="${item.src.replace(/\.jpg$/, '.webp')}">
+          <img src="${item.src}" alt="${item.alt}" decoding="async" ${index < 6 ? 'fetchpriority="high"' : 'loading="lazy"'}>
+        </picture>
         ${badge ? `<span class="product-badge ${badge.cls}">${badge.text}</span>` : ''}
       </div>
     </button>
@@ -474,7 +477,8 @@ function openLightbox(index) {
   const wasClosed = lightbox.hidden;
   lightboxIndex = index;
   const item = viewItems[lightboxIndex];
-  lightboxImg.src = item.src;
+  // Prefer WebP; the error handler (wired once below) falls back to the JPG.
+  lightboxImg.src = item.src.replace(/\.jpg$/, '.webp');
   lightboxImg.alt = item.alt;
   if (lightboxTitle) lightboxTitle.textContent = item.title;
   if (lightboxMeta) {
@@ -821,6 +825,10 @@ function showToast(message) {
 }
 
 if (lightbox) {
+  // WebP not supported (old browser) → fall back to the original JPG.
+  lightboxImg?.addEventListener('error', () => {
+    if (lightboxImg.src.endsWith('.webp')) lightboxImg.src = lightboxImg.src.replace(/\.webp$/, '.jpg');
+  });
   lightbox.querySelector('.lightbox-close')?.addEventListener('click', dismissOverlay);
   lightbox.querySelector('.lightbox-prev')?.addEventListener('click', () => showNext(-1));
   lightbox.querySelector('.lightbox-next')?.addEventListener('click', () => showNext(1));
