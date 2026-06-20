@@ -283,8 +283,11 @@ h3 {
   width: 25px;
   height: 25px;
   display: block;
-  fill: currentColor;
+  fill: none;
+  stroke: currentColor;
 }
+/* Filled only while the saved filter is active — acts as a clear on/off toggle */
+.nav-saved.is-active svg { fill: currentColor; }
 /* Count rides on the heart's top-right corner like a notification badge */
 .nav-saved-count {
   position: absolute;

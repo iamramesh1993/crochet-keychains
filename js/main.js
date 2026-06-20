@@ -722,13 +722,15 @@ function setActiveCategory(cat) {
       chipsEl.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
     }
   }
+  // Header heart fills only while the saved filter is the active one.
+  document.getElementById('nav-saved')?.classList.toggle('is-active', cat === 'fav');
   resetView();
   document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// Header heart → jump to the saved view.
-function showSavedView() {
-  setActiveCategory('fav');
+// Header heart is a toggle: ON → saved-only, OFF → back to all products.
+function toggleSavedFilter() {
+  setActiveCategory(activeCategory === 'fav' ? 'all' : 'fav');
 }
 
 async function loadGallery() {
@@ -756,10 +758,10 @@ async function loadGallery() {
       if (trigger) { openLightbox(Number(trigger.dataset.index)); }
     });
 
-    // Header "saved" shortcut
+    // Header heart toggles the saved filter on/off
     document.getElementById('nav-saved')?.addEventListener('click', (e) => {
       e.preventDefault();
-      showSavedView();
+      toggleSavedFilter();
     });
 
     // Sort control
