@@ -20,6 +20,10 @@ const IG_DM = 'https://ig.me/m/crochet_keychains.pk';
 const CF_TOKEN = 'c279e6010c3440b1a5e3fc54a6814b5a';
 const YEAR = new Date().getFullYear();
 const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'images', 'manifest.json'), 'utf8'));
+// Stay on the SAME css/js cache version as index.html so product pages never
+// serve a stale cached stylesheet (read automatically — no manual sync needed).
+const indexHtml = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+const CSS_VER = (indexHtml.match(/styles\.css\?v=(\d+)/) || [, '1'])[1];
 
 const esc = (s) => String(s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -140,7 +144,7 @@ for (const item of manifest) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/styles.css?v=38">
+<link rel="stylesheet" href="/css/styles.css?v=${CSS_VER}">
 <script type="application/ld+json">${JSON.stringify(product)}</script>
 <script type="application/ld+json">${JSON.stringify(breadcrumb)}</script>
 </head>
