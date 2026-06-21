@@ -30,7 +30,8 @@ const priceText = (it) => (it.price ? `PKR ${Number(it.price).toLocaleString('en
 const LOGO = `<svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="20" fill="#e23e63"/><g fill="none" stroke="#c42f52" stroke-width="2.3" stroke-linecap="round" opacity="0.9"><path d="M14 28 C 25 17, 39 17, 50 28"/><path d="M13 36 C 25 23, 39 23, 51 36"/><path d="M17 43 C 27 31, 39 31, 48 43"/><path d="M23 14 C 30 26, 36 38, 43 49"/><path d="M34 13 C 28 26, 30 38, 36 50"/></g><path d="M50 22 q 10 -3 12 7" fill="none" stroke="#2bb3e3" stroke-width="2.6" stroke-linecap="round"/></svg>`;
 const WA_ICON = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>`;
 const IG_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>`;
-const FOOTER = `<footer class="site-footer"><div class="footer-inner"><div><p class="logo">Crochet Keychains</p><p class="footer-tagline">Handmade crochet keychains &amp; charms · Made with love in Pakistan</p></div><div class="footer-links"><a href="https://www.instagram.com/crochet_keychains.pk/" target="_blank" rel="noopener">@crochet_keychains.pk</a><a href="https://wa.me/${WA}" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:info@crochetkeychains.com">info@crochetkeychains.com</a></div><p class="copyright">&copy; ${YEAR} Crochet Keychains. All rights reserved.</p></div></footer>`;
+const MAIL_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`;
+const FOOTER = `<footer class="site-footer"><div class="footer-inner"><div><p class="logo">Crochet Keychains</p><p class="footer-tagline">Handmade crochet keychains &amp; charms · Made with love in Pakistan</p></div><div class="footer-links"><a href="https://www.instagram.com/crochet_keychains.pk/" target="_blank" rel="noopener" aria-label="Instagram">${IG_ICON}<span>Instagram</span></a><a href="https://wa.me/${WA}" target="_blank" rel="noopener" aria-label="WhatsApp">${WA_ICON}<span>WhatsApp</span></a><a href="mailto:info@crochetkeychains.com" aria-label="Email">${MAIL_ICON}<span>Email</span></a></div><p class="copyright">&copy; ${YEAR} Crochet Keychains. All rights reserved.</p></div></footer>`;
 
 const pDir = path.join(ROOT, 'p');
 fs.mkdirSync(pDir, { recursive: true });
@@ -51,7 +52,9 @@ for (const item of manifest) {
   const price = priceText(item);
   const titlePrice = `${item.title} — ${price}`;
   const metaDesc = `${item.title} — handmade crochet keychain, ${price}. Made to order in Pakistan, cash on delivery. Order on WhatsApp or Instagram.`;
-  const longDesc = `${item.title} is a handmade crochet keychain, crocheted by hand in Pakistan with soft yarn and sturdy hardware. ${price}. Custom colours welcome · made to order · cash on delivery nationwide.`;
+  // Visible/product description — product-focused (price + delivery are shown
+  // separately above/below, so we don't repeat them here).
+  const longDesc = `${item.title} — handmade and crocheted by hand in Pakistan with soft yarn and sturdy hardware. A cute, durable charm for your keys, bag, or a thoughtful little gift. Custom colours welcome.`;
 
   const waText = encodeURIComponent(`Hi! I'd like to order this from your website:\n\n*Design:* ${item.title} (Ref #${ref})\n*Price:* ${price}\n\nPlease let me know how to complete my order (cash on delivery).`);
   const waLink = `https://wa.me/${WA}?text=${waText}`;
@@ -79,6 +82,11 @@ for (const item of manifest) {
         '@type': 'OfferShippingDetails',
         shippingRate: { '@type': 'MonetaryAmount', value: 150, currency: 'PKR' },
         shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'PK' },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 3, unitCode: 'DAY' },
+          transitTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 5, unitCode: 'DAY' },
+        },
       },
       hasMerchantReturnPolicy: {
         '@type': 'MerchantReturnPolicy',
@@ -139,7 +147,7 @@ for (const item of manifest) {
 <body>
 <header class="site-header"><nav class="nav">
 <a href="/" class="logo" aria-label="Crochet Keychains — home">${LOGO}<span class="logo-text">Crochet Keychains<small>Handmade in Pakistan</small></span></a>
-<a href="/#gallery" class="nav-cta">Shop all designs</a>
+<a href="/#gallery" class="nav-cta">Shop all</a>
 </nav></header>
 <main class="pdp-page">
 <nav class="pdp-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> · ${esc(item.title)}</nav>

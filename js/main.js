@@ -569,6 +569,30 @@ function showNext(delta) {
 // rich results (price, ratings) and feeds answer/generative engines.
 function injectProductSchema(items) {
   const base = SITE_URL.replace(/\/$/, '');
+  // Shared Offer details (shipping/returns/condition) so Google's Merchant
+  // listings get the recommended fields — must match the per-product pages.
+  const offerExtras = {
+    itemCondition: 'https://schema.org/NewCondition',
+    priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
+    shippingDetails: {
+      '@type': 'OfferShippingDetails',
+      shippingRate: { '@type': 'MonetaryAmount', value: 150, currency: 'PKR' },
+      shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'PK' },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 3, unitCode: 'DAY' },
+        transitTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 5, unitCode: 'DAY' },
+      },
+    },
+    hasMerchantReturnPolicy: {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'PK',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+      merchantReturnDays: 7,
+      returnMethod: 'https://schema.org/ReturnByMail',
+      returnFees: 'https://schema.org/FreeReturn',
+    },
+  };
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -586,7 +610,8 @@ function injectProductSchema(items) {
           priceCurrency: 'PKR',
           price: it.price,
           availability: 'https://schema.org/InStock',
-          url: `${base}/#gallery`,
+          url: `${base}/p/${(it.src.match(/(\d+)/) || [])[1] || ''}/`,
+          ...offerExtras,
         },
       };
       if (it.rating && it.reviews) {

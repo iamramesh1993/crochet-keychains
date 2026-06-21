@@ -245,6 +245,7 @@ h3 {
   color: var(--white) !important;
   padding: 0.5rem 1rem;
   border-radius: 999px;
+  white-space: nowrap;
 }
 
 .nav-cta:hover {
@@ -1497,14 +1498,15 @@ cite {
 }
 
 .footer-links a {
-  font-weight: 500;
-  color: var(--ink-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--ink);
   transition: color 0.2s;
 }
-
-.footer-links a:hover {
-  color: var(--terracotta);
-}
+.footer-links a:hover { color: var(--terracotta); }
+.footer-links svg { width: 18px; height: 18px; flex: none; }
 
 .copyright {
   grid-column: 1 / -1;
@@ -1879,8 +1881,8 @@ body.lightbox-open {
   color: var(--ink-muted);
   margin: 0 0 1.25rem;
 }
-.pdp-breadcrumb a { color: var(--ink-muted); text-decoration: none; }
-.pdp-breadcrumb a:hover { color: var(--terracotta); }
+.pdp-breadcrumb a { color: var(--terracotta); font-weight: 600; text-decoration: none; }
+.pdp-breadcrumb a:hover { text-decoration: underline; }
 .pdp-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
