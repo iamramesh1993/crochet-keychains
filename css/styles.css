@@ -1491,6 +1491,7 @@ cite {
 
 .footer-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
   align-items: start;
 }
@@ -1795,6 +1796,8 @@ body.lightbox-open {
 
   .footer-links {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
   }
 
   .order-modal {
