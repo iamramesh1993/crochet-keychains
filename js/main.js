@@ -155,8 +155,8 @@ function buildHeroCards(items) {
   `).join('');
 }
 
-// Shop's WhatsApp number (digits only, with country code, no + or spaces): +92 314 4918419
-const WHATSAPP_NUMBER = '923144918419';
+// Shop's WhatsApp number (digits only, with country code, no + or spaces): +92 334 3128419
+const WHATSAPP_NUMBER = '923343128419';
 
 // Public site URL — used for structured data (SEO).
 const SITE_URL = 'https://www.crochetkeychains.com';

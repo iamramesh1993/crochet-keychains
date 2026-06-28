@@ -15,7 +15,7 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const SITE = 'https://www.crochetkeychains.com';
-const WA = '923144918419';
+const WA = '923343128419';
 const IG_DM = 'https://ig.me/m/crochet_keychains.pk';
 const CF_TOKEN = 'c279e6010c3440b1a5e3fc54a6814b5a';
 const YEAR = new Date().getFullYear();
