@@ -1,0 +1,4 @@
+Contact: mailto:info@crochetkeychains.com
+Expires: 2027-06-30T23:59:59Z
+Preferred-Languages: en, ur
+Canonical: https://www.crochetkeychains.com/.well-known/security.txt
