@@ -27,7 +27,7 @@ const CATEGORY_DEFS = [
   { id: 'characters', label: 'Characters', kw: ['superman', 'minion', 'mickey', 'pikachu', 'pooh'] },
   { id: 'food', label: 'Food', kw: ['ice cream', 'strawberry', 'macaron', 'biscuit', 'mug', 'burger', 'fries', 'pizza', 'watermelon', 'lemon', 'orange', 'nutella', 'cheeseburger', 'coffee', 'fruit', 'acorn'] },
   { id: 'flowers', label: 'Flowers', kw: ['rose', 'flower', 'daisy', 'tulip', 'marigold', 'bouquet', 'floral'] },
-  { id: 'animals', label: 'Animals', kw: ['bunny', 'cat', 'bear', 'panda', 'penguin', 'elephant', 'frog', 'owl', 'dog', 'shiba', 'sheep', 'turtle', 'ladybug', 'bee', 'hen', 'chick', 'bird', 'mouse', 'octopus', 'puppy'] },
+  { id: 'animals', label: 'Animals', kw: ['bunny', 'cat', 'bear', 'panda', 'penguin', 'elephant', 'frog', 'owl', 'dog', 'shiba', 'sheep', 'turtle', 'ladybug', 'bee', 'hen', 'chick', 'bird', 'mouse', 'octopus', 'puppy', 'monkey', 'otter', 'sloth'] },
   { id: 'more', label: 'More', kw: null }, // catch-all
 ];
 // Precompile a whole-word matcher per category (with optional trailing "s"),
@@ -771,7 +771,7 @@ async function loadGallery() {
   if (!galleryGrid) return;
 
   try {
-    const response = await fetch('images/manifest.json?v=8');
+    const response = await fetch('images/manifest.json?v=9');
     if (!response.ok) throw new Error('Could not load gallery');
     galleryItems = await response.json();
 
@@ -901,3 +901,11 @@ if (lightbox) {
 }
 
 loadGallery();
+
+// Register the service worker — enables the PWA "Install app" prompt on
+// mobile Chrome/Android + a light offline fallback (network-first, no stale cache).
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
