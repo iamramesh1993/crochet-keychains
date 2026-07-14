@@ -8,18 +8,21 @@ on **WhatsApp** or **Instagram** (no account or checkout needed).
 Plain static site — no build step, no dependencies. Just HTML, CSS and vanilla JS.
 
 ```
-index.html          Page markup + SEO meta + structured data
-css/styles.css      Styles (responsive: phones → desktop)
-js/main.js          Gallery, lightbox, order flow, ratings, schema
-images/             Product photos + manifest.json (the catalog data)
-robots.txt          Crawl rules
-sitemap.xml         Sitemap for search engines
-site.webmanifest    PWA / install metadata
-favicon.svg         Site icon
+index.html                  Page markup + SEO meta + structured data
+css/styles.css              Styles (responsive: phones → desktop)
+js/main.js                  Gallery, lightbox, order flow, ratings, schema, SW register
+images/                     Product photos (post-<N>.jpg + .webp) + manifest.json (catalog)
+p/<ref>/index.html          Generated per-product landing pages (see below)
+scripts/build-share-pages.js  Generator for the product pages + sitemap
+sw.js                       Service worker (PWA installability + light offline)
+site.webmanifest            PWA / install metadata (PNG icons: icon-192/512(-maskable).png)
+robots.txt / sitemap.xml    Crawl rules / sitemap
+favicon.svg                 Site icon
 ```
 
 The catalog lives in `images/manifest.json`. Each entry has `src`, `title`, `price`,
-`alt`, and either rating fields (`rating`, `reviews`, `sold`) or `isNew: true`.
+`alt`, `rating`, `reviews`, `sold`. ("New" arrival badges are set by ref number in
+`NEW_REFS` in `js/main.js`.)
 
 ## Run locally
 ```
@@ -33,10 +36,15 @@ python3 -m http.server 8000
 3. Site goes live at `https://iamramesh1993.github.io/crochet-keychains/`.
 
 ## Custom domain — www.crochetkeychains.com
-Site URLs (canonical, Open Graph, JSON-LD, `js/main.js` `SITE_URL`, `sitemap.xml`,
-`robots.txt`, `site.webmanifest`) already point to `https://www.crochetkeychains.com`.
+> **Status: LIVE.** The site runs on `https://www.crochetkeychains.com` with **Cloudflare
+> nameservers in front of GitHub Pages** (not raw Namecheap DNS); apex 301-redirects to `www`,
+> HTTPS enforced, and the GitHub Pages custom domain is **verified**. The steps below are the
+> original setup, kept for reference.
 
-To finish going live on the domain:
+Site URLs (canonical, Open Graph, JSON-LD, `js/main.js` `SITE_URL`, `sitemap.xml`,
+`robots.txt`, `site.webmanifest`) point to `https://www.crochetkeychains.com`.
+
+Original setup steps:
 1. In Namecheap (Domain → Advanced DNS) add:
    - **CNAME** record: Host `www` → Value `iamramesh1993.github.io.`
    - Four **A** records: Host `@` → `185.199.108.153`, `185.199.109.153`,
@@ -48,6 +56,12 @@ To finish going live on the domain:
 Until step 2, the site stays live at `https://iamramesh1993.github.io/crochet-keychains/`.
 
 ## Security headers
+> **Status: DONE.** Cloudflare serves **HSTS + `X-Content-Type-Options: nosniff` +
+> `X-Frame-Options: SAMEORIGIN`**. Also live: `Referrer-Policy` (meta), `/.well-known/security.txt`
+> (RFC 9116), full email auth (**SPF + DKIM + DMARC**), Bot Fight Mode, and GitHub domain
+> verification. AI crawlers are intentionally **allowed** (AEO/GEO) — do not enable Cloudflare's
+> "Block AI bots". The notes below explain the setup.
+
 Done in-repo (works on a static host):
 - **HTTPS** enforced (GitHub Pages "Enforce HTTPS"); http + apex 301-redirect to `https://www`.
 - **Content-Security-Policy** via a `<meta>` tag in `index.html` (restricts scripts/styles/
@@ -69,21 +83,32 @@ See [`ROADMAP.md`](ROADMAP.md) — North Star metric, the weekly data-review cad
 data-triggered plan (measure → convert → acquire → scale → retain).
 
 ## Editing the shop
-- **Add/remove a product:** edit `images/manifest.json` (and drop the photo in `images/`),
-  then run `node scripts/build-share-pages.js` (see below) and commit the changes.
-- **Change the WhatsApp number:** `WHATSAPP_NUMBER` in `js/main.js`.
+- **Add a product:**
+  1. Make an HD `images/post-<N>.jpg` (resize the photo to ≤1080px) **and** a matching
+     `images/post-<N>.webp` (e.g. with a small `sharp` script).
+  2. Append an entry to `images/manifest.json` (`src`, `title`, `price`, `alt`, `rating`,
+     `reviews`, `sold`).
+  3. Bump the cache versions: `manifest.json?v=` in `js/main.js` **and** `main.js?v=` in
+     `index.html` (bump `css/styles.css?v=` too if you touched CSS).
+  4. Run `node scripts/build-share-pages.js` (rebuilds the product pages + sitemap), then commit.
+- **Change the WhatsApp number:** `WHATSAPP_NUMBER` in `js/main.js` (also update the
+  footer/contact `wa.me` links + Store `telephone` in `index.html`, and the `WA` const in
+  `scripts/build-share-pages.js`), then regenerate the product pages.
 - **Bump styles/scripts cache:** increase the `?v=` number on the CSS/JS links in `index.html`.
+  (The product-page generator auto-reads the CSS version from `index.html`, so it stays in sync.)
 
-## Per-product share pages (link-preview thumbnails)
+## Per-product landing pages (`/p/<ref>/`)
 Link-preview crawlers (WhatsApp/Instagram/Facebook/X) read Open Graph tags from
 **static HTML** and don't run JS, so a single page can only ever show one preview
-image. To make a shared product link show **that product's** photo, we pre-generate
-a tiny page per design at `/p/<ref>/` carrying its own `og:image`/title; real
-visitors are instantly forwarded to the product card. The **Share** button outputs
-these clean URLs (e.g. `https://www.crochetkeychains.com/p/037/`).
+image. So we pre-generate a standalone, **indexable product landing page** per design
+at `/p/<ref>/` — each carries its own `og:image`/title, full Product + Breadcrumb +
+shipping/returns structured data, and a focused WhatsApp/Instagram buy flow. They double
+as clean ad-landing pages. The **Share** button and the gallery cards link to these URLs
+(e.g. `https://www.crochetkeychains.com/p/037/`); the legacy `?design=<ref>` still opens
+the in-app lightbox.
 
 Regenerate after any catalog change:
 ```
-node scripts/build-share-pages.js   # rebuilds /p/<ref>/ pages, /p/redirect.js, sitemap.xml
+node scripts/build-share-pages.js   # rebuilds every /p/<ref>/ page + sitemap.xml
 ```
 The legacy `?design=<ref>` deep-link still works for older shared links.
