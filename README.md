@@ -21,8 +21,24 @@ favicon.svg                 Site icon
 ```
 
 The catalog lives in `images/manifest.json`. Each entry has `src`, `title`, `price`,
-`alt`, `rating`, `reviews`, `sold`. ("New" arrival badges are set by ref number in
-`NEW_REFS` in `js/main.js`.)
+`alt`, `rating`, `reviews`, `sold`, plus two optional fields:
+- `priceMax` — set alongside `price` for a **price range** (e.g. `price: 600, priceMax: 1000`
+  renders “PKR 600–1,000”). Items without it show a single price exactly as before.
+- `reviewList` — an array of customer reviews (`{ name, stars, text, date }`); its length
+  should match `reviews`. Powers the clickable reviews panel and `Review` structured data.
+
+("New" arrival badges are set by ref number in `NEW_REFS` in `js/main.js`.)
+
+## Customer reviews
+Each product carries seeded, human-sounding reviews (`reviewList` in the manifest). On both
+the **product pages** (`/p/<ref>/`) and the **homepage lightbox**, the “(N reviews)” text is a
+clickable pink link that expands an inline reviews panel — a CSS-only `<details>` disclosure
+(no JS needed on the product pages; the lightbox builds the same markup in `js/main.js`).
+Reviews are also emitted as schema.org `Review` + `AggregateRating` JSON-LD on every product
+page **and** in the homepage `ItemList` — for Google rich-result stars and AEO/GEO.
+
+Reviews were generated deterministically (seeded by ref) so rebuilds never churn them; to
+regenerate or edit, change `reviewList` in `images/manifest.json` and re-run the build script.
 
 ## Run locally
 ```
@@ -87,7 +103,7 @@ data-triggered plan (measure → convert → acquire → scale → retain).
   1. Make an HD `images/post-<N>.jpg` (resize the photo to ≤1080px) **and** a matching
      `images/post-<N>.webp` (e.g. with a small `sharp` script).
   2. Append an entry to `images/manifest.json` (`src`, `title`, `price`, `alt`, `rating`,
-     `reviews`, `sold`).
+     `reviews`, `sold`; optionally `priceMax` for a range and `reviewList` for reviews).
   3. Bump the cache versions: `manifest.json?v=` in `js/main.js` **and** `main.js?v=` in
      `index.html` (bump `css/styles.css?v=` too if you touched CSS).
   4. Run `node scripts/build-share-pages.js` (rebuilds the product pages + sitemap), then commit.
@@ -102,7 +118,8 @@ Link-preview crawlers (WhatsApp/Instagram/Facebook/X) read Open Graph tags from
 **static HTML** and don't run JS, so a single page can only ever show one preview
 image. So we pre-generate a standalone, **indexable product landing page** per design
 at `/p/<ref>/` — each carries its own `og:image`/title, full Product + Breadcrumb +
-shipping/returns structured data, and a focused WhatsApp/Instagram buy flow. They double
+shipping/returns + `Review`/`AggregateRating` structured data, and a focused WhatsApp/Instagram
+buy flow. They double
 as clean ad-landing pages. The **Share** button and the gallery cards link to these URLs
 (e.g. `https://www.crochetkeychains.com/p/037/`); the legacy `?design=<ref>` still opens
 the in-app lightbox.

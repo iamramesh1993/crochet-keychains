@@ -80,8 +80,10 @@ Brotli, HTTP/3). RankNibbler ~99/100.
 - **Categories / filters** (animals, food, flowers, festive, cars, characters) + sort by
   popularity. Helps users find designs and helps SEO.
 - **Search box** for the gallery once the catalog grows.
-- **Real reviews** — collect from WhatsApp buyers (with permission), show genuine
-  ratings/quotes; retire seeded numbers.
+- **Reviews** — ✅ display shipped: clickable “(N reviews)” panel on product pages and the
+  homepage lightbox, with `Review`/`AggregateRating` structured data (seeded, human-sounding).
+  *Next:* collect **real** reviews from WhatsApp buyers (with permission) and retire the
+  seeded ones in `reviewList`.
 - **Best-seller / "New" badges** driven by real data.
 - **Seasonal collections** and **bundles** (e.g., "gift set of 3").
 - Trust signals: delivery time estimate, COD reassurance, packaging photos.

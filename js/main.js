@@ -13,6 +13,7 @@ const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxTitle = document.getElementById('lightbox-title');
 const lightboxMeta = document.getElementById('lightbox-meta');
+const lightboxReviews = document.getElementById('lightbox-reviews');
 const lightboxPrice = document.getElementById('lightbox-price');
 const lightboxCounter = document.getElementById('lightbox-counter');
 
@@ -233,6 +234,32 @@ function formatPrice(item) {
 function formatPriceHtml(item) {
   if (!item || !item.price) return 'DM for price';
   return `<span class="price-cur">PKR</span>${priceAmount(item)}`;
+}
+
+// ---- Reviews (lightbox) — mirrors the collapsible panel on /p/<ref>/ pages ----
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function reviewStarRow(n) {
+  let s = '';
+  for (let i = 1; i <= 5; i++) s += i <= n ? '★' : '<span class="dim">★</span>';
+  return s;
+}
+// Returns a CSS-only <details> disclosure (clickable "(N reviews)" + panel), or
+// null when the item has no seeded reviews.
+function reviewsDetailsHtml(item) {
+  if (!item || !item.rating || !item.reviews || !Array.isArray(item.reviewList) || !item.reviewList.length) return null;
+  const n = item.reviews;
+  const sold = item.sold ? ` · <span class="meta-sold">${Number(item.sold).toLocaleString('en-US')} sold</span>` : '';
+  const cards = item.reviewList.map((r) => `<article class="review">
+<div class="review-head"><span class="review-name">${escapeHtml(r.name)}</span><span class="review-stars" aria-label="${r.stars} out of 5 stars">${reviewStarRow(r.stars)}</span></div>
+<p class="review-text">${escapeHtml(r.text)}</p>
+<span class="review-date">${escapeHtml(r.date)}</span>
+</article>`).join('');
+  return `<details class="pdp-reviews">
+<summary class="pdp-meta"><span class="star">★</span> ${item.rating} <span class="reviews-link">(${n} review${n > 1 ? 's' : ''})</span> · Handmade${sold}</summary>
+<div class="reviews-panel"><p class="reviews-head">What buyers are saying</p>${cards}</div>
+</details>`;
 }
 
 // Match a free-text design query (from the generic "Book your order" field) to a
@@ -494,12 +521,22 @@ function openLightbox(index) {
   lightboxImg.src = item.src.replace(/\.jpg$/, '.webp');
   lightboxImg.alt = item.alt;
   if (lightboxTitle) lightboxTitle.textContent = item.title;
+  const reviewsHtml = reviewsDetailsHtml(item);
+  if (lightboxReviews) lightboxReviews.innerHTML = reviewsHtml || '';
   if (lightboxMeta) {
-    const parts = [];
-    if (item.rating) parts.push(`<span class="meta-star">★</span> ${item.rating} (${item.reviews} review${item.reviews > 1 ? 's' : ''})`);
-    parts.push('Handmade');
-    if (item.sold) parts.push(`<span class="meta-sold">${Number(item.sold).toLocaleString('en-US')} sold</span>`);
-    lightboxMeta.innerHTML = parts.join(' · ');
+    // When the design has reviews, the clickable panel carries the full meta
+    // line (rating · Handmade · sold), so hide the plain <p> to avoid duplication.
+    if (reviewsHtml) {
+      lightboxMeta.hidden = true;
+      lightboxMeta.innerHTML = '';
+    } else {
+      lightboxMeta.hidden = false;
+      const parts = [];
+      if (item.rating) parts.push(`<span class="meta-star">★</span> ${item.rating} (${item.reviews} review${item.reviews > 1 ? 's' : ''})`);
+      parts.push('Handmade');
+      if (item.sold) parts.push(`<span class="meta-sold">${Number(item.sold).toLocaleString('en-US')} sold</span>`);
+      lightboxMeta.innerHTML = parts.join(' · ');
+    }
   }
   if (lightboxPrice) lightboxPrice.innerHTML = formatPriceHtml(item);
   if (lightboxCounter) lightboxCounter.textContent = `${lightboxIndex + 1} / ${viewItems.length}`;
