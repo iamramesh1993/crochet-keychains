@@ -213,15 +213,26 @@ function refCode(item) {
   return match ? `#${match[1]}` : item.title;
 }
 
+// A design can carry a single `price` or a `price`..`priceMax` range (e.g. when
+// the cost varies by size/design). `priceMax` is optional — items without it
+// render exactly as before.
+function hasPriceRange(item) {
+  return item && item.priceMax && item.price && item.priceMax > item.price;
+}
+function priceAmount(item) {
+  const lo = Number(item.price).toLocaleString('en-US');
+  return hasPriceRange(item) ? `${lo}–${Number(item.priceMax).toLocaleString('en-US')}` : lo;
+}
+
 function formatPrice(item) {
   if (!item || !item.price) return 'DM for price';
-  return `PKR ${Number(item.price).toLocaleString('en-US')}`;
+  return `PKR ${priceAmount(item)}`;
 }
 
 // HTML version for card display — currency label de-emphasised, amount prominent.
 function formatPriceHtml(item) {
   if (!item || !item.price) return 'DM for price';
-  return `<span class="price-cur">PKR</span>${Number(item.price).toLocaleString('en-US')}`;
+  return `<span class="price-cur">PKR</span>${priceAmount(item)}`;
 }
 
 // Match a free-text design query (from the generic "Book your order" field) to a
@@ -606,9 +617,11 @@ function injectProductSchema(items) {
         category: 'Crochet Keychain',
         brand: { '@type': 'Brand', name: 'Crochet Keychains' },
         offers: {
-          '@type': 'Offer',
+          '@type': hasPriceRange(it) ? 'AggregateOffer' : 'Offer',
           priceCurrency: 'PKR',
-          price: it.price,
+          ...(hasPriceRange(it)
+            ? { lowPrice: it.price, highPrice: it.priceMax }
+            : { price: it.price }),
           availability: 'https://schema.org/InStock',
           url: `${base}/p/${(it.src.match(/(\d+)/) || [])[1] || ''}/`,
           ...offerExtras,
@@ -771,7 +784,7 @@ async function loadGallery() {
   if (!galleryGrid) return;
 
   try {
-    const response = await fetch('images/manifest.json?v=10');
+    const response = await fetch('images/manifest.json?v=11');
     if (!response.ok) throw new Error('Could not load gallery');
     galleryItems = await response.json();
 
