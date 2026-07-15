@@ -636,6 +636,16 @@ function injectProductSchema(items) {
           worstRating: 1,
         };
       }
+      // Review bodies in structured data too — feeds Google rich results and
+      // answer/generative engines (AEO/GEO) from the homepage, not just PDPs.
+      if (Array.isArray(it.reviewList) && it.reviewList.length) {
+        product.review = it.reviewList.map((r) => ({
+          '@type': 'Review',
+          reviewRating: { '@type': 'Rating', ratingValue: r.stars, bestRating: 5, worstRating: 1 },
+          author: { '@type': 'Person', name: r.name },
+          reviewBody: r.text,
+        }));
+      }
       return { '@type': 'ListItem', position: i + 1, item: product };
     }),
   };

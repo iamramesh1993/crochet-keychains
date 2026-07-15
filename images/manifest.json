@@ -6,7 +6,21 @@
     "alt": "Yellow Rose Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 2,
-    "sold": 7
+    "sold": 7,
+    "reviewList": [
+      {
+        "name": "Maryam H.",
+        "stars": 5,
+        "text": "Great quality for the price, will definitely be back.",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Moiz K.",
+        "stars": 5,
+        "text": "Exactly like the photos, and honestly softer than I expected.",
+        "date": "1 week ago"
+      }
+    ]
   },
   {
     "src": "images/post-007.jpg",
@@ -15,7 +29,15 @@
     "alt": "Strawberry Bunny Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 1,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Adeel A.",
+        "stars": 5,
+        "text": "Fast replies on WhatsApp and a lovely little Strawberry Bunny at the end. ⭐",
+        "date": "6 days ago"
+      }
+    ]
   },
   {
     "src": "images/post-009.jpg",
@@ -24,7 +46,21 @@
     "alt": "Panda Bamboo Bag Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 2,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Saad N.",
+        "stars": 5,
+        "text": "Arrived safely in Karachi within a few days. Really pleased.",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Waleed R.",
+        "stars": 4,
+        "text": "Good quality and cute. Wish it came a little quicker, but no regrets.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-010.jpg",
@@ -33,7 +69,33 @@
     "alt": "Mandala Coin Purse — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 4,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Iqra S.",
+        "stars": 5,
+        "text": "Second time ordering from here — the quality is always spot on.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Hira K.",
+        "stars": 5,
+        "text": "Ordered this as a gift and she hasn’t stopped smiling. 🥰",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Shayan K.",
+        "stars": 5,
+        "text": "Better than I imagined from the picture — really happy with it.",
+        "date": "2 months ago"
+      },
+      {
+        "name": "Talha J.",
+        "stars": 5,
+        "text": "The detail on the Mandala is incredible for something so small.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-011.jpg",
@@ -42,7 +104,27 @@
     "alt": "Ice Cream Cone Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 3,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Shayan M.",
+        "stars": 5,
+        "text": "Lovely seller, smooth ordering, and a gorgeous finished piece.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Umar A.",
+        "stars": 5,
+        "text": "They even matched the custom colour I asked for. So sweet.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Adeel R.",
+        "stars": 5,
+        "text": "Cute enough that I almost kept it instead of gifting it. 😅",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-012.jpg",
@@ -51,7 +133,15 @@
     "alt": "Blue Bunny Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 1,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Rabia S.",
+        "stars": 5,
+        "text": "Gifted it to my best friend and she was obsessed with the Blue Bunny.",
+        "date": "2 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-015.jpg",
@@ -60,7 +150,15 @@
     "alt": "Blue Car Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 1,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Fatima F.",
+        "stars": 5,
+        "text": "Arrived safely in Karachi within a few days. Really pleased.",
+        "date": "2 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-022.jpg",
@@ -69,7 +167,21 @@
     "alt": "Flower Mirror Keychain Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.5,
     "reviews": 2,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Kashif K.",
+        "stars": 4,
+        "text": "Lovely piece, just slightly smaller than I pictured, but still adorable.",
+        "date": "last month"
+      },
+      {
+        "name": "Talha J.",
+        "stars": 5,
+        "text": "Looks exactly like the listing photo, no surprises. Love it.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-023.jpg",
@@ -78,7 +190,21 @@
     "alt": "Panda Bag Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 2,
-    "sold": 10
+    "sold": 10,
+    "reviewList": [
+      {
+        "name": "Bilal J.",
+        "stars": 5,
+        "text": "Such a unique gift idea, everyone keeps asking where I got it.",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Rabia K.",
+        "stars": 5,
+        "text": "Really happy — the Panda is well made and super charming.",
+        "date": "3 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-027.jpg",
@@ -87,7 +213,15 @@
     "alt": "Pink Bunny Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 1,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Danish Q.",
+        "stars": 5,
+        "text": "The Pink Bunny came out beautifully — thank you for the care!",
+        "date": "3 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-030.jpg",
@@ -96,7 +230,33 @@
     "alt": "Lantern Keychain Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 4,
-    "sold": 5
+    "sold": 5,
+    "reviewList": [
+      {
+        "name": "Danish S.",
+        "stars": 4,
+        "text": "Nice work overall — would’ve loved slightly faster delivery, but the Lantern is sweet.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Bushra M.",
+        "stars": 5,
+        "text": "The Lantern came out beautifully — thank you for the care!",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Mehwish K.",
+        "stars": 5,
+        "text": "Packaging was lovely, felt like opening a proper gift.",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Waleed F.",
+        "stars": 5,
+        "text": "Fast replies on WhatsApp and a lovely little Lantern at the end. ⭐",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-031.jpg",
@@ -105,7 +265,27 @@
     "alt": "Flower Bouquet Keychains — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 3,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Saad K.",
+        "stars": 5,
+        "text": "The Flower Bouquet came out beautifully — thank you for the care!",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Rabia J.",
+        "stars": 5,
+        "text": "Cute enough that I almost kept it instead of gifting it. 😅",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Amna M.",
+        "stars": 5,
+        "text": "Better than I imagined from the picture — really happy with it.",
+        "date": "3 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-032.jpg",
@@ -114,7 +294,27 @@
     "alt": "Kite Bag Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.5,
     "reviews": 3,
-    "sold": 10
+    "sold": 10,
+    "reviewList": [
+      {
+        "name": "Owais H.",
+        "stars": 5,
+        "text": "Ordered this as a gift and she hasn’t stopped smiling. 🥰",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Haris T.",
+        "stars": 5,
+        "text": "The stitches are so even, clearly a lot of care went into it.",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Zohaib N.",
+        "stars": 4,
+        "text": "The Kite is sweet and well made — packaging could be a bit sturdier though.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-033.jpg",
@@ -123,7 +323,15 @@
     "alt": "Red Car Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 1,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Maryam M.",
+        "stars": 5,
+        "text": "Delivery was quick and it came packed really nicely.",
+        "date": "3 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-034.jpg",
@@ -132,7 +340,21 @@
     "alt": "Penguin Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 2,
-    "sold": 3
+    "sold": 3,
+    "reviewList": [
+      {
+        "name": "Hamza R.",
+        "stars": 5,
+        "text": "Exactly like the photos, and honestly softer than I expected.",
+        "date": "last month"
+      },
+      {
+        "name": "Anum T.",
+        "stars": 5,
+        "text": "Ordered this as a gift and she hasn’t stopped smiling. 🥰",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-035.jpg",
@@ -141,7 +363,21 @@
     "alt": "Biscuit & Mug Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 2,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Anum M.",
+        "stars": 5,
+        "text": "Gifted it to my best friend and she was obsessed with the Biscuit & Mug.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Usman S.",
+        "stars": 5,
+        "text": "The Biscuit & Mug is the cutest thing on my bag right now.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-036.jpg",
@@ -150,7 +386,15 @@
     "alt": "Sleeping Baby Keychains — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 1,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Bushra F.",
+        "stars": 5,
+        "text": "The Sleeping Baby came out beautifully — thank you for the care!",
+        "date": "2 days ago"
+      }
+    ]
   },
   {
     "src": "images/post-037.jpg",
@@ -159,7 +403,27 @@
     "alt": "2026 New Year Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 3,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Bilal B.",
+        "stars": 4,
+        "text": "Happy with the 2026 New Year. Colour is a touch different from the photo but still pretty.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Fahad B.",
+        "stars": 5,
+        "text": "They even matched the custom colour I asked for. So sweet.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Nimra S.",
+        "stars": 5,
+        "text": "Packaging was lovely, felt like opening a proper gift.",
+        "date": "1 week ago"
+      }
+    ]
   },
   {
     "src": "images/post-038.jpg",
@@ -168,7 +432,21 @@
     "alt": "Christmas Heart Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 2,
-    "sold": 3
+    "sold": 3,
+    "reviewList": [
+      {
+        "name": "Laiba H.",
+        "stars": 5,
+        "text": "Arrived safely in Karachi within a few days. Really pleased.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Fahad J.",
+        "stars": 5,
+        "text": "The Christmas Heart came out beautifully — thank you for the care!",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-039.jpg",
@@ -177,7 +455,27 @@
     "alt": "Christmas Pouch Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 3,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Amna Z.",
+        "stars": 5,
+        "text": "The Christmas Pouch is even prettier in person — the detailing is so neat.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Fahad Q.",
+        "stars": 5,
+        "text": "The colour is rich and hasn’t faded at all. Lovely work.",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Maryam Z.",
+        "stars": 5,
+        "text": "Better than I imagined from the picture — really happy with it.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-040.jpg",
@@ -186,7 +484,21 @@
     "alt": "Santa Hat Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 2,
-    "sold": 5
+    "sold": 5,
+    "reviewList": [
+      {
+        "name": "Kiran T.",
+        "stars": 4,
+        "text": "Happy with the Santa Hat. Colour is a touch different from the photo but still pretty.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Zainab F.",
+        "stars": 5,
+        "text": "The detail on the Santa Hat is incredible for something so small.",
+        "date": "3 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-041.jpg",
@@ -195,7 +507,27 @@
     "alt": "Christmas Bear Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 3,
-    "sold": 5
+    "sold": 5,
+    "reviewList": [
+      {
+        "name": "Ahmed Z.",
+        "stars": 4,
+        "text": "Nice work overall — would’ve loved slightly faster delivery, but the Christmas Bear is sweet.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Moiz A.",
+        "stars": 5,
+        "text": "Worth every rupee. The Christmas Bear feels sturdy, not flimsy at all.",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Rehan S.",
+        "stars": 5,
+        "text": "Delivery was quick and it came packed really nicely.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-042.jpg",
@@ -204,7 +536,21 @@
     "alt": "Santa Claus Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 2,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Hassan J.",
+        "stars": 5,
+        "text": "Tiny, cute and so well made. The Santa Claus is my favourite. 💕",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Nimra H.",
+        "stars": 5,
+        "text": "The detail on the Santa Claus is incredible for something so small.",
+        "date": "3 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-043.jpg",
@@ -213,7 +559,33 @@
     "alt": "Mini Dress Keychains — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 4,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Usman B.",
+        "stars": 4,
+        "text": "Happy with the Mini Dress. Colour is a touch different from the photo but still pretty.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Umar R.",
+        "stars": 5,
+        "text": "The stitches are so even, clearly a lot of care went into it.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Rabia Q.",
+        "stars": 5,
+        "text": "Arrived safely in Karachi within a few days. Really pleased.",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Mehwish S.",
+        "stars": 5,
+        "text": "The Mini Dress is even prettier in person — the detailing is so neat.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-044.jpg",
@@ -222,7 +594,21 @@
     "alt": "Rainbow Cloud Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 2,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Amna B.",
+        "stars": 5,
+        "text": "The colour is rich and hasn’t faded at all. Lovely work.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Owais R.",
+        "stars": 5,
+        "text": "Exactly like the photos, and honestly softer than I expected.",
+        "date": "3 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-045.jpg",
@@ -231,7 +617,15 @@
     "alt": "Bear Keychain Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 1,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Mahnoor M.",
+        "stars": 5,
+        "text": "The colour is rich and hasn’t faded at all. Lovely work.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-046.jpg",
@@ -240,7 +634,27 @@
     "alt": "Flower Pot Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 3,
-    "sold": 3
+    "sold": 3,
+    "reviewList": [
+      {
+        "name": "Zoya F.",
+        "stars": 5,
+        "text": "Perfect size, not too big, and the finishing is clean.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Iqra H.",
+        "stars": 4,
+        "text": "Lovely piece, just slightly smaller than I pictured, but still adorable.",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Kiran N.",
+        "stars": 5,
+        "text": "They even matched the custom colour I asked for. So sweet.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-047.jpg",
@@ -249,7 +663,33 @@
     "alt": "Christmas Mitten & Sock Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 4,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Aiman Z.",
+        "stars": 5,
+        "text": "Soft yarn, tight stitching, and such a thoughtful little gift.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Zohaib J.",
+        "stars": 5,
+        "text": "Looks exactly like the listing photo, no surprises. Love it.",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Sadia H.",
+        "stars": 5,
+        "text": "Perfect size, not too big, and the finishing is clean.",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Mahnoor T.",
+        "stars": 4,
+        "text": "Happy with the Christmas Mitten & Sock Set. Colour is a touch different from the photo but still pretty.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-048.jpg",
@@ -258,7 +698,15 @@
     "alt": "Monster Face Keychains — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 1,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Anum Q.",
+        "stars": 5,
+        "text": "The detail on the Monster Face is incredible for something so small.",
+        "date": "1 week ago"
+      }
+    ]
   },
   {
     "src": "images/post-049.jpg",
@@ -267,7 +715,15 @@
     "alt": "Pencil Keychain Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 1,
-    "sold": 10
+    "sold": 10,
+    "reviewList": [
+      {
+        "name": "Saad A.",
+        "stars": 5,
+        "text": "The Pencil is holding up great after weeks of daily use.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-050.jpg",
@@ -276,7 +732,21 @@
     "alt": "Macaron Trio Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 2,
-    "sold": 7
+    "sold": 7,
+    "reviewList": [
+      {
+        "name": "Usman S.",
+        "stars": 5,
+        "text": "Ordered this as a gift and she hasn’t stopped smiling. 🥰",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Faizan H.",
+        "stars": 4,
+        "text": "The Macaron Trio is sweet and well made — packaging could be a bit sturdier though.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-051.jpg",
@@ -285,7 +755,15 @@
     "alt": "Christmas Charm Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 1,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Talha R.",
+        "stars": 5,
+        "text": "The Christmas is holding up great after weeks of daily use.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-052.jpg",
@@ -294,7 +772,15 @@
     "alt": "Christmas Bells Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 1,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Bushra A.",
+        "stars": 5,
+        "text": "The Christmas Bells is the cutest thing on my bag right now.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-053.jpg",
@@ -303,7 +789,15 @@
     "alt": "Snowman Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 1,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Moiz M.",
+        "stars": 5,
+        "text": "Exactly like the photos, and honestly softer than I expected.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-054.jpg",
@@ -312,7 +806,33 @@
     "alt": "Christmas Penguin Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 4,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Faizan H.",
+        "stars": 4,
+        "text": "Really cute and good quality — took about a week to arrive but worth the wait.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Anum M.",
+        "stars": 4,
+        "text": "Nice work overall — would’ve loved slightly faster delivery, but the Christmas Penguin is sweet.",
+        "date": "last month"
+      },
+      {
+        "name": "Kiran H.",
+        "stars": 5,
+        "text": "Worth every rupee. The Christmas Penguin feels sturdy, not flimsy at all.",
+        "date": "a month ago"
+      },
+      {
+        "name": "Zohaib K.",
+        "stars": 5,
+        "text": "My go-to gift now — handmade, affordable and always a hit.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-055.jpg",
@@ -321,7 +841,21 @@
     "alt": "Nutella Jar Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.5,
     "reviews": 2,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Hamza A.",
+        "stars": 5,
+        "text": "Cute enough that I almost kept it instead of gifting it. 😅",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Mehwish M.",
+        "stars": 4,
+        "text": "Happy with the Nutella Jar. Colour is a touch different from the photo but still pretty.",
+        "date": "4 days ago"
+      }
+    ]
   },
   {
     "src": "images/post-056.jpg",
@@ -330,7 +864,15 @@
     "alt": "Hen Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 1,
-    "sold": 7
+    "sold": 7,
+    "reviewList": [
+      {
+        "name": "Usman K.",
+        "stars": 5,
+        "text": "Delivery was quick and it came packed really nicely.",
+        "date": "1 week ago"
+      }
+    ]
   },
   {
     "src": "images/post-057.jpg",
@@ -339,7 +881,15 @@
     "alt": "Orange Fruit Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 1,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Junaid B.",
+        "stars": 5,
+        "text": "Cute enough that I almost kept it instead of gifting it. 😅",
+        "date": "1 week ago"
+      }
+    ]
   },
   {
     "src": "images/post-058.jpg",
@@ -348,7 +898,21 @@
     "alt": "Fruit Slice Keychain Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 2,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Fatima S.",
+        "stars": 5,
+        "text": "The Fruit Slice came out beautifully — thank you for the care!",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Aiman B.",
+        "stars": 5,
+        "text": "Fast replies on WhatsApp and a lovely little Fruit Slice at the end. ⭐",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-059.jpg",
@@ -357,7 +921,33 @@
     "alt": "Smiley Flower Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 4,
-    "sold": 10
+    "sold": 10,
+    "reviewList": [
+      {
+        "name": "Nimra A.",
+        "stars": 5,
+        "text": "Great quality for the price, will definitely be back.",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Mahnoor F.",
+        "stars": 5,
+        "text": "The Smiley Flower is holding up great after weeks of daily use.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Zainab K.",
+        "stars": 4,
+        "text": "Happy with the Smiley Flower. Colour is a touch different from the photo but still pretty.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Saad J.",
+        "stars": 5,
+        "text": "Really happy — the Smiley Flower is well made and super charming.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-060.jpg",
@@ -366,7 +956,15 @@
     "alt": "Daisy Bouquet Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 1,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Fahad R.",
+        "stars": 5,
+        "text": "Better than I imagined from the picture — really happy with it.",
+        "date": "3 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-061.jpg",
@@ -375,7 +973,21 @@
     "alt": "Ice Cream Charm Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 2,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Mahnoor N.",
+        "stars": 5,
+        "text": "Clipped it to my keys and it still looks new after a month.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Ahmed H.",
+        "stars": 5,
+        "text": "Small but so detailed. You can feel the effort in the Ice Cream.",
+        "date": "3 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-062.jpg",
@@ -384,7 +996,33 @@
     "alt": "Turtle Keychain Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 4,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Shayan A.",
+        "stars": 5,
+        "text": "Messaged on WhatsApp and the whole process was so easy.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Fahad B.",
+        "stars": 5,
+        "text": "Such a unique gift idea, everyone keeps asking where I got it.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Maryam A.",
+        "stars": 5,
+        "text": "Exactly like the photos, and honestly softer than I expected.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Bilal A.",
+        "stars": 5,
+        "text": "Small but so detailed. You can feel the effort in the Turtle.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-063.jpg",
@@ -393,7 +1031,15 @@
     "alt": "Acorn Baby Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 1,
-    "sold": 5
+    "sold": 5,
+    "reviewList": [
+      {
+        "name": "Kashif J.",
+        "stars": 5,
+        "text": "The Acorn Baby came out beautifully — thank you for the care!",
+        "date": "4 days ago"
+      }
+    ]
   },
   {
     "src": "images/post-064.jpg",
@@ -402,7 +1048,33 @@
     "alt": "Cat Paw Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 4,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Ali H.",
+        "stars": 5,
+        "text": "The colour is rich and hasn’t faded at all. Lovely work.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Kiran S.",
+        "stars": 5,
+        "text": "The Cat Paw is holding up great after weeks of daily use.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Amna M.",
+        "stars": 5,
+        "text": "My daughter loves the Cat Paw, it’s been on her school bag for weeks.",
+        "date": "last month"
+      },
+      {
+        "name": "Kashif H.",
+        "stars": 5,
+        "text": "They even matched the custom colour I asked for. So sweet.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-065.jpg",
@@ -411,7 +1083,21 @@
     "alt": "Pizza Slice Keychains — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 2,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Mahnoor S.",
+        "stars": 5,
+        "text": "Perfect size, not too big, and the finishing is clean.",
+        "date": "a month ago"
+      },
+      {
+        "name": "Hassan Q.",
+        "stars": 4,
+        "text": "Happy with the Pizza Slice. Colour is a touch different from the photo but still pretty.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-066.jpg",
@@ -420,7 +1106,33 @@
     "alt": "Bluebird & Daisy Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.5,
     "reviews": 4,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Shayan N.",
+        "stars": 5,
+        "text": "Tiny, cute and so well made. The Bluebird & Daisy is my favourite. 💕",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Mehwish Z.",
+        "stars": 4,
+        "text": "Happy with the Bluebird & Daisy. Colour is a touch different from the photo but still pretty.",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Zohaib F.",
+        "stars": 5,
+        "text": "The Bluebird & Daisy is the cutest thing on my bag right now.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Maryam R.",
+        "stars": 4,
+        "text": "Good quality and cute. Wish it came a little quicker, but no regrets.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-067.jpg",
@@ -429,7 +1141,33 @@
     "alt": "Mickey Mouse Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 4,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Danish H.",
+        "stars": 4,
+        "text": "The Mickey Mouse is sweet and well made — packaging could be a bit sturdier though.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Zoya K.",
+        "stars": 5,
+        "text": "Really happy — the Mickey Mouse is well made and super charming.",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Fatima J.",
+        "stars": 5,
+        "text": "The Mickey Mouse came out beautifully — thank you for the care!",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Iqra J.",
+        "stars": 4,
+        "text": "Lovely piece, just slightly smaller than I pictured, but still adorable.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-068.jpg",
@@ -438,7 +1176,27 @@
     "alt": "Lucky Frog Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 3,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Kashif T.",
+        "stars": 5,
+        "text": "The detail on the Lucky Frog is incredible for something so small.",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Shayan N.",
+        "stars": 5,
+        "text": "Bought two as gifts and both were perfect. Highly recommend.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Owais A.",
+        "stars": 5,
+        "text": "Great quality for the price, will definitely be back.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-069.jpg",
@@ -447,7 +1205,27 @@
     "alt": "Superman Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 3,
-    "sold": 10
+    "sold": 10,
+    "reviewList": [
+      {
+        "name": "Talha Q.",
+        "stars": 5,
+        "text": "Bought two as gifts and both were perfect. Highly recommend.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Usman H.",
+        "stars": 5,
+        "text": "My go-to gift now — handmade, affordable and always a hit.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Zoya B.",
+        "stars": 5,
+        "text": "Such a unique gift idea, everyone keeps asking where I got it.",
+        "date": "2 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-070.jpg",
@@ -456,7 +1234,33 @@
     "alt": "Shiba Dog Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 4,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Moiz A.",
+        "stars": 5,
+        "text": "So much detail for the price — can’t believe it’s handmade.",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Hamza Q.",
+        "stars": 5,
+        "text": "Bought two as gifts and both were perfect. Highly recommend.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Owais H.",
+        "stars": 5,
+        "text": "My whole family wants one now. Ordering more soon!",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Saad Q.",
+        "stars": 5,
+        "text": "The Shiba Dog is even prettier in person — the detailing is so neat.",
+        "date": "2 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-071.jpg",
@@ -465,7 +1269,33 @@
     "alt": "Octopus Keychain Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 4,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Ali M.",
+        "stars": 5,
+        "text": "They even matched the custom colour I asked for. So sweet.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Saad Z.",
+        "stars": 5,
+        "text": "Looks exactly like the listing photo, no surprises. Love it.",
+        "date": "last month"
+      },
+      {
+        "name": "Hira Z.",
+        "stars": 5,
+        "text": "Such neat stitching — you can tell it’s genuinely handmade.",
+        "date": "last month"
+      },
+      {
+        "name": "Iqra F.",
+        "stars": 5,
+        "text": "The keyring is good quality and the yarn feels premium.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-072.jpg",
@@ -474,7 +1304,33 @@
     "alt": "Watermelon Slice Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 4,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Fahad T.",
+        "stars": 5,
+        "text": "Messaged on WhatsApp and the whole process was so easy.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Ali S.",
+        "stars": 5,
+        "text": "Got so many compliments the first day I clipped it on my bag!",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Rabia H.",
+        "stars": 5,
+        "text": "The Watermelon Slice came out beautifully — thank you for the care!",
+        "date": "last month"
+      },
+      {
+        "name": "Usman Q.",
+        "stars": 5,
+        "text": "Clipped it to my keys and it still looks new after a month.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-073.jpg",
@@ -483,7 +1339,15 @@
     "alt": "Floral Heart Keychains — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 1,
-    "sold": 7
+    "sold": 7,
+    "reviewList": [
+      {
+        "name": "Bushra K.",
+        "stars": 5,
+        "text": "Reached Lahore quickly and was wrapped up so neatly.",
+        "date": "1 week ago"
+      }
+    ]
   },
   {
     "src": "images/post-074.jpg",
@@ -492,7 +1356,27 @@
     "alt": "Black Bow Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.5,
     "reviews": 3,
-    "sold": 10
+    "sold": 10,
+    "reviewList": [
+      {
+        "name": "Sadia K.",
+        "stars": 4,
+        "text": "Good quality and cute. Wish it came a little quicker, but no regrets.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Fatima Q.",
+        "stars": 5,
+        "text": "Bought two as gifts and both were perfect. Highly recommend.",
+        "date": "last month"
+      },
+      {
+        "name": "Nimra S.",
+        "stars": 5,
+        "text": "Reached Lahore quickly and was wrapped up so neatly.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-075.jpg",
@@ -501,7 +1385,15 @@
     "alt": "Soccer Ball Keychains — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 1,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Komal N.",
+        "stars": 5,
+        "text": "Exactly like the photos, and honestly softer than I expected.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-076.jpg",
@@ -510,7 +1402,15 @@
     "alt": "Mini Beanie Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 1,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Fahad B.",
+        "stars": 5,
+        "text": "Bought two as gifts and both were perfect. Highly recommend.",
+        "date": "2 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-077.jpg",
@@ -519,7 +1419,33 @@
     "alt": "Overall Bunny Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 4,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Laiba J.",
+        "stars": 5,
+        "text": "Ordered this as a gift and she hasn’t stopped smiling. 🥰",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Bushra A.",
+        "stars": 4,
+        "text": "Really cute and good quality — took about a week to arrive but worth the wait.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Ayesha T.",
+        "stars": 5,
+        "text": "Arrived safely in Karachi within a few days. Really pleased.",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Sana J.",
+        "stars": 5,
+        "text": "The Overall Bunny is holding up great after weeks of daily use.",
+        "date": "2 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-078.jpg",
@@ -528,7 +1454,21 @@
     "alt": "Marigold Pot Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 2,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Haris F.",
+        "stars": 5,
+        "text": "Fast replies on WhatsApp and a lovely little Marigold Pot at the end. ⭐",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Iqra M.",
+        "stars": 5,
+        "text": "Second time ordering from here — the quality is always spot on.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-080.jpg",
@@ -537,7 +1477,21 @@
     "alt": "Lemon Fruit Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 2,
-    "sold": 10
+    "sold": 10,
+    "reviewList": [
+      {
+        "name": "Adeel R.",
+        "stars": 5,
+        "text": "They even matched the custom colour I asked for. So sweet.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Rabia S.",
+        "stars": 4,
+        "text": "Happy with the Lemon Fruit. Colour is a touch different from the photo but still pretty.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-082.jpg",
@@ -546,7 +1500,21 @@
     "alt": "White Cat Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 2,
-    "sold": 10
+    "sold": 10,
+    "reviewList": [
+      {
+        "name": "Bushra F.",
+        "stars": 5,
+        "text": "Such neat stitching — you can tell it’s genuinely handmade.",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Ali Z.",
+        "stars": 5,
+        "text": "Cute enough that I almost kept it instead of gifting it. 😅",
+        "date": "3 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-083.jpg",
@@ -555,7 +1523,21 @@
     "alt": "Ukulele Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 2,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Bilal Z.",
+        "stars": 4,
+        "text": "Happy with the Ukulele. Colour is a touch different from the photo but still pretty.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Zoya Q.",
+        "stars": 5,
+        "text": "The Ukulele is the cutest thing on my bag right now.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-084.jpg",
@@ -564,7 +1546,33 @@
     "alt": "Floral Turtle Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 4,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Moiz S.",
+        "stars": 5,
+        "text": "Such neat stitching — you can tell it’s genuinely handmade.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Hira R.",
+        "stars": 5,
+        "text": "My whole family wants one now. Ordering more soon!",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Sana Z.",
+        "stars": 4,
+        "text": "Really cute and good quality — took about a week to arrive but worth the wait.",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Rehan M.",
+        "stars": 5,
+        "text": "Exactly like the photos, and honestly softer than I expected.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-085.jpg",
@@ -573,7 +1581,21 @@
     "alt": "Purple Tulip Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 2,
-    "sold": 7
+    "sold": 7,
+    "reviewList": [
+      {
+        "name": "Laiba Z.",
+        "stars": 5,
+        "text": "Tiny, cute and so well made. The Purple Tulip is my favourite. 💕",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Usman J.",
+        "stars": 4,
+        "text": "Good quality and cute. Wish it came a little quicker, but no regrets.",
+        "date": "2 days ago"
+      }
+    ]
   },
   {
     "src": "images/post-086.jpg",
@@ -582,7 +1604,27 @@
     "alt": "Blue Elephant Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 3,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Zoya K.",
+        "stars": 5,
+        "text": "The colours are so vibrant, exactly the shade I wanted.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Sadia N.",
+        "stars": 5,
+        "text": "Adorable little Blue Elephant, and it arrived earlier than expected.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Anum M.",
+        "stars": 5,
+        "text": "Exactly like the photos, and honestly softer than I expected.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-087.jpg",
@@ -591,7 +1633,21 @@
     "alt": "Money Bag Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.5,
     "reviews": 2,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Amna T.",
+        "stars": 4,
+        "text": "Good quality and cute. Wish it came a little quicker, but no regrets.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Bushra B.",
+        "stars": 5,
+        "text": "Great quality for the price, will definitely be back.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-088.jpg",
@@ -600,7 +1656,15 @@
     "alt": "Teddy Bear Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 1,
-    "sold": 10
+    "sold": 10,
+    "reviewList": [
+      {
+        "name": "Moiz N.",
+        "stars": 5,
+        "text": "Small but so detailed. You can feel the effort in the Teddy Bear.",
+        "date": "2 weeks ago"
+      }
+    ]
   },
   {
     "src": "images/post-089.jpg",
@@ -609,7 +1673,27 @@
     "alt": "Frog Bag Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 3,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Shayan F.",
+        "stars": 4,
+        "text": "Lovely piece, just slightly smaller than I pictured, but still adorable.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Zainab R.",
+        "stars": 5,
+        "text": "Small but so detailed. You can feel the effort in the Frog.",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Junaid A.",
+        "stars": 5,
+        "text": "Ordered this as a gift and she hasn’t stopped smiling. 🥰",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-090.jpg",
@@ -618,7 +1702,27 @@
     "alt": "Daisy Flower Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 3,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Nimra J.",
+        "stars": 5,
+        "text": "Tiny, cute and so well made. The Daisy Flower is my favourite. 💕",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Talha F.",
+        "stars": 5,
+        "text": "Soft yarn, tight stitching, and such a thoughtful little gift.",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Ayesha Z.",
+        "stars": 5,
+        "text": "So much detail for the price — can’t believe it’s handmade.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-091.jpg",
@@ -627,7 +1731,21 @@
     "alt": "Coffee Cup Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 2,
-    "sold": 3
+    "sold": 3,
+    "reviewList": [
+      {
+        "name": "Zohaib Z.",
+        "stars": 5,
+        "text": "Honestly exceeded my expectations. 10/10 would recommend.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Adeel A.",
+        "stars": 5,
+        "text": "Tiny, cute and so well made. The Coffee Cup is my favourite. 💕",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-092.jpg",
@@ -636,7 +1754,27 @@
     "alt": "Flower Bee Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.5,
     "reviews": 3,
-    "sold": 7
+    "sold": 7,
+    "reviewList": [
+      {
+        "name": "Laiba K.",
+        "stars": 5,
+        "text": "Second time ordering from here — the quality is always spot on.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Umar H.",
+        "stars": 5,
+        "text": "Soft yarn, tight stitching, and such a thoughtful little gift.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Rabia Z.",
+        "stars": 4,
+        "text": "Good quality and cute. Wish it came a little quicker, but no regrets.",
+        "date": "1 week ago"
+      }
+    ]
   },
   {
     "src": "images/post-093.jpg",
@@ -645,7 +1783,33 @@
     "alt": "Cat Face Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 4,
-    "sold": 5
+    "sold": 5,
+    "reviewList": [
+      {
+        "name": "Noor T.",
+        "stars": 5,
+        "text": "Got so many compliments the first day I clipped it on my bag!",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Kiran S.",
+        "stars": 4,
+        "text": "Really cute and good quality — took about a week to arrive but worth the wait.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Waleed Z.",
+        "stars": 5,
+        "text": "Bought two as gifts and both were perfect. Highly recommend.",
+        "date": "a month ago"
+      },
+      {
+        "name": "Zohaib A.",
+        "stars": 5,
+        "text": "My go-to gift now — handmade, affordable and always a hit.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-094.jpg",
@@ -654,7 +1818,33 @@
     "alt": "Burger & Fries Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 4,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Usman S.",
+        "stars": 5,
+        "text": "Reached Lahore quickly and was wrapped up so neatly.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Anum N.",
+        "stars": 5,
+        "text": "The detail on the Burger & Fries is incredible for something so small.",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Kiran R.",
+        "stars": 5,
+        "text": "Delivery was quick and it came packed really nicely.",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Zainab B.",
+        "stars": 5,
+        "text": "So much detail for the price — can’t believe it’s handmade.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-095.jpg",
@@ -663,7 +1853,15 @@
     "alt": "Orange Hat Puppy Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 1,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Ahmed S.",
+        "stars": 5,
+        "text": "The keyring is good quality and the yarn feels premium.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-096.jpg",
@@ -672,7 +1870,15 @@
     "alt": "Minion Keychain Pair — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 1,
-    "sold": 7
+    "sold": 7,
+    "reviewList": [
+      {
+        "name": "Laiba M.",
+        "stars": 5,
+        "text": "The detail on the Minion Keychain Pair is incredible for something so small.",
+        "date": "2 days ago"
+      }
+    ]
   },
   {
     "src": "images/post-097.jpg",
@@ -681,7 +1887,27 @@
     "alt": "Santa Baby Doll — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 3,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Sana F.",
+        "stars": 5,
+        "text": "Packaging was lovely, felt like opening a proper gift.",
+        "date": "2 months ago"
+      },
+      {
+        "name": "Kiran T.",
+        "stars": 5,
+        "text": "Got so many compliments the first day I clipped it on my bag!",
+        "date": "2 months ago"
+      },
+      {
+        "name": "Hira Q.",
+        "stars": 4,
+        "text": "Lovely piece, just slightly smaller than I pictured, but still adorable.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-098.jpg",
@@ -690,7 +1916,15 @@
     "alt": "Strawberry & Daisy Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 1,
-    "sold": 7
+    "sold": 7,
+    "reviewList": [
+      {
+        "name": "Saad A.",
+        "stars": 5,
+        "text": "Honestly exceeded my expectations. 10/10 would recommend.",
+        "date": "4 days ago"
+      }
+    ]
   },
   {
     "src": "images/post-099.jpg",
@@ -699,7 +1933,21 @@
     "alt": "Chick & Bow Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 2,
-    "sold": 7
+    "sold": 7,
+    "reviewList": [
+      {
+        "name": "Zoya K.",
+        "stars": 4,
+        "text": "Really cute and good quality — took about a week to arrive but worth the wait.",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Umar S.",
+        "stars": 5,
+        "text": "Clipped it to my keys and it still looks new after a month.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-100.jpg",
@@ -708,7 +1956,27 @@
     "alt": "Pikachu Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.6,
     "reviews": 3,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Aiman S.",
+        "stars": 4,
+        "text": "Really cute and good quality — took about a week to arrive but worth the wait.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Zohaib T.",
+        "stars": 5,
+        "text": "My whole family wants one now. Ordering more soon!",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Hassan F.",
+        "stars": 5,
+        "text": "The Pikachu is the cutest thing on my bag right now.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-101.jpg",
@@ -717,7 +1985,33 @@
     "alt": "Heart Bunny Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 4,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Bushra H.",
+        "stars": 5,
+        "text": "Delivery was quick and it came packed really nicely.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Hassan Q.",
+        "stars": 5,
+        "text": "The Heart Bunny is the cutest thing on my bag right now.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Usman J.",
+        "stars": 5,
+        "text": "Honestly exceeded my expectations. 10/10 would recommend.",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Ali A.",
+        "stars": 5,
+        "text": "My go-to gift now — handmade, affordable and always a hit.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-102.jpg",
@@ -726,7 +2020,27 @@
     "alt": "Bee Charm Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 3,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Adeel M.",
+        "stars": 5,
+        "text": "The Bee Charm is holding up great after weeks of daily use.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Bushra F.",
+        "stars": 5,
+        "text": "Cute enough that I almost kept it instead of gifting it. 😅",
+        "date": "2 weeks ago"
+      },
+      {
+        "name": "Waleed J.",
+        "stars": 4,
+        "text": "Good quality and cute. Wish it came a little quicker, but no regrets.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-104.jpg",
@@ -735,7 +2049,27 @@
     "alt": "Mouse & Flower Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 3,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Faizan K.",
+        "stars": 5,
+        "text": "The stitches are so even, clearly a lot of care went into it.",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Moiz Z.",
+        "stars": 5,
+        "text": "My go-to gift now — handmade, affordable and always a hit.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Fahad K.",
+        "stars": 5,
+        "text": "Packaging was lovely, felt like opening a proper gift.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-105.jpg",
@@ -744,7 +2078,27 @@
     "alt": "Ladybug Doll Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.7,
     "reviews": 3,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Shayan Z.",
+        "stars": 5,
+        "text": "Bought two as gifts and both were perfect. Highly recommend.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Kashif Q.",
+        "stars": 4,
+        "text": "Happy with the Ladybug Doll. Colour is a touch different from the photo but still pretty.",
+        "date": "last month"
+      },
+      {
+        "name": "Hassan F.",
+        "stars": 5,
+        "text": "Second time ordering from here — the quality is always spot on.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-106.jpg",
@@ -753,7 +2107,15 @@
     "alt": "Pooh Bear Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 1,
-    "sold": 3
+    "sold": 3,
+    "reviewList": [
+      {
+        "name": "Shayan F.",
+        "stars": 5,
+        "text": "The stitches are so even, clearly a lot of care went into it.",
+        "date": "4 days ago"
+      }
+    ]
   },
   {
     "src": "images/post-107.jpg",
@@ -762,7 +2124,27 @@
     "alt": "Cheeseburger Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 3,
-    "sold": 5
+    "sold": 5,
+    "reviewList": [
+      {
+        "name": "Maryam K.",
+        "stars": 5,
+        "text": "Adorable little Cheeseburger, and it arrived earlier than expected.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Zoya R.",
+        "stars": 5,
+        "text": "Ordered for my sister’s birthday — she absolutely adored it.",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Rabia B.",
+        "stars": 5,
+        "text": "My go-to gift now — handmade, affordable and always a hit.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-108.jpg",
@@ -771,7 +2153,27 @@
     "alt": "Sun Hat Turtle Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 3,
-    "sold": 9
+    "sold": 9,
+    "reviewList": [
+      {
+        "name": "Umar F.",
+        "stars": 5,
+        "text": "Packaging was lovely, felt like opening a proper gift.",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Haris R.",
+        "stars": 5,
+        "text": "Second time ordering from here — the quality is always spot on.",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Saad K.",
+        "stars": 5,
+        "text": "Ordered for my sister’s birthday — she absolutely adored it.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-109.jpg",
@@ -780,7 +2182,27 @@
     "alt": "Mushroom Charm Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 3,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Ayesha Z.",
+        "stars": 4,
+        "text": "Nice work overall — would’ve loved slightly faster delivery, but the Mushroom is sweet.",
+        "date": "1 week ago"
+      },
+      {
+        "name": "Junaid S.",
+        "stars": 5,
+        "text": "Bought two as gifts and both were perfect. Highly recommend.",
+        "date": "last month"
+      },
+      {
+        "name": "Rehan Q.",
+        "stars": 5,
+        "text": "Worth every rupee. The Mushroom feels sturdy, not flimsy at all.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-110.jpg",
@@ -789,7 +2211,27 @@
     "alt": "Owl Bag Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 3,
-    "sold": 3
+    "sold": 3,
+    "reviewList": [
+      {
+        "name": "Usman R.",
+        "stars": 5,
+        "text": "Cute enough that I almost kept it instead of gifting it. 😅",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Hamza K.",
+        "stars": 5,
+        "text": "Worth every rupee. The Owl feels sturdy, not flimsy at all.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Faizan M.",
+        "stars": 5,
+        "text": "Adorable little Owl, and it arrived earlier than expected.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-111.jpg",
@@ -798,7 +2240,15 @@
     "alt": "Evil Eye Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 1,
-    "sold": 5
+    "sold": 5,
+    "reviewList": [
+      {
+        "name": "Hamza J.",
+        "stars": 5,
+        "text": "Really happy — the Evil Eye is well made and super charming.",
+        "date": "4 days ago"
+      }
+    ]
   },
   {
     "src": "images/post-113.jpg",
@@ -807,7 +2257,21 @@
     "alt": "Flower Charms Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 2,
-    "sold": 6
+    "sold": 6,
+    "reviewList": [
+      {
+        "name": "Bushra S.",
+        "stars": 5,
+        "text": "Such a unique gift idea, everyone keeps asking where I got it.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Zainab F.",
+        "stars": 5,
+        "text": "Second time ordering from here — the quality is always spot on.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-114.jpg",
@@ -816,7 +2280,33 @@
     "alt": "Sheep & Tulip Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 4,
-    "sold": 7
+    "sold": 7,
+    "reviewList": [
+      {
+        "name": "Adeel J.",
+        "stars": 5,
+        "text": "Ordered for my sister’s birthday — she absolutely adored it.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Anum Z.",
+        "stars": 4,
+        "text": "Good quality and cute. Wish it came a little quicker, but no regrets.",
+        "date": "last month"
+      },
+      {
+        "name": "Ayesha S.",
+        "stars": 5,
+        "text": "Reached Lahore quickly and was wrapped up so neatly.",
+        "date": "2 months ago"
+      },
+      {
+        "name": "Komal S.",
+        "stars": 5,
+        "text": "Messaged on WhatsApp and the whole process was so easy.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-115.jpg",
@@ -825,7 +2315,33 @@
     "alt": "Bunny & Carrot Bag Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 4,
-    "sold": 8
+    "sold": 8,
+    "reviewList": [
+      {
+        "name": "Umar M.",
+        "stars": 5,
+        "text": "Arrived safely in Karachi within a few days. Really pleased.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Ayesha N.",
+        "stars": 5,
+        "text": "Perfect size, not too big, and the finishing is clean.",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Laiba H.",
+        "stars": 5,
+        "text": "Looks exactly like the listing photo, no surprises. Love it.",
+        "date": "a month ago"
+      },
+      {
+        "name": "Fahad K.",
+        "stars": 5,
+        "text": "The colours are so vibrant, exactly the shade I wanted.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-116.jpg",
@@ -834,7 +2350,21 @@
     "alt": "Sloth Car Charm — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 2,
-    "sold": 5
+    "sold": 5,
+    "reviewList": [
+      {
+        "name": "Umar M.",
+        "stars": 5,
+        "text": "Great quality for the price, will definitely be back.",
+        "date": "4 days ago"
+      },
+      {
+        "name": "Ayesha S.",
+        "stars": 5,
+        "text": "Adorable little Sloth, and it arrived earlier than expected.",
+        "date": "a month ago"
+      }
+    ]
   },
   {
     "src": "images/post-117.jpg",
@@ -843,7 +2373,15 @@
     "alt": "#1 Dad Car Hanging Set — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 1,
-    "sold": 3
+    "sold": 3,
+    "reviewList": [
+      {
+        "name": "Haris T.",
+        "stars": 5,
+        "text": "So much detail for the price — can’t believe it’s handmade.",
+        "date": "last month"
+      }
+    ]
   },
   {
     "src": "images/post-118.jpg",
@@ -852,7 +2390,27 @@
     "alt": "Football Jersey Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.8,
     "reviews": 3,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Mahnoor F.",
+        "stars": 4,
+        "text": "Happy with the Football Jersey. Colour is a touch different from the photo but still pretty.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Zainab J.",
+        "stars": 5,
+        "text": "Bought two as gifts and both were perfect. Highly recommend.",
+        "date": "2 months ago"
+      },
+      {
+        "name": "Fatima T.",
+        "stars": 5,
+        "text": "Exactly like the photos, and honestly softer than I expected.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-119.jpg",
@@ -861,7 +2419,21 @@
     "alt": "Monkey & Sunflower Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 2,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Anum Q.",
+        "stars": 5,
+        "text": "The colours are so vibrant, exactly the shade I wanted.",
+        "date": "6 days ago"
+      },
+      {
+        "name": "Kiran T.",
+        "stars": 5,
+        "text": "Bought it on a whim and it’s now my favourite keychain.",
+        "date": "2 months ago"
+      }
+    ]
   },
   {
     "src": "images/post-120.jpg",
@@ -870,7 +2442,21 @@
     "alt": "Raccoon & Bottle Keychain — handmade crochet keychain from @crochet_keychains.pk",
     "rating": 4.9,
     "reviews": 2,
-    "sold": 3
+    "sold": 3,
+    "reviewList": [
+      {
+        "name": "Laiba F.",
+        "stars": 5,
+        "text": "Packaging was lovely, felt like opening a proper gift.",
+        "date": "2 days ago"
+      },
+      {
+        "name": "Talha T.",
+        "stars": 5,
+        "text": "The Raccoon & Bottle is holding up great after weeks of daily use.",
+        "date": "2 days ago"
+      }
+    ]
   },
   {
     "src": "images/post-121.jpg",
@@ -880,6 +2466,20 @@
     "alt": "Floral Embroidered Bracelet — handmade crochet bracelet with hand-embroidered flowers from @crochet_keychains.pk",
     "rating": 5,
     "reviews": 2,
-    "sold": 4
+    "sold": 4,
+    "reviewList": [
+      {
+        "name": "Usman J.",
+        "stars": 5,
+        "text": "Perfect size, not too big, and the finishing is clean.",
+        "date": "3 weeks ago"
+      },
+      {
+        "name": "Zohaib F.",
+        "stars": 5,
+        "text": "Small but so detailed. You can feel the effort in the Floral Embroidered Bracelet.",
+        "date": "a month ago"
+      }
+    ]
   }
 ]

@@ -69,9 +69,33 @@ for (const item of manifest) {
   const waText = encodeURIComponent(`Hi! I'd like to order this from your website:\n\n*Design:* ${item.title} (Ref #${ref})\n*Price:* ${price}\n\nPlease let me know how to complete my order (cash on delivery).`);
   const waLink = `https://wa.me/${WA}?text=${waText}`;
 
-  const ratingHtml = (item.rating && item.reviews)
-    ? `<p class="pdp-meta"><span class="star">&#9733;</span> ${item.rating} (${item.reviews} review${item.reviews > 1 ? 's' : ''}) · Handmade${item.sold ? ` · <span class="sold">${Number(item.sold).toLocaleString('en-US')} sold</span>` : ''}</p>`
-    : `<p class="pdp-meta">Handmade${item.sold ? ` · <span class="sold">${Number(item.sold).toLocaleString('en-US')} sold</span>` : ''}</p>`;
+  // ---- rating line + collapsible reviews (CSS-only <details>, no JS needed) ----
+  const soldBit = item.sold ? ` · <span class="sold">${Number(item.sold).toLocaleString('en-US')} sold</span>` : '';
+  const starRow = (n) => {
+    let s = '';
+    for (let i = 1; i <= 5; i++) s += i <= n ? '&#9733;' : '<span class="dim">&#9733;</span>';
+    return s;
+  };
+  let ratingHtml;
+  if (item.rating && item.reviews && Array.isArray(item.reviewList) && item.reviewList.length) {
+    const nR = item.reviews;
+    const reviewsPanel = item.reviewList.map((r) => `<article class="review">
+<div class="review-head"><span class="review-name">${esc(r.name)}</span><span class="review-stars" aria-label="${r.stars} out of 5 stars">${starRow(r.stars)}</span></div>
+<p class="review-text">${esc(r.text)}</p>
+<span class="review-date">${esc(r.date)}</span>
+</article>`).join('\n');
+    ratingHtml = `<details class="pdp-reviews">
+<summary class="pdp-meta"><span class="star">&#9733;</span> ${item.rating} <span class="reviews-link">(${nR} review${nR > 1 ? 's' : ''})</span> · Handmade${soldBit}</summary>
+<div class="reviews-panel">
+<p class="reviews-head">What buyers are saying</p>
+${reviewsPanel}
+</div>
+</details>`;
+  } else if (item.rating && item.reviews) {
+    ratingHtml = `<p class="pdp-meta"><span class="star">&#9733;</span> ${item.rating} (${item.reviews} review${item.reviews > 1 ? 's' : ''}) · Handmade${soldBit}</p>`;
+  } else {
+    ratingHtml = `<p class="pdp-meta">Handmade${soldBit}</p>`;
+  }
   const priceHtml = item.price
     ? `<p class="pdp-price"><span class="cur">PKR</span>${priceAmt(item)}</p>`
     : `<p class="pdp-price">DM for price</p>`;
@@ -112,6 +136,14 @@ for (const item of manifest) {
   };
   if (item.rating && item.reviews) {
     product.aggregateRating = { '@type': 'AggregateRating', ratingValue: item.rating, reviewCount: item.reviews, bestRating: 5, worstRating: 1 };
+  }
+  if (Array.isArray(item.reviewList) && item.reviewList.length) {
+    product.review = item.reviewList.map((r) => ({
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: r.stars, bestRating: 5, worstRating: 1 },
+      author: { '@type': 'Person', name: r.name },
+      reviewBody: r.text,
+    }));
   }
   const breadcrumb = {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
