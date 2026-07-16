@@ -407,14 +407,15 @@ if (orderForm) {
         lines.push(`*Qty:* ${qty}`);
       }
     }
-    lines.push(`*Delivery:* PKR 150 (flat rate)`);
+    lines.push(`*Delivery:* PKR 250 (flat rate)`);
+    lines.push(`*Payment:* Cash on Delivery or Easypaisa`);
     if (notes) lines.push(`*Notes:* ${notes}`);
     lines.push('');
     lines.push(`*Name:* ${name}`);
     lines.push(`*Phone:* ${phone}`);
     lines.push(`*Address:* ${address}`);
     lines.push('');
-    lines.push(`Cash on delivery — please confirm the total & delivery time. Thank you!`);
+    lines.push(`Please confirm the total & delivery time. Thank you!`);
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
     window.open(url, '_blank', 'noopener');
@@ -624,7 +625,7 @@ function injectProductSchema(items) {
     priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
     shippingDetails: {
       '@type': 'OfferShippingDetails',
-      shippingRate: { '@type': 'MonetaryAmount', value: 150, currency: 'PKR' },
+      shippingRate: { '@type': 'MonetaryAmount', value: 250, currency: 'PKR' },
       shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'PK' },
       deliveryTime: {
         '@type': 'ShippingDeliveryTime',

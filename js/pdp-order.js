@@ -71,14 +71,15 @@
     lines.push('*Design:* ' + D.title + ' (Ref ' + D.ref + ')');
     lines.push('*Price:* ' + D.price + ' × ' + qty);
     lines.push('*Photo:* ' + D.photo);
-    lines.push('*Delivery:* PKR 150 (flat rate)');
+    lines.push('*Delivery:* PKR 250 (flat rate)');
+    lines.push('*Payment:* Cash on Delivery or Easypaisa');
     if (notes) lines.push('*Notes:* ' + notes);
     lines.push('');
     lines.push('*Name:* ' + name);
     lines.push('*Phone:* ' + phone);
     lines.push('*Address:* ' + address);
     lines.push('');
-    lines.push('Cash on delivery — please confirm the total & delivery time. Thank you!');
+    lines.push('Please confirm the total & delivery time. Thank you!');
 
     var url = 'https://wa.me/' + D.wa + '?text=' + encodeURIComponent(lines.join('\n'));
     var win = window.open(url, '_blank', 'noopener');
