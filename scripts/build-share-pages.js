@@ -205,7 +205,7 @@ ${ratingHtml}
 ${priceHtml}
 <p class="pdp-desc">${esc(longDesc)}</p>
 <div class="pdp-cta">
-<a class="btn btn-large btn-whatsapp" href="${waLink}" target="_blank" rel="noopener">${WA_ICON}<span>Order on WhatsApp</span></a>
+<a class="btn btn-large btn-whatsapp pdp-order-open" href="${waLink}" target="_blank" rel="noopener">${WA_ICON}<span>Order on WhatsApp</span></a>
 <a class="btn btn-large btn-instagram" href="${IG_DM}" target="_blank" rel="noopener">${IG_ICON}<span>Message on Instagram</span></a>
 </div>
 <p class="pdp-trust">PKR 150 flat-rate delivery · Cash on delivery across Pakistan · Custom colours welcome · Damaged items replaced</p>
@@ -214,6 +214,44 @@ ${priceHtml}
 </div>
 </main>
 ${FOOTER}
+<div class="order-modal" id="pdp-order-modal" hidden>
+<div class="order-modal-card" role="dialog" aria-modal="true" aria-labelledby="pdp-order-title">
+<button class="order-modal-close" type="button" aria-label="Close">&times;</button>
+<h2 id="pdp-order-title">Order this keychain</h2>
+<p class="order-modal-sub">Cash on delivery &middot; PKR 150 flat-rate delivery, all over Pakistan.</p>
+<div class="order-modal-preview">
+<img src="${esc(imgRel)}" alt="${esc(item.alt || item.title)}" width="56" height="56">
+<span>${esc(item.title)} &middot; ${esc(price)}</span>
+</div>
+<form class="order-form" id="pdp-order-form" novalidate data-title="${esc(item.title)}" data-ref="#${ref}" data-price="${esc(price)}" data-photo="${esc(img)}" data-wa="${WA}">
+<label>Your name
+<input type="text" name="name" required autocomplete="name" placeholder="e.g. Ayesha Khan">
+</label>
+<label>Phone number
+<input type="tel" name="phone" required autocomplete="tel" placeholder="e.g. 0300 1234567">
+</label>
+<label>Delivery address
+<textarea name="address" rows="2" required placeholder="House, street, area, city"></textarea>
+</label>
+<div class="order-form-row">
+<div class="order-field">
+<span class="field-cap">Quantity</span>
+<span class="qty-stepper">
+<button type="button" class="qty-btn" data-step="-1" aria-label="Decrease quantity">&minus;</button>
+<input type="number" name="qty" min="1" value="1" inputmode="numeric" aria-label="Quantity" required>
+<button type="button" class="qty-btn" data-step="1" aria-label="Increase quantity">+</button>
+</span>
+</div>
+</div>
+<label>Notes (optional)
+<textarea name="notes" rows="2" placeholder="Colors, custom text, gift wrap&hellip;"></textarea>
+</label>
+<p class="order-form-error" id="pdp-order-error" hidden>Please fill in your name, phone and address.</p>
+<button type="submit" class="btn btn-large order-form-submit">${WA_ICON}<span>Send order on WhatsApp</span></button>
+</form>
+</div>
+</div>
+<script src="/js/pdp-order.js?v=1" defer></script>
 <!-- Cloudflare Web Analytics -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${CF_TOKEN}"}'></script>
 </body>

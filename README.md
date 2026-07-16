@@ -11,6 +11,7 @@ Plain static site — no build step, no dependencies. Just HTML, CSS and vanilla
 index.html                  Page markup + SEO meta + structured data
 css/styles.css              Styles (responsive: phones → desktop)
 js/main.js                  Gallery, lightbox, order flow, ratings, schema, SW register
+js/pdp-order.js             Guided order form on product pages (same WhatsApp flow as home)
 images/                     Product photos (post-<N>.jpg + .webp) + manifest.json (catalog)
 p/<ref>/index.html          Generated per-product landing pages (see below)
 scripts/build-share-pages.js  Generator for the product pages + sitemap
@@ -123,6 +124,12 @@ buy flow. They double
 as clean ad-landing pages. The **Share** button and the gallery cards link to these URLs
 (e.g. `https://www.crochetkeychains.com/p/037/`); the legacy `?design=<ref>` still opens
 the in-app lightbox.
+
+Their **Order on WhatsApp** button opens the same guided order form as the homepage
+(name / phone / address / quantity / notes → a rich WhatsApp message), powered by
+`js/pdp-order.js` (a small same-origin script; the product details are baked onto the
+form as `data-*` attributes). Progressive enhancement: with JS off, the button is still a
+plain `wa.me` link with a basic prefilled message, so buyers are never stuck.
 
 Regenerate after any catalog change:
 ```
