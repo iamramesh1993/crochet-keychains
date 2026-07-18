@@ -69,28 +69,30 @@ for (const item of manifest) {
   const waText = encodeURIComponent(`Hi! I'd like to order this from your website:\n\n*Design:* ${item.title} (Ref #${ref})\n*Price:* ${price}\n*Delivery:* PKR 250 (flat rate)\n*Payment:* Cash on Delivery or Easypaisa\n\nPlease let me know how to complete my order.`);
   const waLink = `https://wa.me/${WA}?text=${waText}`;
 
-  // ---- rating line + collapsible reviews (CSS-only <details>, no JS needed) ----
+  // ---- rating line (with review count) + a reviews section rendered below ----
   const soldBit = item.sold ? ` · <span class="sold">${Number(item.sold).toLocaleString('en-US')} sold</span>` : '';
   const starRow = (n) => {
     let s = '';
     for (let i = 1; i <= 5; i++) s += i <= n ? '&#9733;' : '<span class="dim">&#9733;</span>';
     return s;
   };
+  // Top line = glanceable rating; the review cards live in their own section at the
+  // bottom of the page (after the CTA), so they never displace the price/Order button.
+  // The "(N reviews)" count anchor-jumps down to that section.
   let ratingHtml;
+  let reviewsSection = '';
   if (item.rating && item.reviews && Array.isArray(item.reviewList) && item.reviewList.length) {
     const nR = item.reviews;
-    const reviewsPanel = item.reviewList.map((r) => `<article class="review">
+    const cards = item.reviewList.map((r) => `<article class="review">
 <div class="review-head"><span class="review-name">${esc(r.name)}</span><span class="review-stars" aria-label="${r.stars} out of 5 stars">${starRow(r.stars)}</span></div>
 <p class="review-text">${esc(r.text)}</p>
 <span class="review-date">${esc(r.date)}</span>
 </article>`).join('\n');
-    ratingHtml = `<details class="pdp-reviews">
-<summary class="pdp-meta"><span class="star">&#9733;</span> ${item.rating} <span class="reviews-link">(${nR} review${nR > 1 ? 's' : ''})</span> · Handmade${soldBit}</summary>
-<div class="reviews-panel">
-<p class="reviews-head">What buyers are saying</p>
-${reviewsPanel}
-</div>
-</details>`;
+    ratingHtml = `<p class="pdp-meta"><span class="star">&#9733;</span> ${item.rating} · <a class="reviews-jump" href="#reviews">${nR} review${nR > 1 ? 's' : ''}</a> · Handmade${soldBit}</p>`;
+    reviewsSection = `<section class="reviews-section" id="reviews">
+<p class="reviews-head">Customer reviews</p>
+${cards}
+</section>`;
   } else if (item.rating && item.reviews) {
     ratingHtml = `<p class="pdp-meta"><span class="star">&#9733;</span> ${item.rating} (${item.reviews} review${item.reviews > 1 ? 's' : ''}) · Handmade${soldBit}</p>`;
   } else {
@@ -209,6 +211,7 @@ ${priceHtml}
 <a class="btn btn-large btn-instagram" href="${IG_DM}" target="_blank" rel="noopener">${IG_ICON}<span>Message on Instagram</span></a>
 </div>
 <p class="pdp-trust">PKR 250 flat-rate delivery · Cash on delivery or Easypaisa across Pakistan · Custom colours welcome · Damaged items replaced</p>
+${reviewsSection}
 <a class="pdp-browse" href="/#gallery">&#8592; Browse all designs</a>
 </div>
 </div>

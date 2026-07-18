@@ -1593,13 +1593,11 @@ body.lightbox-open {
 .lightbox-meta .meta-star { color: #e8a33d; }
 .lightbox-meta .meta-sold { color: var(--sage); font-weight: 600; }
 
-/* Reviews disclosure inside the lightbox — reuses the .pdp-reviews / .review
-   styles, just tuned to the lightbox's slightly smaller type scale. */
+/* Reviews block inside the lightbox — revealed by the rating line's toggle and
+   rendered AFTER the CTA, so opening it never pushes the Order button off-screen. */
 .lightbox-reviews:empty { display: none; }
-.lightbox-reviews .pdp-reviews { margin: 0 0 0.5rem; }
-.lightbox-reviews summary.pdp-meta { font-size: 0.8rem; margin: 0; color: var(--ink-muted); }
-.lightbox-reviews summary.pdp-meta .star { color: #e8a33d; }
-.lightbox-reviews .meta-sold { color: var(--sage); font-weight: 600; }
+.lightbox-reviews .reviews-section { margin-top: 1rem; }
+.lightbox-reviews .review-text { font-size: 0.85rem; }
 
 .lightbox-price {
   font-family: var(--font-display);
@@ -1915,34 +1913,33 @@ body.lightbox-open {
 .pdp-meta .star { color: var(--sun); }
 .pdp-meta .sold { color: var(--sage); font-weight: 600; }
 
-/* Collapsible reviews — CSS-only <details>. The "(N reviews)" link is the hook:
-   brand-pink, underlined, with a little chevron, so it invites a curious click. */
-.pdp-reviews { margin: 0 0 0.75rem; }
-.pdp-reviews > summary { list-style: none; cursor: pointer; margin: 0; }
-.pdp-reviews > summary::-webkit-details-marker { display: none; }
-.pdp-reviews > summary:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; border-radius: 6px; }
-.reviews-link {
+/* The rating line's "(N reviews)" is the hook (brand-pink, underlined). It links
+   to — or reveals — the reviews block, which lives BELOW the primary CTA so
+   opening reviews never pushes the price / Order button out of view. */
+.reviews-jump,
+.reviews-toggle {
   color: var(--terracotta);
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-thickness: 2px;
   white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
 }
-.reviews-link::after {
-  content: "▾";
-  font-size: 0.7em;
-  margin-left: 0.2em;
-  text-decoration: none;
-  display: inline-block;
-  transition: transform 0.2s ease;
-}
-.pdp-reviews[open] .reviews-link::after { transform: rotate(180deg); }
-.pdp-reviews > summary:hover .reviews-link { color: var(--terracotta-dark); }
+.reviews-jump:hover,
+.reviews-toggle:hover { color: var(--terracotta-dark); }
+.reviews-toggle::after { content: " ▾"; font-size: 0.85em; display: inline-block; }
+.reviews-toggle[aria-expanded="true"]::after { content: " ▴"; }
 
-.reviews-panel {
-  margin-top: 0.85rem;
-  padding: 0.5rem 0 0.25rem;
+/* Reviews block — product page shows it inline near the bottom; the lightbox
+   reveals it on demand. Either way it sits after the CTA, so it never displaces it. */
+.reviews-section {
+  margin-top: 1.4rem;
+  padding-top: 1.1rem;
   border-top: 1px solid var(--cream-dark);
   animation: reviewsIn 0.22s ease;
 }

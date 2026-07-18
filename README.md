@@ -33,10 +33,16 @@ The catalog lives in `images/manifest.json`. Each entry has `src`, `title`, `pri
 ("New" arrival badges are set by ref number in `NEW_REFS` in `js/main.js`.)
 
 ## Customer reviews
-Each product carries seeded, human-sounding reviews (`reviewList` in the manifest). On both
-the **product pages** (`/p/<ref>/`) and the **homepage lightbox**, the “(N reviews)” text is a
-clickable pink link that expands an inline reviews panel — a CSS-only `<details>` disclosure
-(no JS needed on the product pages; the lightbox builds the same markup in `js/main.js`).
+Each product carries seeded, human-sounding reviews (`reviewList` in the manifest). The rating
+line shows a pink **“N reviews”** link, but the review *cards* always render in their own block
+**below the primary Order CTA**, so opening them never pushes the price/Order button off-screen:
+- **Product pages** (`/p/<ref>/`): a visible `<section id="reviews">` at the bottom; the count is
+  an anchor link (`href="#reviews"`) that scrolls to it. No JS — good for SEO/AEO (review text is
+  in the initial HTML).
+- **Homepage lightbox**: the count is a toggle button (`.reviews-toggle`) that reveals a reviews
+  section rendered after the CTA (`js/main.js` `reviewsSectionHtml` / `lightboxMetaHtml`), then
+  scrolls to it — keeping the compact quick-view uncluttered.
+
 Reviews are also emitted as schema.org `Review` + `AggregateRating` JSON-LD on every product
 page **and** in the homepage `ItemList` — for Google rich-result stars and AEO/GEO.
 

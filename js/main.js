@@ -245,21 +245,35 @@ function reviewStarRow(n) {
   for (let i = 1; i <= 5; i++) s += i <= n ? '★' : '<span class="dim">★</span>';
   return s;
 }
-// Returns a CSS-only <details> disclosure (clickable "(N reviews)" + panel), or
-// null when the item has no seeded reviews.
-function reviewsDetailsHtml(item) {
-  if (!item || !item.rating || !item.reviews || !Array.isArray(item.reviewList) || !item.reviewList.length) return null;
-  const n = item.reviews;
-  const sold = item.sold ? ` · <span class="meta-sold">${Number(item.sold).toLocaleString('en-US')} sold</span>` : '';
+function hasReviews(item) {
+  return !!(item && item.rating && item.reviews && Array.isArray(item.reviewList) && item.reviewList.length);
+}
+// The review cards, wrapped in a section that starts hidden and is revealed by the
+// rating line's toggle. Rendered at the BOTTOM of the lightbox (after the CTA), so
+// opening it never pushes the price / Order button off-screen.
+function reviewsSectionHtml(item) {
+  if (!hasReviews(item)) return '';
   const cards = item.reviewList.map((r) => `<article class="review">
 <div class="review-head"><span class="review-name">${escapeHtml(r.name)}</span><span class="review-stars" aria-label="${r.stars} out of 5 stars">${reviewStarRow(r.stars)}</span></div>
 <p class="review-text">${escapeHtml(r.text)}</p>
 <span class="review-date">${escapeHtml(r.date)}</span>
 </article>`).join('');
-  return `<details class="pdp-reviews">
-<summary class="pdp-meta"><span class="star">★</span> ${item.rating} <span class="reviews-link">(${n} review${n > 1 ? 's' : ''})</span> · Handmade${sold}</summary>
-<div class="reviews-panel"><p class="reviews-head">What buyers are saying</p>${cards}</div>
-</details>`;
+  return `<section class="reviews-section" id="lightbox-reviews-panel" hidden><p class="reviews-head">What buyers are saying</p>${cards}</section>`;
+}
+// Static rating/social-proof line for the lightbox. When reviews exist, the count
+// is a toggle button that reveals the reviews section below.
+function lightboxMetaHtml(item) {
+  const parts = [];
+  if (item.rating) {
+    const n = item.reviews;
+    const count = hasReviews(item)
+      ? `<button type="button" class="reviews-toggle" aria-expanded="false" aria-controls="lightbox-reviews-panel">${n} review${n > 1 ? 's' : ''}</button>`
+      : (n ? `${n} review${n > 1 ? 's' : ''}` : '');
+    parts.push(`<span class="meta-star">★</span> ${item.rating}${count ? ` · ${count}` : ''}`);
+  }
+  parts.push('Handmade');
+  if (item.sold) parts.push(`<span class="meta-sold">${Number(item.sold).toLocaleString('en-US')} sold</span>`);
+  return parts.join(' · ');
 }
 
 // Match a free-text design query (from the generic "Book your order" field) to a
@@ -526,23 +540,13 @@ function openLightbox(index) {
   lightboxImg.src = item.src.replace(/\.jpg$/, '.webp');
   lightboxImg.alt = item.alt;
   if (lightboxTitle) lightboxTitle.textContent = item.title;
-  const reviewsHtml = reviewsDetailsHtml(item);
-  if (lightboxReviews) lightboxReviews.innerHTML = reviewsHtml || '';
+  // Rating line stays at the top (glanceable social proof); the review cards live
+  // in #lightbox-reviews at the bottom, revealed by the count toggle.
   if (lightboxMeta) {
-    // When the design has reviews, the clickable panel carries the full meta
-    // line (rating · Handmade · sold), so hide the plain <p> to avoid duplication.
-    if (reviewsHtml) {
-      lightboxMeta.hidden = true;
-      lightboxMeta.innerHTML = '';
-    } else {
-      lightboxMeta.hidden = false;
-      const parts = [];
-      if (item.rating) parts.push(`<span class="meta-star">★</span> ${item.rating} (${item.reviews} review${item.reviews > 1 ? 's' : ''})`);
-      parts.push('Handmade');
-      if (item.sold) parts.push(`<span class="meta-sold">${Number(item.sold).toLocaleString('en-US')} sold</span>`);
-      lightboxMeta.innerHTML = parts.join(' · ');
-    }
+    lightboxMeta.hidden = false;
+    lightboxMeta.innerHTML = lightboxMetaHtml(item);
   }
+  if (lightboxReviews) lightboxReviews.innerHTML = reviewsSectionHtml(item);
   if (lightboxPrice) lightboxPrice.innerHTML = formatPriceHtml(item);
   if (lightboxCounter) lightboxCounter.textContent = `${lightboxIndex + 1} / ${viewItems.length}`;
   lightbox.hidden = false;
@@ -934,7 +938,19 @@ if (lightbox) {
   });
 
   lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) dismissOverlay();
+    if (e.target === lightbox) { dismissOverlay(); return; }
+    // Rating line's "(N reviews)" toggle → reveal/hide the reviews section (which
+    // sits below the CTA, so it never displaces the Order button) and scroll to it.
+    const toggle = e.target.closest('.reviews-toggle');
+    if (toggle && lightboxReviews) {
+      const panel = lightboxReviews.querySelector('.reviews-section');
+      if (panel) {
+        const show = panel.hidden;
+        panel.hidden = !show;
+        toggle.setAttribute('aria-expanded', show ? 'true' : 'false');
+        if (show) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
   });
 
   // Swipe left/right to move between products (mobile/touch).
