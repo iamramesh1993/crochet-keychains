@@ -488,12 +488,16 @@ function buildGalleryCard(item, index) {
   const badge = badgeFor(item);
   const faved = favorites.has(item.src);
   const ref = (item.src.match(/(\d+)/) || [])[1] || '';
+  // Gallery cards show at ~220-360px, so load a light 400px thumbnail here — the
+  // full-size image is reserved for the lightbox / product page. ~72% lighter grid.
+  const thumbJpg = item.src.replace(/^images\//, 'images/thumb/');
+  const thumbWebp = thumbJpg.replace(/\.jpg$/, '.webp');
   card.innerHTML = `
     <a class="gallery-trigger" href="/p/${ref}/" data-index="${index}" aria-label="View ${item.title}">
       <div class="product-image">
         <picture>
-          <source type="image/webp" srcset="${item.src.replace(/\.jpg$/, '.webp')}">
-          <img src="${item.src}" alt="${item.alt}" decoding="async" ${index < 6 ? 'fetchpriority="high"' : 'loading="lazy"'}>
+          <source type="image/webp" srcset="${thumbWebp}">
+          <img src="${thumbJpg}" alt="${item.alt}" width="400" height="400" decoding="async" ${index < 6 ? 'fetchpriority="high"' : 'loading="lazy"'}>
         </picture>
         ${badge ? `<span class="product-badge ${badge.cls}">${badge.text}</span>` : ''}
       </div>

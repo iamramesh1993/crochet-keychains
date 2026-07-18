@@ -13,8 +13,10 @@ css/styles.css              Styles (responsive: phones → desktop)
 js/main.js                  Gallery, lightbox, order flow, ratings, schema, SW register
 js/pdp-order.js             Guided order form on product pages (same WhatsApp flow as home)
 images/                     Product photos (post-<N>.jpg + .webp) + manifest.json (catalog)
+images/thumb/               400px gallery thumbnails (post-<N>.jpg + .webp) — see below
 p/<ref>/index.html          Generated per-product landing pages (see below)
 scripts/build-share-pages.js  Generator for the product pages + sitemap
+scripts/make-thumbs.py      Generates images/thumb/ from the full-size photos
 sw.js                       Service worker (PWA installability + light offline)
 site.webmanifest            PWA / install metadata (PNG icons: icon-192/512(-maskable).png)
 robots.txt / sitemap.xml    Crawl rules / sitemap
@@ -105,9 +107,12 @@ data-triggered plan (measure → convert → acquire → scale → retain).
      `images/post-<N>.webp` (e.g. with a small `sharp` script).
   2. Append an entry to `images/manifest.json` (`src`, `title`, `price`, `alt`, `rating`,
      `reviews`, `sold`; optionally `priceMax` for a range and `reviewList` for reviews).
-  3. Bump the cache versions: `manifest.json?v=` in `js/main.js` **and** `main.js?v=` in
+  3. Run `python3 scripts/make-thumbs.py` to generate the 400px gallery thumbnail
+     (`images/thumb/post-<N>.jpg` + `.webp`). The gallery grid loads these; the lightbox
+     and product page keep the full-size image. Skips up-to-date thumbs (`--force` to rebuild all).
+  4. Bump the cache versions: `manifest.json?v=` in `js/main.js` **and** `main.js?v=` in
      `index.html` (bump `css/styles.css?v=` too if you touched CSS).
-  4. Run `node scripts/build-share-pages.js` (rebuilds the product pages + sitemap), then commit.
+  5. Run `node scripts/build-share-pages.js` (rebuilds the product pages + sitemap), then commit.
 - **Change the WhatsApp number:** `WHATSAPP_NUMBER` in `js/main.js` (also update the
   footer/contact `wa.me` links + Store `telephone` in `index.html`, and the `WA` const in
   `scripts/build-share-pages.js`), then regenerate the product pages.
