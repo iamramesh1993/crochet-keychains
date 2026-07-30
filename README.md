@@ -24,11 +24,16 @@ favicon.svg                 Site icon
 ```
 
 The catalog lives in `images/manifest.json`. Each entry has `src`, `title`, `price`,
-`alt`, `rating`, `reviews`, `sold`, plus two optional fields:
+`alt`, `rating`, `reviews`, `sold`, plus three optional fields:
 - `priceMax` — set alongside `price` for a **price range** (e.g. `price: 600, priceMax: 1000`
   renders “PKR 600–1,000”). Items without it show a single price exactly as before.
 - `reviewList` — an array of customer reviews (`{ name, stars, text, date }`); its length
   should match `reviews`. Powers the clickable reviews panel and `Review` structured data.
+- `kind` — the product type for **copy purposes** when it isn't a keychain (e.g. `"coaster"`,
+  `"bracelet"`). It drives the meta description, the on-page product description and the
+  “Order this …” modal title, so a table mat isn't described as a keychain. Add a matching
+  entry to `DESC_BY_KIND` in `scripts/build-share-pages.js` when introducing a new kind.
+  Entries without `kind` behave exactly as before (keychain wording).
 
 ("New" arrival badges are set by ref number in `NEW_REFS` in `js/main.js`.)
 

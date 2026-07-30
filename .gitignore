@@ -4,3 +4,4 @@ Thumbs.db
 
 # Local tooling (not part of the published site)
 .claude/
+.vscode/

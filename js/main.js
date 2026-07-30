@@ -346,7 +346,8 @@ function startOrder(item) {
   }
 
   const title = document.getElementById('order-modal-title');
-  if (title) title.textContent = item ? 'Order this keychain' : 'Place your order';
+  // Most designs are keychains; `kind` lets a coaster/bracelet name itself correctly.
+  if (title) title.textContent = item ? `Order this ${item.kind || 'keychain'}` : 'Place your order';
 
   const preview = document.getElementById('order-modal-preview');
   const previewImg = document.getElementById('order-modal-img');
@@ -840,7 +841,7 @@ async function loadGallery() {
   if (!galleryGrid) return;
 
   try {
-    const response = await fetch('images/manifest.json?v=11');
+    const response = await fetch('images/manifest.json?v=12');
     if (!response.ok) throw new Error('Could not load gallery');
     galleryItems = await response.json();
 
