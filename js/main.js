@@ -422,8 +422,8 @@ if (orderForm) {
         lines.push(`*Qty:* ${qty}`);
       }
     }
-    lines.push(`*Delivery:* PKR 250 (flat rate)`);
-    lines.push(`*Payment:* Cash on Delivery or Easypaisa`);
+    lines.push(`*Delivery:* PKR 300 (flat rate)`);
+    lines.push(`*Payment:* Easypaisa, JazzCash or bank transfer`);
     if (notes) lines.push(`*Notes:* ${notes}`);
     lines.push('');
     lines.push(`*Name:* ${name}`);
@@ -634,7 +634,7 @@ function injectProductSchema(items) {
     priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
     shippingDetails: {
       '@type': 'OfferShippingDetails',
-      shippingRate: { '@type': 'MonetaryAmount', value: 250, currency: 'PKR' },
+      shippingRate: { '@type': 'MonetaryAmount', value: 300, currency: 'PKR' },
       shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'PK' },
       deliveryTime: {
         '@type': 'ShippingDeliveryTime',

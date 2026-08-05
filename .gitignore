@@ -5,3 +5,10 @@ Thumbs.db
 # Local tooling (not part of the published site)
 .claude/
 .vscode/
+
+# Next.js storefront (rebuild) — does not affect GitHub Pages root
+storefront/node_modules/
+storefront/.next/
+storefront/.env
+storefront/.env.local
+storefront/drizzle/meta/

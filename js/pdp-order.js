@@ -71,8 +71,8 @@
     lines.push('*Design:* ' + D.title + ' (Ref ' + D.ref + ')');
     lines.push('*Price:* ' + D.price + ' × ' + qty);
     lines.push('*Photo:* ' + D.photo);
-    lines.push('*Delivery:* PKR 250 (flat rate)');
-    lines.push('*Payment:* Cash on Delivery or Easypaisa');
+    lines.push('*Delivery:* PKR 300 (flat rate)');
+    lines.push('*Payment:* Easypaisa, JazzCash or bank transfer');
     if (notes) lines.push('*Notes:* ' + notes);
     lines.push('');
     lines.push('*Name:* ' + name);

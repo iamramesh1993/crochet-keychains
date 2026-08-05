@@ -71,12 +71,12 @@ for (const item of manifest) {
   const price = priceText(item);
   const titlePrice = `${item.title} — ${price}`;
   const kind = kindOf(item);
-  const metaDesc = `${item.title} — handmade crochet ${kind}, ${price}. Made to order in Pakistan, cash on delivery or Easypaisa. Order on WhatsApp or Instagram.`;
+  const metaDesc = `${item.title} — handmade crochet ${kind}, ${price}. Made to order in Pakistan, Easypaisa, JazzCash or bank transfer. Order on WhatsApp or Instagram.`;
   // Visible/product description — product-focused (price + delivery are shown
   // separately above/below, so we don't repeat them here).
   const longDesc = `${item.title} — ${DESC_BY_KIND[kind] || DESC_BY_KIND.keychain}`;
 
-  const waText = encodeURIComponent(`Hi! I'd like to order this from your website:\n\n*Design:* ${item.title} (Ref #${ref})\n*Price:* ${price}\n*Delivery:* PKR 250 (flat rate)\n*Payment:* Cash on Delivery or Easypaisa\n\nPlease let me know how to complete my order.`);
+  const waText = encodeURIComponent(`Hi! I'd like to order this from your website:\n\n*Design:* ${item.title} (Ref #${ref})\n*Price:* ${price}\n*Delivery:* PKR 300 (flat rate)\n*Payment:* Easypaisa, JazzCash or bank transfer\n\nPlease let me know how to complete my order.`);
   const waLink = `https://wa.me/${WA}?text=${waText}`;
 
   // ---- rating line (with review count) + a reviews section rendered below ----
@@ -128,7 +128,7 @@ ${cards}
       url: pageUrl,
       shippingDetails: {
         '@type': 'OfferShippingDetails',
-        shippingRate: { '@type': 'MonetaryAmount', value: 250, currency: 'PKR' },
+        shippingRate: { '@type': 'MonetaryAmount', value: 300, currency: 'PKR' },
         shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'PK' },
         deliveryTime: {
           '@type': 'ShippingDeliveryTime',
@@ -220,7 +220,7 @@ ${priceHtml}
 <a class="btn btn-large btn-whatsapp pdp-order-open" href="${waLink}" target="_blank" rel="noopener">${WA_ICON}<span>Order on WhatsApp</span></a>
 <a class="btn btn-large btn-instagram" href="${IG_DM}" target="_blank" rel="noopener">${IG_ICON}<span>Message on Instagram</span></a>
 </div>
-<p class="pdp-trust">PKR 250 flat-rate delivery · Cash on delivery or Easypaisa across Pakistan · Custom colours welcome · Damaged items replaced</p>
+<p class="pdp-trust">PKR 300 flat-rate delivery · Easypaisa, JazzCash or bank transfer across Pakistan · Custom colours welcome · Damaged items replaced</p>
 ${reviewsSection}
 <a class="pdp-browse" href="/#gallery">&#8592; Browse all designs</a>
 </div>
@@ -231,7 +231,7 @@ ${FOOTER}
 <div class="order-modal-card" role="dialog" aria-modal="true" aria-labelledby="pdp-order-title">
 <button class="order-modal-close" type="button" aria-label="Close">&times;</button>
 <h2 id="pdp-order-title">Order this ${esc(kind)}</h2>
-<p class="order-modal-sub">Cash on delivery or Easypaisa &middot; PKR 250 flat-rate delivery, all over Pakistan.</p>
+<p class="order-modal-sub">Easypaisa, JazzCash or bank transfer &middot; PKR 300 flat-rate delivery, all over Pakistan.</p>
 <div class="order-modal-preview">
 <img src="${esc(imgRel)}" alt="${esc(item.alt || item.title)}" width="56" height="56">
 <span>${esc(item.title)} &middot; ${esc(price)}</span>
@@ -264,7 +264,7 @@ ${FOOTER}
 </form>
 </div>
 </div>
-<script src="/js/pdp-order.js?v=2" defer></script>
+<script src="/js/pdp-order.js?v=3" defer></script>
 <!-- Cloudflare Web Analytics -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${CF_TOKEN}"}'></script>
 </body>
