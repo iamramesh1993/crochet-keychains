@@ -12,3 +12,12 @@ storefront/.next/
 storefront/.env
 storefront/.env.local
 storefront/drizzle/meta/
+
+# THIS REPO IS PUBLIC (it serves the live site via GitHub Pages).
+# The rebuild workstream stays out of it — these hold pricing strategy, the
+# decision log, cross-business notes and photo masters. They belong in the
+# private rebuild repo, not on the public internet. Guard against `git add -A`.
+docs/
+storefront/
+Product_Images/
+.cursor/
