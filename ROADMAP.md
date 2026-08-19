@@ -1,11 +1,13 @@
 # Crochet Keychains — Product Roadmap
 
-Owner: iamramesh1993 · Updated: 2026-06-17
+Owner: iamramesh1993 · Updated: 2026-08-19
 
 A lean, data-driven plan for growing Crochet Keychains from a static catalog +
 WhatsApp/Instagram ordering into a small, well-run handmade brand — **without
 over-engineering**. The site stays fast and static until real order volume
 justifies a backend.
+
+**2026-08-19:** Catalog prices raised **+PKR 500** across all inventory (`images/manifest.json`); product pages + `sitemap.xml` regenerated; WA number `03144918419`.
 
 ---
 
