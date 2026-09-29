@@ -841,7 +841,7 @@ async function loadGallery() {
   if (!galleryGrid) return;
 
   try {
-    const response = await fetch('images/manifest.json?v=13');
+    const response = await fetch('images/manifest.json?v=14');
     if (!response.ok) throw new Error('Could not load gallery');
     galleryItems = await response.json();
 
