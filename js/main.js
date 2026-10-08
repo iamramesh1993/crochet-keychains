@@ -60,7 +60,7 @@ function categoryOf(item) {
 
 function isNewItem(item) {
   const m = (item.src || '').match(/(\d+)/);
-  return m ? NEW_REFS.has(m[1]) : false;
+  return !!item.isNew || (m ? NEW_REFS.has(m[1]) : false);
 }
 
 function badgeFor(item) {
@@ -264,6 +264,7 @@ function reviewsSectionHtml(item) {
 // is a toggle button that reveals the reviews section below.
 function lightboxMetaHtml(item) {
   const parts = [];
+  if (item.isNew) parts.push('<span class="meta-new">✨ New arrival</span>');
   if (item.rating) {
     const n = item.reviews;
     const count = hasReviews(item)

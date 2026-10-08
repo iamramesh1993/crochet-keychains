@@ -1592,6 +1592,7 @@ body.lightbox-open {
 
 .lightbox-meta .meta-star { color: #e8a33d; }
 .lightbox-meta .meta-sold { color: var(--sage); font-weight: 600; }
+.lightbox-meta .meta-new { color: var(--terracotta); font-weight: 600; }
 
 /* Reviews block inside the lightbox — revealed by the rating line's toggle and
    rendered AFTER the CTA, so opening it never pushes the Order button off-screen. */
@@ -1912,6 +1913,7 @@ body.lightbox-open {
 .pdp-meta { font-size: 0.9rem; color: var(--ink-muted); margin: 0 0 0.75rem; }
 .pdp-meta .star { color: var(--sun); }
 .pdp-meta .sold { color: var(--sage); font-weight: 600; }
+.pdp-meta .new { color: var(--terracotta); font-weight: 600; }
 
 /* The rating line's "(N reviews)" is the hook (brand-pink, underlined). It links
    to — or reveals — the reviews block, which lives BELOW the primary CTA so

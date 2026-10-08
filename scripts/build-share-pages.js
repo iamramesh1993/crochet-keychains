@@ -106,7 +106,8 @@ ${cards}
   } else if (item.rating && item.reviews) {
     ratingHtml = `<p class="pdp-meta"><span class="star">&#9733;</span> ${item.rating} (${item.reviews} review${item.reviews > 1 ? 's' : ''}) · Handmade${soldBit}</p>`;
   } else {
-    ratingHtml = `<p class="pdp-meta">Handmade${soldBit}</p>`;
+    const newBit = item.isNew ? '<span class="new">&#10024; New arrival</span> · ' : '';
+    ratingHtml = `<p class="pdp-meta">${newBit}Handmade${soldBit}</p>`;
   }
   const priceHtml = item.price
     ? `<p class="pdp-price"><span class="cur">PKR</span>${priceAmt(item)}</p>`
