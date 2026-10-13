@@ -162,7 +162,7 @@ const WHATSAPP_NUMBER = '923144918419';
 // Public site URL — used for structured data (SEO).
 const SITE_URL = 'https://www.crochetkeychains.com';
 
-const ORDER_DM_URL = 'https://ig.me/m/crochet_keychains.pk';
+const ORDER_DM_URL = 'https://ig.me/m/keychains.magnets';
 const orderModal = document.getElementById('order-modal');
 const contactModal = document.getElementById('contact-modal');
 const orderForm = document.getElementById('order-form');
